@@ -1,13 +1,33 @@
-body {
+@import url('./vendor/normalize.css');
+@import url('./vendor/fonts/fonts.css');
+
+.page {
+  background-color: #000000;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
+  /*   сглаживание шрифтов в Firefox и браузерах на движке Webkit (Яндекс.Браузер, Google Chrome, Opera, Safari)  */
   -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  /*  масштабирования шрифтов   */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  /*  кернинг   */
+  text-rendering: optimizeLegibility;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.page__container {
+  width: 100%;
+  max-width: 882px;
+  min-width: 300px;
+  margin: 0 auto;
+  padding: 0 0 60px;
+  position: relative;
+}
+
+@media screen and (max-width: 425px) {
+  .page__container {
+    /* padding-bottom: 36px; */
+  }
 }
