@@ -1,0 +1,47 @@
+.navbar {
+  /*border: 1px solid green;*/
+  display: flex;
+  margin: 0 32px 0 0;
+  padding: 0;
+}
+
+.navbar__item {
+  margin: 0 34px 0 0;
+  padding: 24px 0 26px;
+  list-style: none;
+}
+
+.navbar__item:last-of-type {
+  margin-right: 0;
+}
+
+.navbar__link {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.navbar__link:hover {
+  opacity: 0.8;
+}
+
+.navbar__link_active {
+  text-decoration: solid underline 3px;
+  text-underline-offset: 29px;
+}
+
+.navbar__link_color_grey {
+  color: #b6bcbf;
+}
+
+.navbar__link_color_white {
+  color: white;
+}
+
+.navbar__link_color_black {
+  color: #1a1b22;
+}

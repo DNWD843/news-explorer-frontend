@@ -1,7 +1,7 @@
 @import url('./vendor/normalize.css');
 @import url('./vendor/fonts/fonts.css');
 
-.page {
+.root {
   background-color: #000000;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-style: normal;
@@ -17,17 +17,17 @@
   text-rendering: optimizeLegibility;
 }
 
-.page__container {
+.root__container {
   width: 100%;
-  max-width: 882px;
-  min-width: 300px;
+  max-width: 1440px;
+  min-width: 320px;
   margin: 0 auto;
   padding: 0 0 60px;
   position: relative;
 }
 
 @media screen and (max-width: 425px) {
-  .page__container {
+  .root__container {
     /* padding-bottom: 36px; */
   }
 }
