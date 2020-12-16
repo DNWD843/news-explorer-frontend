@@ -1,0 +1,144 @@
+.card {
+  padding: 0;
+  background: #fff;
+  max-width: 400px;
+  height: 40vw;
+  max-height: 576px;
+  border-radius: 16px;
+  position: relative;
+}
+
+.cards__item {
+  margin: 0 16px 16px 0;
+}
+
+.cards__item:nth-child(3) {
+  margin-right: 0;
+}
+
+.card__image {
+  width: 100%;
+  height: 272px;
+  margin: 0;
+  object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+
+.card__bookmark {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  /*background-image: url('../../images/bookmark-normal.svg');*/
+  background-color: #fff;
+  background-size: cover;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.card__bookmark::after {
+  content: '';
+  background-image: url('../../images/bookmark-normal.svg');
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.card__bookmark:hover::after {
+  content: '';
+  background-image: url('../../images/bookmark-normal.svg');
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0;
+}
+
+.card__bookmark::before {
+  content: '';
+  background-image: url('../../images/bookmark-hover.svg');
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.card__info {
+  margin: 0;
+  padding: 20px 24px 24px;
+  height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.card__date {
+  margin: 0 0 12px;
+  font-family: 'Source Sans Pro';
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  display: flex;
+  align-items: center;
+  color: #b6bcbf;
+}
+
+.card__title {
+  margin: 0 0 16px;
+  padding: 0;
+  font-family: 'Roboto Slab';
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  color: #1a1b22;
+}
+
+.card__description {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1a1b22;
+  width: 352px;
+}
+
+.card__description-overflow {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  margin: 0 0 10px;
+}
+
+.card__source {
+  margin: auto 0 0;
+  padding: 0;
+  font-family: 'Roboto Slab';
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: #b6bcbf;
+}
