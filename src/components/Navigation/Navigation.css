@@ -1,3 +1,9 @@
+.menu {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
 .navbar {
   /*border: 1px solid green;*/
   display: flex;
@@ -21,17 +27,12 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
-  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   cursor: pointer;
+  text-decoration: none;
 }
 
 .navbar__link:hover {
   opacity: 0.8;
-}
-
-.navbar__link_active {
-  text-decoration: solid underline 3px;
-  text-underline-offset: 29px;
 }
 
 .navbar__link_color_grey {
@@ -44,4 +45,10 @@
 
 .navbar__link_color_black {
   color: #1a1b22;
+}
+
+.navbar__link_active {
+  text-decoration: solid underline 3px;
+  text-underline-offset: 29px;
+  color: inherit;
 }

@@ -1,45 +1,72 @@
-.saved-news__header {
-  margin: 0 0 62px;
-  padding: 40px 104px 56px;
-  width: 100%;
+.saved-news-header {
+  padding: 6px 104px 0 104px;
+  display: flex;
+  align-items: center;
   background: #fff;
-  box-sizing: border-box;
-}
-
-.saved-news__page-name {
-  margin: 0 0 28px;
-  padding: 0;
-  font-family: 'Roboto';
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 24px;
-  color: rgba(26, 27, 34, 0.5);
-}
-
-.saved-news__title {
-  margin: 0 0 30px;
-  padding: 0;
-  width: 530px;
-  font-family: 'Roboto Slab';
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 46px;
+  box-shadow: inset 0px -1px 0px #d1d2d6;
   color: #1a1b22;
 }
 
-.saved-news__keywords {
+.saved-news-header__link {
+  margin: 0 auto 0 0;
+  padding: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
+.saved-news-header__link:hover {
+  opacity: 0.9;
+}
+
+.saved-news-header__logo {
+  /*color: #fff;*/
+  margin: 0;
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.saved-news-header__button {
+  color: inherit;
+  display: flex;
+  margin: 0;
+  padding: 11px 15px 11px 19px;
+  align-self: center;
+  border: 1px solid /*#fff*/;
+  box-sizing: border-box;
+  border-radius: 100px;
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+}
+
+.saved-news-header__button:hover {
+  opacity: 0.8;
+}
+
+.saved-news-header__button-title {
+  margin: 0 7px 0 0;
+  padding: 0;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  /*color: #fff;*/
+  align-self: center;
+}
+
+.saved-news-header__button-icon {
   margin: 0;
   padding: 0;
-  font-family: 'Roboto';
-  font-size: 18px;
-  line-height: 24px;
-  color: #1a1b22;
-}
+  width: 24px;
+  height: 24px;
+  background-image: url('../../images/logout-icon-black.svg');
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: center;
 
-.saved-news__keywords_accent_no-accent {
-  font-weight: 400;
-}
-
-.saved-news__keywords_accent_bold {
-  font-weight: 700;
+  align-self: center;
 }

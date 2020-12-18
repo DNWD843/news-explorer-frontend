@@ -4,8 +4,7 @@ import './Header.css';
 
 function Header(props) {
   return (
-
-    <header className="header-container header-container_background_main">
+    <header className="header-container">
       <div className="header">
         <p className="header__logo">NewsExplorer</p>
         <Navigation />
@@ -16,8 +15,6 @@ function Header(props) {
       </div>
       <SearchForm />
     </header>
-
-
   );
 }
 
