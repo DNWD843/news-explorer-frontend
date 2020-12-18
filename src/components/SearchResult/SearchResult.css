@@ -1,0 +1,42 @@
+.search-result {
+  margin: 0;
+  padding: 80px 0;
+  background: #f5f6f7;
+  box-sizing: border-box;
+}
+
+.search-result__title {
+  margin: 0 0 64px 104px;
+  padding: 0;
+  font-family: 'Roboto Slab';
+  font-weight: 400;
+  font-size: 40px;
+  line-height: 46px;
+  text-align: start;
+
+  color: #1a1b22;
+}
+
+.search-result__button {
+  margin: 48px auto 0;
+  padding: 18px 84px;
+  background: #fff;
+  border-radius: 80px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  font-family: 'Roboto';
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #1a1b22;
+}
+
+.search-result__button:hover {
+  opacity: 0.9;
+}

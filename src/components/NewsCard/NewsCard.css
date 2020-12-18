@@ -25,62 +25,6 @@
   border-top-right-radius: 16px;
 }
 
-.card__bookmark {
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  /*background-image: url('../../images/bookmark-normal.svg');*/
-  background-color: #fff;
-  background-size: cover;
-  border: none;
-  outline: none;
-  border-radius: 8px;
-  z-index: 2;
-  cursor: pointer;
-}
-
-.card__bookmark::after {
-  content: '';
-  background-image: url('../../images/bookmark-normal.svg');
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 0;
-  right: 0;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.card__bookmark:hover::after {
-  content: '';
-  background-image: url('../../images/bookmark-normal.svg');
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 0;
-  right: 0;
-  opacity: 0;
-}
-
-.card__bookmark::before {
-  content: '';
-  background-image: url('../../images/bookmark-hover.svg');
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
 .card__info {
   margin: 0;
   padding: 20px 24px 24px;
@@ -112,6 +56,12 @@
   color: #1a1b22;
 }
 
+.card__description-container {
+  margin: 0 0 10px;
+  max-height: 132px;
+  overflow: hidden;
+}
+
 .card__description {
   margin: 0;
   padding: 0;
@@ -121,14 +71,6 @@
   line-height: 22px;
   color: #1a1b22;
   width: 352px;
-}
-
-.card__description-overflow {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 7;
-  -webkit-box-orient: vertical;
-  margin: 0 0 10px;
 }
 
 .card__source {
@@ -141,4 +83,117 @@
   letter-spacing: 0.4px;
   text-transform: uppercase;
   color: #b6bcbf;
+}
+
+.card__bookmark {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+/*
+
+.card__bookmark::after {
+  content: '';
+  background-image: url('../../images/bookmark-normal.svg');
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.card__bookmark:hover::after {
+  opacity: 0;
+}
+
+.card__bookmark::before {
+  content: '';
+  background-image: url('../../images/bookmark-hover.svg');
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+*/
+/* =============================================================== */
+/* пробую сделать модификатор logged-in */
+.card__bookmark_not-logged-in::after {
+  content: '';
+  background-image: url('../../images/bookmark-normal.svg');
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.card__bookmark_not-logged-in:hover::after {
+  opacity: 0;
+}
+
+.card__bookmark_not-logged-in::before {
+  content: '';
+  background-image: url('../../images/bookmark-hover.svg');
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+/* ================================================================ */
+
+.card__tooltip {
+  padding: 14px 11px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 24px;
+  right: 69px;
+  background: #fff;
+  box-shadow: 0px 10px 22px rgba(59, 74, 116, 0.1);
+  border-radius: 10px;
+
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #000000;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.card__bookmark:hover + .card__tooltip {
+  opacity: 1;
+}
+
+.card__category {
+  padding: 8px 15px;
+  box-sizing: border-box;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  background: #fff;
+  border-radius: 10px;
+
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: center;
+  color: #000;
 }

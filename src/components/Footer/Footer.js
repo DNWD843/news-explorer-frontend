@@ -15,13 +15,8 @@ function Footer(props) {
         </ul>
         <ul className="footer__social">
           <li className="footer__links-item footer__links-item_type_social">
-            <a href="https://github.com/DNWD843/news-explorer-frontend" className="footer__social-icon-link">
+            <a href="https://github.com/DNWD843/news-explorer-frontend/tree/level-2" className="footer__social-icon-link">
               <div className="footer__social-icon footer__social-icon_type_github"></div>
-            </a>
-          </li>
-          <li className="footer__links-item footer__links-item_type_social">
-            <a href="https://www.linkedin.cn/in/dnwd843/" className="footer__social-icon-link">
-              <div className="footer__social-icon footer__social-icon_type_facebook"></div>
             </a>
           </li>
         </ul>
