@@ -2,18 +2,20 @@ import Navigation from '../Navigation/Navigation';
 import SearchForm from '../SearchForm/SearchForm';
 import './Header.css';
 
-function Header(props) {
+function Header({ userName, config, configForNavigation, configForSearchForm }) {
+  const { headerLogoText } = config;
+
   return (
     <header className="header-container">
       <div className="header">
-        <p className="header__logo">NewsExplorer</p>
-        <Navigation />
+        <p className="header__logo">{headerLogoText}</p>
+        <Navigation config={configForNavigation} />
         <button type="button" className="header__button">
-          <span className="header__button-title">Грета</span>
+          <span className="header__button-title">{userName}</span>
           <div className="header__button-icon"></div>
         </button>
       </div>
-      <SearchForm />
+      <SearchForm config={configForSearchForm} />
     </header>
   );
 }

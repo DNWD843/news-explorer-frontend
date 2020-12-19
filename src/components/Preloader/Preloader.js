@@ -1,10 +1,11 @@
 import './Preloader.css';
 
-function Preloader() {
+function Preloader({ config }) {
+  const { title } = config;
   return (
     <div className="preloader">
       <div className="preloader__element"></div>
-      <p className="preloader__title">Идет поиск новостей...</p>
+      <p className="preloader__title">{title}</p>
     </div>
   );
 }

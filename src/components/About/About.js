@@ -1,16 +1,21 @@
 import './About.css';
 
-function About(props) {
+function About({ config }) {
+  const { imgSrc, imgAlt, title, aboutAuthor, somethingAbout } = config;
+
   return (
     <section className="about">
-      <img
-        className="about__image"
-        src="https://wikipet.ru/uploads/posts/2019-02/1549868089_1.jpg"
-        alt="фото автора"
-      />
+      <img className="about__image" src={imgSrc} alt={imgAlt} />
       <div className="about__info">
-        <h2 className="about__title">Об авторе</h2>
-        <p className="about__description">Тут что-то про меня</p>
+        <h2 className="about__title">{title}</h2>
+        <ul className="about__description">
+          <li className="about__description-item">
+            <p className="about__description-fragment">{aboutAuthor}</p>
+          </li>
+          <li className="about__description-item">
+            <p className="about__description-fragment">{somethingAbout}</p>
+          </li>
+        </ul>
       </div>
     </section>
   );

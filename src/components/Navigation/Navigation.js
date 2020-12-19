@@ -1,27 +1,29 @@
 import { NavLink } from 'react-router-dom';
+import { MAIN, SAVED_NEWS } from '../../utils/routesMap';
 import './Navigation.css';
 
-function Navigation(props) {
+function Navigation({ config }) {
+  const { mainLinkText, savedNewsLinkText } = config;
   return (
     <nav className="menu">
       <ul className="navbar">
         <li className="navbar__item">
           <NavLink
             exact
-            to="/"
+            to={MAIN}
             className="navbar__link navbar__link_color_black"
             activeClassName="navbar__link_active"
           >
-            Главная
+            {mainLinkText}
           </NavLink>
         </li>
         <li className="navbar__item">
           <NavLink
-            to="/saved-news"
+            to={SAVED_NEWS}
             className="navbar__link navbar__link_color_grey"
             activeClassName="navbar__link_active"
           >
-            Сохраненные статьи
+            {savedNewsLinkText}
           </NavLink>
         </li>
       </ul>

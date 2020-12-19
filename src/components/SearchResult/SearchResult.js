@@ -1,13 +1,14 @@
 import NewsCardList from '../NewsCardList/NewsCardList';
 import './SearchResult.css';
 
-function SearchResult(props) {
+function SearchResult({ config }) {
+  const { title, showMoreButtonText } = config;
   return (
     <section className="search-result">
-      <h2 className="search-result__title">Результаты поиска</h2>
+      <h2 className="search-result__title">{title}</h2>
       <NewsCardList />
       <button type="button" className="search-result__button" name="show-more">
-        Показать еще
+        {showMoreButtonText}
       </button>
     </section>
   );

@@ -1,6 +1,6 @@
 import './NewsCard.css';
 
-function NewsCard(props) {
+function NewsCard({ source, keyword, title, text, date, link, image }) {
   return (
     <li className="card cards__item">
       <img

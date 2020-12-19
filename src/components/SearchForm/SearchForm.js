@@ -1,16 +1,22 @@
 import './SearchForm.css';
 
-function SearchForm(props) {
+function SearchForm({ config }) {
+  const { title, description, placeholderText, submitButtonText } = config;
   return (
     <form className="search-form">
       <div className="search-form__container">
-        <h1 className="search-form__title">Что творится в мире?</h1>
-        <p className="search-form__description">Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.</p>
+        <h1 className="search-form__title">{title}</h1>
+        <p className="search-form__description">{description}</p>
         <div className="search-form__search-stroke">
           <div className="search-form__field">
-            <input type="text" name="search-input" className="search-form__input" placeholder="Введите тему новости" />
+            <input
+              type="text"
+              name="search-input"
+              className="search-form__input"
+              placeholder={placeholderText}
+            />
           </div>
-          <button className="search-form__submit-button">Искать</button>
+          <button className="search-form__submit-button">{submitButtonText}</button>
         </div>
       </div>
     </form>

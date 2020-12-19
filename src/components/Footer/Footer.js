@@ -1,30 +1,29 @@
 import { Link } from 'react-router-dom';
+import { MAIN } from '../../utils/routesMap';
 import './Footer.css';
 
-function Footer(props) {
+function Footer({ config }) {
+  const { copyrightText, navLinkText, outerLinkText, outerLink, socialLink } = config;
   return (
     <>
       <footer className="footer">
-        <p className="footer__copyright">© 2020 Supersite, Powered by News API</p>
+        <p className="footer__copyright">{copyrightText}</p>
         <nav className="footer__menu">
           <ul className="footer__links">
             <li className="footer__links-item footer__links-item_type_default">
-              <Link exact to="/" className="footer__link">
-                Главная
+              <Link exact="true" to={MAIN} className="footer__link">
+                {navLinkText}
               </Link>
             </li>
             <li className="footer__links-item footer__links-item_type_default">
-              <a href="https://praktikum.yandex.ru" className="footer__link">
-                Яндекс.Практикум
+              <a href={outerLink} className="footer__link">
+                {outerLinkText}
               </a>
             </li>
           </ul>
           <ul className="footer__social">
             <li className="footer__links-item footer__links-item_type_social">
-              <a
-                href="https://github.com/DNWD843/news-explorer-frontend/tree/level-2"
-                className="footer__social-icon-link"
-              >
+              <a href={socialLink} className="footer__social-icon-link">
                 <div className="footer__social-icon footer__social-icon_type_github"></div>
               </a>
             </li>
