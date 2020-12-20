@@ -4,26 +4,26 @@ import './SearchResult.css';
 
 function SearchResult({ config, configForNewsCard, searchResult }) {
   const { title, showMoreButtonText } = config;
+  const newsCardsArray = searchResult;
 
-  const [initialCards, setInitialCards] = useState(searchResult);
   const [cardsToRender, setCardsToRender] = useState([]);
+  const [cardsToRenderQuantity, setCardsToRenderQuantity] = useState(3);
   const [isDisabled, setIsDisabled] = useState(false);
-  const [index, setIndex] = useState(3);
 
   const handleClick = () => {
-    let newIndex;
-    if (initialCards.length - index > 3) {
-      newIndex = index + 3;
+    let cardsQuantity;
+    if (newsCardsArray.length - cardsToRenderQuantity > 3) {
+      cardsQuantity = cardsToRenderQuantity + 3;
     } else {
-      newIndex = index + (initialCards.length - index);
+      cardsQuantity = cardsToRenderQuantity + (newsCardsArray.length - cardsToRenderQuantity);
       setIsDisabled(true);
     }
-    setIndex(newIndex);
+    setCardsToRenderQuantity(cardsQuantity);
   };
 
   useEffect(() => {
-    setCardsToRender(initialCards.slice(0, index));
-  }, [index]);
+    setCardsToRender(newsCardsArray.slice(0, cardsToRenderQuantity));
+  }, [cardsToRenderQuantity, newsCardsArray]);
 
   return (
     <section className="search-result">
