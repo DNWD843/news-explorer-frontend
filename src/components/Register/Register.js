@@ -1,0 +1,90 @@
+import PopupWithForm from '../PopupWithForm/PopupWuthForm';
+import './Register.css';
+
+function Register({ config }) {
+  const {
+    formTitle,
+    submitButtonText,
+    redirectTitleText,
+    redirectLinkText,
+    emailLabel,
+    emailPlaceholder,
+    passwordLabel,
+    passwordPlaceholder,
+    nameLabel,
+    namePlaceholder,
+    nameMinLength,
+    nameMaxLength,
+  } = config;
+  return (
+    <PopupWithForm
+      formTitle={formTitle}
+      submitButtonText={submitButtonText}
+      redirectTitleText={redirectTitleText}
+      redirectLinkText={redirectLinkText}
+    >
+      <>
+        <ul className="form__inputs">
+          <li className="form__field">
+            <label for="email" className="form__input-label">
+              {emailLabel}
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              /* onChange={handleInputChange}
+              value={login || ''}*/
+              className="form__input"
+              placeholder={emailPlaceholder}
+              required
+            />
+            <span className="form__input-error" id="email-input-error">
+              {/*errors.email || ''*/}
+            </span>
+          </li>
+          <li className="form__field">
+            <label for="password" className="form__input-label">
+              {passwordLabel}
+            </label>
+            <input
+              id="password"
+              name="password"
+              type="text"
+              /* onChange={handleInputChange}
+              value={password || ''}*/
+              className="form__input"
+              placeholder={passwordPlaceholder}
+              required
+            />
+            <span className="form__input-error" id="password-input-error">
+              {/*errors.password || ''*/}
+            </span>
+          </li>
+          <li className="form__field">
+            <label for="name" className="form__input-label">
+              {nameLabel}
+            </label>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              /* onChange={handleInputChange}
+              value={name || ''}*/
+              className="form__input"
+              placeholder={namePlaceholder}
+              minLength={nameMinLength}
+              maxLength={nameMaxLength}
+              required
+            />
+            <span className="form__input-error" id="name-input-error">
+              {/*errors.name || ''*/}
+            </span>
+          </li>
+        </ul>
+      </>
+    </PopupWithForm>
+  );
+}
+
+export default Register;

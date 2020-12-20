@@ -33,7 +33,9 @@ function SearchResult({ config, configForNewsCard, searchResult }) {
         onClick={handleClick}
         disabled={isDisabled}
         type="button"
-        className={`search-result__button ${isDisabled ? 'search-result__button_disabled' : ''}`}
+        className={`search-result__button ${
+          isDisabled ? 'search-result__button_disabled' : 'search-result__button_enabled'
+        }`}
       >
         {showMoreButtonText}
       </button>

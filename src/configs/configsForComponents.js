@@ -49,3 +49,29 @@ export const forNewsCard = {
   altText: 'изображение к статье',
   tooltipText: 'Войдите, чтобы сохранять статьи',
 };
+
+export const forRegister = {
+  formTitle: 'Регистрация',
+  submitButtonText: 'Зарегистрироваться',
+  redirectTitleText: 'или ',
+  redirectLinkText: 'Войти',
+  emailLabel: 'Email',
+  emailPlaceholder: 'Введите почту',
+  passwordLabel: 'Пароль',
+  passwordPlaceholder: 'Введите пароль',
+  nameLabel: 'Имя',
+  namePlaceholder: 'Введите своё имя',
+  nameMinLength: '2',
+  nameMaxLength: '30',
+};
+
+export const forLogin = {
+  formTitle: 'Вход',
+  submitButtonText: 'Войти',
+  redirectTitleText: 'или ',
+  redirectLinkText: 'Зарегистрироваться',
+  emailLabel: 'Email',
+  emailPlaceholder: 'Введите почту',
+  passwordLabel: 'Пароль',
+  passwordPlaceholder: 'Введите пароль',
+};

@@ -4,11 +4,15 @@ import Header from '../Header/Header';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
+
 import * as config from '../../configs/configsForComponents';
 import * as to from '../../utils/routesMap';
 import searchResultCards from '../../mocks/searchResultCards'; // временно имитирую получение карточек от сервера
 import savedCards from '../../mocks/savedCards'; // временно имитирую получение карточек от сервера
 import './App.css';
+import Login from '../Login/Login';
+import Register from '../Register/Register';
+
 function App() {
   const currentUser = { userName: 'Вася' }; // TODO: на следующем этапе сюда сохранять контекст пользователя
 
@@ -43,6 +47,8 @@ function App() {
         configForNewsCard={config.forNewsCard}
       />
       <Footer config={config.forFooter} />
+      <Login config={config.forLogin} />
+      {/* <Register config={config.forRegister} /> */}
     </>
   );
 }
