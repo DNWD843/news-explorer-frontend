@@ -8,33 +8,29 @@ function SearchResult({ config, configForNewsCard, searchResult }) {
   const [initialCards, setInitialCards] = useState(searchResult);
   const [cardsToRender, setCardsToRender] = useState([]);
   const [isDisabled, setIsDisabled] = useState(false);
+  const [index, setIndex] = useState(3);
 
-  const getPartOfCards = () => {
-    if (initialCards.length > 3) {
-      const part = initialCards.splice(0, 3);
-      setInitialCards(initialCards);
-      const newArr = cardsToRender.concat(part);
-      setCardsToRender(newArr);
-    } else if (initialCards.length > 0) {
-      const newArr = cardsToRender.concat(initialCards);
-      setCardsToRender(newArr);
-      setInitialCards([]);
-      setIsDisabled(true);
+  const handleClick = () => {
+    let newIndex;
+    if (initialCards.length - index > 3) {
+      newIndex = index + 3;
     } else {
+      newIndex = index + (initialCards.length - index);
       setIsDisabled(true);
     }
+    setIndex(newIndex);
   };
 
   useEffect(() => {
-    getPartOfCards();
-  }, []);
+    setCardsToRender(initialCards.slice(0, index));
+  }, [index]);
 
   return (
     <section className="search-result">
       <h2 className="search-result__title">{title}</h2>
       <NewsCardList cards={cardsToRender} configForNewsCard={configForNewsCard} />
       <button
-        onClick={getPartOfCards}
+        onClick={handleClick}
         disabled={isDisabled}
         type="button"
         className={`search-result__button ${isDisabled ? 'search-result__button_disabled' : ''}`}

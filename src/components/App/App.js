@@ -9,7 +9,6 @@ import * as to from '../../utils/routesMap';
 import searchResultCards from '../../mocks/searchResultCards'; // временно имитирую получение карточек от сервера
 import savedCards from '../../mocks/savedCards'; // временно имитирую получение карточек от сервера
 import './App.css';
-
 function App() {
   const currentUser = { userName: 'Вася' }; // TODO: на следующем этапе сюда сохранять контекст пользователя
 
