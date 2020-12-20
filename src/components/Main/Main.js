@@ -5,6 +5,7 @@ import SearchResult from '../SearchResult/SearchResult';
 // import Preloader from '../Preloader/Preloader';
 import { Switch, Route } from 'react-router-dom';
 import * as to from '../../utils/routesMap';
+
 import './Main.css';
 
 function Main({

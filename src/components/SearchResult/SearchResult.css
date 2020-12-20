@@ -1,6 +1,6 @@
 .search-result {
   margin: 0;
-  padding: 80px 0;
+  padding: 80px 0 48px;
   background: #f5f6f7;
   box-sizing: border-box;
 }
@@ -18,7 +18,7 @@
 }
 
 .search-result__button {
-  margin: 48px auto 0;
+  margin: 48px auto 32px;
   padding: 18px 84px;
   background: #fff;
   border-radius: 80px;
@@ -39,4 +39,8 @@
 
 .search-result__button:hover {
   opacity: 0.9;
+}
+
+.search-result__button_disabled {
+  display: none;
 }

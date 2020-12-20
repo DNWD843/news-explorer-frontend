@@ -37,7 +37,7 @@ function SearchResult({ config, configForNewsCard, searchResult }) {
         onClick={getPartOfCards}
         disabled={isDisabled}
         type="button"
-        className="search-result__button"
+        className={`search-result__button ${isDisabled ? 'search-result__button_disabled' : ''}`}
       >
         {showMoreButtonText}
       </button>
