@@ -44,3 +44,8 @@ export const forSearchResult = {
   title: 'Результаты поиска',
   showMoreButtonText: 'Показать еще',
 };
+
+export const forNewsCard = {
+  altText: 'изображение к статье',
+  tooltipText: 'Войдите, чтобы сохранять статьи',
+};

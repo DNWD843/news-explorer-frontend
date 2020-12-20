@@ -13,7 +13,10 @@ function Main({
   configForNoResult,
   configForPreloader,
   configForSavedNews,
+  searchResult,
   configForSearchResult,
+  savedArticles,
+  configForNewsCard,
 }) {
   return (
     <>
@@ -22,11 +25,20 @@ function Main({
           <Route exact path={to.MAIN}>
             {/*} <Preloader config={configForPreloader} /> */}
             <NoResult config={configForNoResult} />
-            <SearchResult config={configForSearchResult} />
+            <SearchResult
+              config={configForSearchResult}
+              configForNewsCard={configForNewsCard}
+              searchResult={searchResult}
+            />
             <About config={configForAbout} />
           </Route>
           <Route path={to.SAVED_NEWS}>
-            <SavedNews config={configForSavedNews} userName={userName} />
+            <SavedNews
+              config={configForSavedNews}
+              userName={userName}
+              savedArticles={savedArticles}
+              configForNewsCard={configForNewsCard}
+            />
           </Route>
         </Switch>
       </main>

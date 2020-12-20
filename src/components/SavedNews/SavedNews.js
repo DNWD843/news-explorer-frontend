@@ -2,7 +2,7 @@ import NewsCardList from '../NewsCardList/NewsCardList';
 
 import './SavedNews.css';
 
-function SavedNews({ config, userName }) {
+function SavedNews({ config, userName, savedArticles, configForNewsCard }) {
   const { pageName } = config;
   return (
     <section className="saved-news">
@@ -16,7 +16,7 @@ function SavedNews({ config, userName }) {
         </p>
       </div>
       <div className="saved-news__container">
-        <NewsCardList />
+        <NewsCardList cards={savedArticles} configForNewsCard={configForNewsCard} />
       </div>
     </section>
   );

@@ -8,11 +8,20 @@
   position: relative;
 }
 
+/* ======================================================== */
+.card__link {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+/* ======================================================== */
+
 .cards__item {
   margin: 0 16px 16px 0;
 }
 
-.cards__item:nth-child(3) {
+.cards__item:nth-child(3n) {
   margin-right: 0;
 }
 
