@@ -75,3 +75,8 @@ export const forLogin = {
   passwordLabel: 'Пароль',
   passwordPlaceholder: 'Введите пароль',
 };
+
+export const forRegistrationSuccessToolTip = {
+  redirectTitleText: 'Пользователь успешно зарегистрирован!',
+  redirectLinkText: 'Войти',
+};

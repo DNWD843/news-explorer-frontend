@@ -3,7 +3,14 @@ import PopupWithForm from '../PopupWithForm/PopupWuthForm';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import './Register.css';
 
-function Register({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClickClick }) {
+function Register({
+  config,
+  isOpened,
+  onClose,
+  onOverlayClick,
+  onRedirectLinkClickClick,
+  onSubmit,
+}) {
   const {
     formTitle,
     submitButtonText,
@@ -38,6 +45,7 @@ function Register({ config, isOpened, onClose, onOverlayClick, onRedirectLinkCli
       onOverlayClick={onOverlayClick}
       onRedirectLinkClick={onRedirectLinkClickClick}
       isDisabled={!isFormValid}
+      onSubmit={onSubmit}
     >
       <>
         <ul className="form__inputs">

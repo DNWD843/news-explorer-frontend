@@ -3,7 +3,7 @@ import PopupWithForm from '../PopupWithForm/PopupWuthForm';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import './Login.css';
 
-function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick }) {
+function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick, onSubmit }) {
   const {
     formTitle,
     submitButtonText,
@@ -16,7 +16,6 @@ function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick 
   } = config;
 
   const { values, errors, isFormValid, handleInputChange, resetForm } = useFormWithValidation();
-
   const { email, password } = values;
 
   useEffect(() => {
@@ -34,6 +33,7 @@ function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick 
       onOverlayClick={onOverlayClick}
       onRedirectLinkClick={onRedirectLinkClick}
       isDisabled={!isFormValid}
+      onSubmit={onSubmit}
     >
       <>
         <ul className="form__inputs">

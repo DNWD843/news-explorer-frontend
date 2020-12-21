@@ -12,12 +12,14 @@ import Login from '../Login/Login';
 import Register from '../Register/Register';
 import { useState } from 'react';
 import './App.css';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 
 function App() {
   const currentUser = { userName: 'Вася' }; // TODO: на следующем этапе сюда сохранять контекст пользователя
 
   const [isLoginPopupOpened, setIsLoginPopupOpened] = useState(false);
   const [isRegisterPopupOpened, setIsRegisterPopupOpened] = useState(false);
+  const [isRegSuccessTooltipOpened, setIsRegSuccessTooltipOpened] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   /**
@@ -33,6 +35,7 @@ function App() {
     document.removeEventListener('keydown', handleEscClose);
     setIsLoginPopupOpened(false);
     setIsRegisterPopupOpened(false);
+    setIsRegSuccessTooltipOpened(false);
   };
 
   /**
@@ -73,20 +76,33 @@ function App() {
     }
   };
 
-  const handleClickLogInButton = () => {
+  const handleClickLogIn = () => {
     closeAllPopups();
     setIsLoginPopupOpened(true);
     document.addEventListener('keydown', handleEscClose);
   };
 
-  const handleClickLogOutButton = () => {
+  const handleClickLogOut = () => {
     setIsLoggedIn(false);
   };
 
-  const handleClickRegisterButton = () => {
+  const handleClickRegister = () => {
     closeAllPopups();
     setIsRegisterPopupOpened(true);
     document.addEventListener('keydown', handleEscClose);
+  };
+
+  const handleRegisterSubmit = (evt) => {
+    evt.preventDefault();
+    closeAllPopups();
+    setIsRegSuccessTooltipOpened(true);
+    document.addEventListener('keydown', handleEscClose); //временно, для проверки закрытия подсказки по эскейп
+  };
+
+  const handleLoginSubmit = (evt) => {
+    evt.preventDefault();
+    closeAllPopups();
+    setIsLoggedIn(true);
   };
 
   return (
@@ -99,8 +115,8 @@ function App() {
             config={config.forHeader}
             configForNavigation={config.forNavigation}
             configForSearchForm={config.forSearchForm}
-            onLogInClick={handleClickLogInButton}
-            onLogOutClick={handleClickLogOutButton}
+            onLogInClick={handleClickLogIn}
+            onLogOutClick={handleClickLogOut}
           />
         </Route>
         <Route path={to.SAVED_NEWS}>
@@ -109,7 +125,7 @@ function App() {
             userName={currentUser.userName}
             config={config.forSavedNewsHeader}
             configForNavigation={config.forNavigation}
-            onLogOutClick={handleClickLogOutButton}
+            onLogOutClick={handleClickLogOut}
           />
         </Route>
       </Switch>
@@ -130,14 +146,23 @@ function App() {
         isOpened={isLoginPopupOpened}
         onClose={closeAllPopups}
         onOverlayClick={handleClickOnOverlay}
-        onRedirectLinkClick={handleClickRegisterButton}
+        onRedirectLinkClick={handleClickRegister}
+        onSubmit={handleLoginSubmit}
       />
       <Register
         config={config.forRegister}
         isOpened={isRegisterPopupOpened}
         onClose={closeAllPopups}
         onOverlayClick={handleClickOnOverlay}
-        onRedirectLinkClickClick={handleClickLogInButton}
+        onRedirectLinkClickClick={handleClickLogIn}
+        onSubmit={handleRegisterSubmit}
+      />
+      <InfoTooltip
+        config={config.forRegistrationSuccessToolTip}
+        onOverlayClick={handleClickOnOverlay}
+        isOpened={isRegSuccessTooltipOpened}
+        onClose={closeAllPopups}
+        onRedirectLinkClick={handleClickLogIn}
       />
     </>
   );

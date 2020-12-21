@@ -11,6 +11,7 @@ function PopupWithForm({
   onOverlayClick,
   onRedirectLinkClick,
   isDisabled,
+  onSubmit,
 }) {
   return (
     <div
@@ -19,7 +20,7 @@ function PopupWithForm({
     >
       <div className="popup__container">
         <button type="button" onClick={onClose} className="popup__close-button"></button>
-        <form className="form popup__form">
+        <form onSubmit={onSubmit} className="form popup__form">
           <h2 className="form__title">{formTitle}</h2>
           {children}
           <span className="form__submit-error-element"></span>
