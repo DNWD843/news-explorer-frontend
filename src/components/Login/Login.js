@@ -20,6 +20,7 @@ function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick,
 
   useEffect(() => {
     resetForm();
+    //eslint-disable-next-line
   }, [isOpened]);
 
   return (

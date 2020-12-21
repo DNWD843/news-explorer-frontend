@@ -32,6 +32,7 @@ function Register({
 
   useEffect(() => {
     resetForm();
+    //eslint-disable-next-line
   }, [isOpened]);
 
   return (

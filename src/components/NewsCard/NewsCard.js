@@ -1,7 +1,24 @@
 import './NewsCard.css';
 
-function NewsCard({ source, keyword, title, text, date, link, image, config }) {
-  const { altText, tooltipText } = config;
+function NewsCard({
+  source,
+  keyword,
+  title,
+  text,
+  date,
+  link,
+  image,
+  config,
+  isSavedNewsOpened,
+  isLoggedIn,
+}) {
+  const {
+    altText,
+    tooltipTextForMainPageNotLoggedIn,
+    tooltipTextForMainPageLoggedIn,
+    tooltipTextForSavedNewsPage,
+  } = config;
+
   return (
     <li className="card cards__item">
       <a href={link} className="card__link">
@@ -18,11 +35,17 @@ function NewsCard({ source, keyword, title, text, date, link, image, config }) {
         </div>
         <button
           type="button"
-          className="card__bookmark card__bookmark_not-logged-in"
+          className={`card__bookmark ${
+            !isSavedNewsOpened ? 'card__bookmark_page_main' : 'card__bookmark_page_saved-news'
+          }`}
           name="bookmark"
           disabled={true}
         ></button>
-        <div className="card__tooltip">{tooltipText}</div>
+        <div className="card__tooltip">
+          {isSavedNewsOpened && tooltipTextForSavedNewsPage}
+          {!isLoggedIn && tooltipTextForMainPageNotLoggedIn}
+          {!isSavedNewsOpened && isLoggedIn && tooltipTextForMainPageLoggedIn}
+        </div>
         <div className="card__category">{keyword}</div>
       </a>
     </li>

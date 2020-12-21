@@ -135,7 +135,7 @@
 */
 /* =============================================================== */
 /* пробую сделать модификатор logged-in */
-.card__bookmark_not-logged-in::after {
+.card__bookmark_page_main::after {
   content: '';
   background-image: url('../../images/bookmark-normal.svg');
   width: 40px;
@@ -147,13 +147,40 @@
   transition: opacity 0.2s ease-in-out;
 }
 
-.card__bookmark_not-logged-in:hover::after {
+.card__bookmark_page_main:hover::after {
   opacity: 0;
 }
 
-.card__bookmark_not-logged-in::before {
+.card__bookmark_page_main::before {
   content: '';
   background-image: url('../../images/bookmark-hover.svg');
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.card__bookmark_page_saved-news::after {
+  content: '';
+  background-image: url('../../images/bookmark-delete-icon-normal.svg');
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.card__bookmark_page_saved-news:hover::after {
+  opacity: 0;
+}
+
+.card__bookmark_page_saved-news::before {
+  content: '';
+  background-image: url('../../images/bookmark-delete-icon-hover.svg');
   width: 40px;
   height: 40px;
   padding: 0;

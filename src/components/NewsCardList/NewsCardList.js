@@ -1,11 +1,17 @@
 import NewsCard from '../NewsCard/NewsCard';
 import './NewsCardList.css';
 
-function NewsCardList({ cards, configForNewsCard }) {
+function NewsCardList({ cards, isSavedNewsOpened, isLoggedIn, configForNewsCard }) {
   return (
     <ul className="news-card-list">
       {cards.map((card) => (
-        <NewsCard key={card._id} {...card} config={configForNewsCard} />
+        <NewsCard
+          key={card._id}
+          {...card}
+          config={configForNewsCard}
+          isSavedNewsOpened={isSavedNewsOpened}
+          isLoggedIn={isLoggedIn}
+        />
       ))}
     </ul>
   );

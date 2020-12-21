@@ -47,7 +47,9 @@ export const forSearchResult = {
 
 export const forNewsCard = {
   altText: 'изображение к статье',
-  tooltipText: 'Войдите, чтобы сохранять статьи',
+  tooltipTextForMainPageNotLoggedIn: 'Войдите, чтобы сохранять статьи',
+  tooltipTextForSavedNewsPage: 'Убрать из сохранённых',
+  tooltipTextForMainPageLoggedIn: 'Сохранить',
 };
 
 export const forRegister = {

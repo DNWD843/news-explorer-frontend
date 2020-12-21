@@ -2,8 +2,9 @@ import NewsCardList from '../NewsCardList/NewsCardList';
 
 import './SavedNews.css';
 
-function SavedNews({ config, userName, savedArticles, configForNewsCard }) {
+function SavedNews({ config, userName, savedArticles, configForNewsCard, isLoggedIn }) {
   const { pageName } = config;
+
   return (
     <section className="saved-news">
       <div className="saved-news__info">
@@ -16,7 +17,12 @@ function SavedNews({ config, userName, savedArticles, configForNewsCard }) {
         </p>
       </div>
       <div className="saved-news__container">
-        <NewsCardList cards={savedArticles} configForNewsCard={configForNewsCard} />
+        <NewsCardList
+          cards={savedArticles}
+          configForNewsCard={configForNewsCard}
+          isSavedNewsOpened={true}
+          isLoggedIn={isLoggedIn}
+        />
       </div>
     </section>
   );

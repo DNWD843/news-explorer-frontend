@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import './SearchResult.css';
 
-function SearchResult({ config, configForNewsCard, searchResult }) {
+function SearchResult({ config, configForNewsCard, searchResult, isLoggedIn }) {
   const { title, showMoreButtonText } = config;
   const newsCardsArray = searchResult;
 
@@ -28,7 +28,11 @@ function SearchResult({ config, configForNewsCard, searchResult }) {
   return (
     <section className="search-result">
       <h2 className="search-result__title">{title}</h2>
-      <NewsCardList cards={cardsToRender} configForNewsCard={configForNewsCard} />
+      <NewsCardList
+        cards={cardsToRender}
+        configForNewsCard={configForNewsCard}
+        isLoggedIn={isLoggedIn}
+      />
       <button
         onClick={handleClick}
         disabled={isDisabled}

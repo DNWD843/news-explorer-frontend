@@ -139,6 +139,7 @@ function App() {
         configForSearchResult={config.forSearchResult}
         savedArticles={savedCards} //TODO удалить
         configForNewsCard={config.forNewsCard}
+        isLoggedIn={isLoggedIn}
       />
       <Footer config={config.forFooter} />
       <Login

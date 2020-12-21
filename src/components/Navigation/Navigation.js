@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { MAIN, SAVED_NEWS } from '../../utils/routesMap';
 import './Navigation.css';
 
-function Navigation({ isLoggedIn, config }) {
+function Navigation({ isLoggedIn, onClick, config }) {
   const { mainLinkText, savedNewsLinkText } = config;
   return (
     <nav className="menu">
@@ -22,6 +22,7 @@ function Navigation({ isLoggedIn, config }) {
             to={SAVED_NEWS}
             className="navbar__link navbar__link_color_grey"
             activeClassName="navbar__link_active"
+            onClick={onClick}
           >
             {savedNewsLinkText}
           </NavLink>
