@@ -1,4 +1,6 @@
+import { useEffect } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWuthForm';
+import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import './Login.css';
 
 function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick }) {
@@ -12,6 +14,23 @@ function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick 
     passwordLabel,
     passwordPlaceholder,
   } = config;
+
+  const {
+    values,
+    errors,
+    isFormValid,
+    isInputChecked,
+    isInputValid,
+    handleInputChange,
+    resetForm,
+  } = useFormWithValidation();
+
+  const { email, password } = values;
+
+  useEffect(() => {
+    resetForm();
+  }, [isOpened]);
+
   return (
     <PopupWithForm
       formTitle={formTitle}
@@ -31,14 +50,14 @@ function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick 
               id="email"
               name="email"
               type="email"
-              /* onChange={handleInputChange}
-              value={login || ''}*/
+              onChange={handleInputChange}
+              value={email || ''}
               className="form__input"
               placeholder={emailPlaceholder}
               required
             />
             <span className="form__input-error" id="email-input-error">
-              {/*errors.email || ''*/}
+              {errors.email || ''}
             </span>
           </li>
           <li className="form__field">
@@ -47,14 +66,14 @@ function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick 
               id="password"
               name="password"
               type="text"
-              /* onChange={handleInputChange}
-              value={password || ''}*/
+              onChange={handleInputChange}
+              value={password || ''}
               className="form__input"
               placeholder={passwordPlaceholder}
               required
             />
             <span className="form__input-error" id="password-input-error">
-              {/*errors.password || ''*/}
+              {errors.password || ''}
             </span>
           </li>
         </ul>

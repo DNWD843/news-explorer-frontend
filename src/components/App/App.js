@@ -18,7 +18,7 @@ function App() {
 
   const [isLoginPopupOpened, setIsLoginPopupOpened] = useState(false);
   const [isRegisterPopupOpened, setIsRegisterPopupOpened] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   /**
    * @method  closeAllPopups
