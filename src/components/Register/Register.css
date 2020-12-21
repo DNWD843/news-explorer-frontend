@@ -31,17 +31,21 @@
 .form__input {
   box-shadow: none;
   border: none;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+
   margin: 0 0 14px;
   padding: 8px 0 7px;
   box-sizing: border-box;
   width: 100%;
-
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   font-family: Inter;
   font-weight: normal;
   font-size: 14px;
   line-height: 17px;
   color: #000000;
+}
+
+.form__input:focus {
+  border-bottom: 1px solid #000;
 }
 
 .form__input::placeholder {

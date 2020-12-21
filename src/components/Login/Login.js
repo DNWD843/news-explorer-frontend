@@ -15,15 +15,7 @@ function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick 
     passwordPlaceholder,
   } = config;
 
-  const {
-    values,
-    errors,
-    isFormValid,
-    isInputChecked,
-    isInputValid,
-    handleInputChange,
-    resetForm,
-  } = useFormWithValidation();
+  const { values, errors, isFormValid, handleInputChange, resetForm } = useFormWithValidation();
 
   const { email, password } = values;
 
@@ -41,6 +33,7 @@ function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick 
       onClose={onClose}
       onOverlayClick={onOverlayClick}
       onRedirectLinkClick={onRedirectLinkClick}
+      isDisabled={!isFormValid}
     >
       <>
         <ul className="form__inputs">

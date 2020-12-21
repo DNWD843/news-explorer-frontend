@@ -10,6 +10,7 @@ function PopupWithForm({
   onClose,
   onOverlayClick,
   onRedirectLinkClick,
+  isDisabled,
 }) {
   return (
     <div
@@ -22,7 +23,12 @@ function PopupWithForm({
           <h2 className="form__title">{formTitle}</h2>
           {children}
           <span className="form__submit-error-element"></span>
-          <button type="submit" className="form__submit-button form__submit-button_active">
+          <button
+            type="submit"
+            className={`form__submit-button ${
+              isDisabled ? 'form__submit-button_inactive' : 'form__submit-button_active'
+            }`}
+          >
             {submitButtonText}
           </button>
         </form>

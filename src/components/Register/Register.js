@@ -19,15 +19,7 @@ function Register({ config, isOpened, onClose, onOverlayClick, onRedirectLinkCli
     nameMaxLength,
   } = config;
 
-  const {
-    values,
-    errors,
-    isFormValid,
-    isInputChecked,
-    isInputValid,
-    handleInputChange,
-    resetForm,
-  } = useFormWithValidation();
+  const { values, errors, isFormValid, handleInputChange, resetForm } = useFormWithValidation();
 
   const { email, password, name } = values;
 
@@ -45,6 +37,7 @@ function Register({ config, isOpened, onClose, onOverlayClick, onRedirectLinkCli
       onClose={onClose}
       onOverlayClick={onOverlayClick}
       onRedirectLinkClick={onRedirectLinkClickClick}
+      isDisabled={!isFormValid}
     >
       <>
         <ul className="form__inputs">
@@ -56,7 +49,7 @@ function Register({ config, isOpened, onClose, onOverlayClick, onRedirectLinkCli
               type="email"
               onChange={handleInputChange}
               value={email || ''}
-              className="form__input"
+              className={`form__input`}
               placeholder={emailPlaceholder}
               required
             />
