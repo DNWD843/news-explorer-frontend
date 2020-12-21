@@ -1,3 +1,5 @@
+import classNames from 'classnames';
+import { useState } from 'react';
 import './NewsCard.css';
 
 function NewsCard({
@@ -15,9 +17,32 @@ function NewsCard({
   const {
     altText,
     tooltipTextForMainPageNotLoggedIn,
-    tooltipTextForMainPageLoggedIn,
+    tooltipTextForMainPageToSave,
+    tooltipTextForMainPageToDelete,
     tooltipTextForSavedNewsPage,
   } = config;
+
+  const [isSavedToCollection, setIsSavedToCollection] = useState(false);
+
+  const cardBookmarkClassName = classNames('card__bookmark', {
+    card__bookmark_page_main:
+      !isLoggedIn || (isLoggedIn && !isSavedNewsOpened && !isSavedToCollection),
+    card__bookmark_marked: isLoggedIn && !isSavedNewsOpened && isSavedToCollection,
+    'card__bookmark_page_saved-news': isSavedNewsOpened,
+  });
+  const handleClickOnBookmark = () => {
+    if (isLoggedIn && !isSavedNewsOpened && !isSavedToCollection) {
+      console.log('новость добавляется в коллекцию');
+      setIsSavedToCollection(true);
+    }
+    if (isLoggedIn && !isSavedNewsOpened && isSavedToCollection) {
+      console.log('новость удаляется из коллекции');
+      setIsSavedToCollection(false);
+    }
+    if (isSavedNewsOpened) {
+      console.log('новость удаляется из сохраненных новостей');
+    }
+  };
 
   return (
     <li className="card cards__item">
@@ -33,21 +58,22 @@ function NewsCard({
 
           <p className="card__source">{source}</p>
         </div>
-        <button
-          type="button"
-          className={`card__bookmark ${
-            !isSavedNewsOpened ? 'card__bookmark_page_main' : 'card__bookmark_page_saved-news'
-          }`}
-          name="bookmark"
-          disabled={true}
-        ></button>
-        <div className="card__tooltip">
-          {isSavedNewsOpened && tooltipTextForSavedNewsPage}
-          {!isLoggedIn && tooltipTextForMainPageNotLoggedIn}
-          {!isSavedNewsOpened && isLoggedIn && tooltipTextForMainPageLoggedIn}
-        </div>
+
         <div className="card__category">{keyword}</div>
       </a>
+      <button
+        type="button"
+        onClick={handleClickOnBookmark}
+        className={cardBookmarkClassName}
+        name="bookmark"
+        disabled={!isLoggedIn}
+      ></button>
+      <div className="card__tooltip">
+        {isSavedNewsOpened && tooltipTextForSavedNewsPage}
+        {!isLoggedIn && tooltipTextForMainPageNotLoggedIn}
+        {!isSavedNewsOpened && isLoggedIn && !isSavedToCollection && tooltipTextForMainPageToSave}
+        {!isSavedNewsOpened && isLoggedIn && isSavedToCollection && tooltipTextForMainPageToDelete}
+      </div>
     </li>
   );
 }

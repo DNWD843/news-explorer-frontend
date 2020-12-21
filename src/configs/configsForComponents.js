@@ -49,7 +49,8 @@ export const forNewsCard = {
   altText: 'изображение к статье',
   tooltipTextForMainPageNotLoggedIn: 'Войдите, чтобы сохранять статьи',
   tooltipTextForSavedNewsPage: 'Убрать из сохранённых',
-  tooltipTextForMainPageLoggedIn: 'Сохранить',
+  tooltipTextForMainPageToSave: 'Сохранить',
+  tooltipTextForMainPageToDelete: 'Отменить сохранение',
 };
 
 export const forRegister = {
