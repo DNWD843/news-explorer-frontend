@@ -7,18 +7,18 @@
 .navbar {
   /*border: 1px solid green;*/
   display: flex;
-  margin: 0 32px 0 0;
+  margin: 0;
   padding: 0;
 }
 
 .navbar__item {
-  margin: 0 34px 0 0;
+  margin: 0 32px 0 2px;
   padding: 24px 0 26px;
   list-style: none;
 }
 
-.navbar__item:last-of-type {
-  margin-right: 0;
+.navbar__item_hidden {
+  display: none;
 }
 
 .navbar__link {

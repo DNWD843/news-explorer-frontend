@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import { MAIN, SAVED_NEWS } from '../../utils/routesMap';
 import './Navigation.css';
 
-function Navigation({ config }) {
+function Navigation({ isLoggedIn, config }) {
   const { mainLinkText, savedNewsLinkText } = config;
   return (
     <nav className="menu">
@@ -17,7 +17,7 @@ function Navigation({ config }) {
             {mainLinkText}
           </NavLink>
         </li>
-        <li className="navbar__item">
+        <li className={`navbar__item ${!isLoggedIn ? 'navbar__item_hidden' : ''}`}>
           <NavLink
             to={SAVED_NEWS}
             className="navbar__link navbar__link_color_grey"

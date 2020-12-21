@@ -1,7 +1,7 @@
 import PopupWithForm from '../PopupWithForm/PopupWuthForm';
 import './Register.css';
 
-function Register({ config }) {
+function Register({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClickClick }) {
   const {
     formTitle,
     submitButtonText,
@@ -22,13 +22,15 @@ function Register({ config }) {
       submitButtonText={submitButtonText}
       redirectTitleText={redirectTitleText}
       redirectLinkText={redirectLinkText}
+      isOpened={isOpened}
+      onClose={onClose}
+      onOverlayClick={onOverlayClick}
+      onRedirectLinkClick={onRedirectLinkClickClick}
     >
       <>
         <ul className="form__inputs">
           <li className="form__field">
-            <label for="email" className="form__input-label">
-              {emailLabel}
-            </label>
+            <label className="form__input-label">{emailLabel}</label>
             <input
               id="email"
               name="email"
@@ -44,9 +46,7 @@ function Register({ config }) {
             </span>
           </li>
           <li className="form__field">
-            <label for="password" className="form__input-label">
-              {passwordLabel}
-            </label>
+            <label className="form__input-label">{passwordLabel}</label>
             <input
               id="password"
               name="password"
@@ -62,9 +62,7 @@ function Register({ config }) {
             </span>
           </li>
           <li className="form__field">
-            <label for="name" className="form__input-label">
-              {nameLabel}
-            </label>
+            <label className="form__input-label">{nameLabel}</label>
             <input
               id="name"
               name="name"

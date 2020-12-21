@@ -15,7 +15,7 @@ export const forFooter = {
   socialLink: 'https://github.com/DNWD843/news-explorer-frontend/tree/level-2',
 };
 
-export const forHeader = { headerLogoText: 'NewsExplorer' };
+export const forHeader = { headerLogoText: 'NewsExplorer', authorizationTitle: 'Авторизоваться' };
 
 export const forNavigation = {
   mainLinkText: 'Главная',

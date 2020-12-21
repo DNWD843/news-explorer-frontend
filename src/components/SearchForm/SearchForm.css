@@ -58,6 +58,10 @@
   color: #1a1b22;
 }
 
+.search-form__input::placeholder {
+  color: #b6bcbf;
+}
+
 .search-form__submit-button {
   display: flex;
   align-items: center;

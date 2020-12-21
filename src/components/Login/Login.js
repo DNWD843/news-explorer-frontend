@@ -1,7 +1,7 @@
 import PopupWithForm from '../PopupWithForm/PopupWuthForm';
 import './Login.css';
 
-function Login({ config }) {
+function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick }) {
   const {
     formTitle,
     submitButtonText,
@@ -18,13 +18,15 @@ function Login({ config }) {
       submitButtonText={submitButtonText}
       redirectTitleText={redirectTitleText}
       redirectLinkText={redirectLinkText}
+      isOpened={isOpened}
+      onClose={onClose}
+      onOverlayClick={onOverlayClick}
+      onRedirectLinkClick={onRedirectLinkClick}
     >
       <>
         <ul className="form__inputs">
           <li className="form__field">
-            <label for="email" className="form__input-label">
-              {emailLabel}
-            </label>
+            <label className="form__input-label">{emailLabel}</label>
             <input
               id="email"
               name="email"
@@ -40,9 +42,7 @@ function Login({ config }) {
             </span>
           </li>
           <li className="form__field">
-            <label for="password" className="form__input-label">
-              {passwordLabel}
-            </label>
+            <label className="form__input-label">{passwordLabel}</label>
             <input
               id="password"
               name="password"

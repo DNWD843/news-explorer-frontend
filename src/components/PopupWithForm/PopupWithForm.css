@@ -1,6 +1,6 @@
 .popup {
   position: fixed;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 100;
@@ -142,6 +142,7 @@
   padding: 0;
   color: #2f71e5;
   text-decoration: none;
+  cursor: pointer;
 }
 .popup__redirect-link:hover {
   opacity: 0.9;
