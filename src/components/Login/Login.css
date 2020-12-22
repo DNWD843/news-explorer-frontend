@@ -30,6 +30,7 @@
 
 .form__input {
   box-shadow: none;
+  outline: none;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   margin: 0 0 14px;
