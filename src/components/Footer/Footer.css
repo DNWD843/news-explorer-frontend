@@ -1,6 +1,7 @@
 .footer {
   margin: 0;
   padding: 28px 104px;
+  box-sizing: border-box;
   background-color: #fff;
   color: #1a1b22;
   display: flex;
@@ -34,6 +35,7 @@
 
 .footer__links-item_type_default {
   padding: 0 16px;
+  box-sizing: border-box;
 }
 
 .footer__links-item_type_social {
@@ -86,4 +88,18 @@
 
 .footer__social-icon_type_telegram {
   background-image: url('../../images/telegram_logo_icon.svg');
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 20px 40px;
+  }
+
+  .footer__links {
+    margin-right: 24px;
+  }
+
+  .footer__links-item_type_default {
+    padding: 0 10px;
+  }
 }

@@ -70,3 +70,18 @@
 
   align-self: center;
 }
+
+@media screen and (max-width: 768px) {
+  .saved-news-header {
+    padding: 2px 40px 0;
+  }
+
+  .saved-news-header__button {
+    margin: 12px 0;
+    padding: 7px 15px;
+  }
+
+  .saved-news-header__button-title {
+    font-size: 16px;
+  }
+}

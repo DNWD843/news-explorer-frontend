@@ -3,7 +3,7 @@ import './NewsCardList.css';
 
 function NewsCardList({ cards, isSavedNewsOpened, isLoggedIn, configForNewsCard }) {
   return (
-    <ul className="news-card-list">
+    <ul className="news-card-list search-result__cards">
       {cards.map((card) => (
         <NewsCard
           key={card._id}

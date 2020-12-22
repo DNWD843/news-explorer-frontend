@@ -6,7 +6,11 @@
 }
 
 .search-result__title {
-  margin: 0 0 64px 104px;
+  width: 100%;
+  max-width: 1232px;
+  margin: 0 auto 64px;
+
+  /*margin: 0 0 64px 104px;*/
   padding: 0;
   font-family: 'Roboto Slab';
   font-weight: 400;
@@ -47,4 +51,22 @@
 .search-result__button_disabled {
   background: #e6e8eb;
   color: #b6b8bf;
+}
+
+@media screen and (max-width: 768px) {
+  .search-result {
+    padding: 40px 0;
+  }
+
+  .search-result__title {
+    max-width: 688px;
+    margin-bottom: 32px;
+    font-size: 30px;
+    line-height: 34px;
+  }
+
+  .search-result__button {
+    margin: 24px auto 0;
+    padding: 16px 60px;
+  }
 }

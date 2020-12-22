@@ -49,7 +49,7 @@
 
 .navbar__link_active {
   text-decoration: solid underline 3px;
-  text-underline-offset: 29px;
+  text-underline-offset: 28px;
   color: inherit;
 }
 
@@ -60,5 +60,9 @@
 
   .navbar__link {
     font-size: 16px;
+  }
+
+  .navbar__link_active {
+    text-underline-offset: 23px;
   }
 }

@@ -1,8 +1,9 @@
 import About from '../About/About';
-//import NoResult from '../NoResult/NoResult';
+// import NoResult from '../NoResult/NoResult';
+// import Preloader from '../Preloader/Preloader';
 import SavedNews from '../SavedNews/SavedNews';
 import SearchResult from '../SearchResult/SearchResult';
-// import Preloader from '../Preloader/Preloader';
+
 import { Switch, Route } from 'react-router-dom';
 import * as to from '../../utils/routesMap';
 
@@ -26,14 +27,16 @@ function Main({
         <Switch>
           <Route exact path={to.MAIN}>
             {
-              /* <Preloader config={configForPreloader} />
-            <NoResult config={configForNoResult} /> */
-              <SearchResult
-                config={configForSearchResult}
-                configForNewsCard={configForNewsCard}
-                searchResult={searchResult}
-                isLoggedIn={isLoggedIn}
-              />
+              <>
+                {/* <Preloader config={configForPreloader} />
+                <NoResult config={configForNoResult} />  */}
+                <SearchResult
+                  config={configForSearchResult}
+                  configForNewsCard={configForNewsCard}
+                  searchResult={searchResult}
+                  isLoggedIn={isLoggedIn}
+                />
+              </>
             }
             <About config={configForAbout} />
           </Route>

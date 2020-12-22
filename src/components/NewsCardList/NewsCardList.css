@@ -1,8 +1,18 @@
 .news-card-list {
   margin: 0;
-  padding: 0 104px;
+  padding: 0;
   box-sizing: border-box;
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
+}
+
+.search-result__cards {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1232px;
+}
+
+@media screen and (max-width: 768px) {
+  .search-result__cards {
+    max-width: 688px;
+  }
 }

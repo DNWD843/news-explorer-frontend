@@ -45,7 +45,7 @@ function NewsCard({
   };
 
   return (
-    <li className="card cards__item">
+    <li className="card news-card-list__item">
       <a href={link} className="card__link">
         <img className="card__image" src={image} alt={altText} />
         <div className="card__info">
@@ -58,9 +58,14 @@ function NewsCard({
 
           <p className="card__source">{source}</p>
         </div>
-
-        <div className="card__category">{keyword}</div>
       </a>
+      <div
+        className={`${
+          isSavedNewsOpened ? 'card__category' : 'card__category card__category_hidden'
+        }`}
+      >
+        {keyword}
+      </div>
       <button
         type="button"
         onClick={handleClickOnBookmark}
@@ -68,7 +73,11 @@ function NewsCard({
         name="bookmark"
         disabled={!isLoggedIn}
       ></button>
-      <div className="card__tooltip">
+      <div
+        className={`card__tooltip ${
+          isSavedNewsOpened ? 'card__tooltip_type_saved-news' : 'card__tooltip_type_default'
+        }`}
+      >
         {isSavedNewsOpened && tooltipTextForSavedNewsPage}
         {!isLoggedIn && tooltipTextForMainPageNotLoggedIn}
         {!isSavedNewsOpened && isLoggedIn && !isSavedToCollection && tooltipTextForMainPageToSave}
