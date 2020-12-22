@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWuthForm';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
-//import './Login.css';
 
 function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick, onSubmit }) {
   const {
