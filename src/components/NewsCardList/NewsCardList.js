@@ -3,7 +3,11 @@ import './NewsCardList.css';
 
 function NewsCardList({ cards, isSavedNewsOpened, isLoggedIn, configForNewsCard }) {
   return (
-    <ul className="news-card-list search-result__cards">
+    <ul
+      className={`news-card-list ${
+        !isSavedNewsOpened ? 'search-result__cards' : 'saved-news__container'
+      }`}
+    >
       {cards.map((card) => (
         <NewsCard
           key={card._id}
