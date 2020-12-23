@@ -31,8 +31,8 @@
 .saved-news-header__button {
   color: inherit;
   display: flex;
-  margin: 0;
-  padding: 11px 15px 11px 19px;
+  margin: 13px 0;
+  padding: 11px 15px;
   align-self: center;
   border: 1px solid /*#fff*/;
   box-sizing: border-box;

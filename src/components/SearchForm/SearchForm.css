@@ -123,3 +123,34 @@
     height: 56px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .search-form__container {
+    padding-top: 30px;
+    padding-bottom: 32px;
+    max-width: 288px;
+  }
+
+  .search-form__description {
+    margin: 0 0 122px 0;
+  }
+
+  .search-form__search-stroke {
+    flex-direction: column;
+  }
+
+  .search-form__field {
+    width: 100%;
+    margin-bottom: 16px;
+    padding: 16px;
+  }
+
+  .search-form__input {
+    width: 100%;
+  }
+
+  .search-form__submit-button {
+    width: 100%;
+    position: relative;
+  }
+}
