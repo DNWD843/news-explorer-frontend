@@ -17,25 +17,25 @@ function Footer({ config }) {
         <p className="footer__copyright">{copyrightText}</p>
         <nav className="footer__menu">
           <ul className="footer__links">
-            <li className="footer__links-item footer__links-item_type_default">
+            <li className="footer__links-item">
               <Link exact="true" to={MAIN} className="footer__link">
                 {navLinkText}
               </Link>
             </li>
-            <li className="footer__links-item footer__links-item_type_default">
+            <li className="footer__links-item">
               <a href={outerLink} className="footer__link">
                 {outerLinkText}
               </a>
             </li>
           </ul>
           <ul className="footer__social">
-            <li className="footer__links-item footer__links-item_type_social">
-              <a href={socialLinkGithub} className="footer__social-icon-link">
+            <li className="footer__social-item">
+              <a href={socialLinkGithub} className="footer__social-link">
                 <div className="footer__social-icon footer__social-icon_type_github"></div>
               </a>
             </li>
-            <li className="footer__links-item footer__links-item_type_social">
-              <a href={socialLinkFacebook} className="footer__social-icon-link">
+            <li className="footer__social-item">
+              <a href={socialLinkFacebook} className="footer__social-link">
                 <div className="footer__social-icon footer__social-icon_type_facebook"></div>
               </a>
             </li>
