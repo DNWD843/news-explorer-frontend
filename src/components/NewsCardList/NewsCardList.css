@@ -25,3 +25,10 @@
     max-width: 688px;
   }
 }
+
+@media screen and (max-width: 720px) {
+  .search-result__cards {
+    display: flex;
+    flex-direction: column;
+  }
+}

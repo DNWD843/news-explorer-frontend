@@ -90,3 +90,9 @@
     padding: 24px calc((100% - 688px) / 2) 32px;
   }
 }
+
+@media screen and (max-width: 720px) {
+  .saved-news__info {
+    padding: 24px calc((100% - 400px) / 2) 32px;
+  }
+}
