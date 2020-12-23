@@ -55,7 +55,6 @@ function NewsCard({
           <div className="card__description-container">
             <p className="card__description">{text}</p>
           </div>
-
           <p className="card__source">{source}</p>
         </div>
       </a>

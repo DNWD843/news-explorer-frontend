@@ -82,6 +82,7 @@
 
 @media screen and (max-width: 720px) {
   .search-result__title {
-    max-width: 400px;
+    max-width: 288px;
+    margin-bottom: 24px;
   }
 }
