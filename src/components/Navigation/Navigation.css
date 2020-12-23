@@ -66,3 +66,9 @@
     text-underline-offset: 23px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .menu {
+    display: none;
+  }
+}
