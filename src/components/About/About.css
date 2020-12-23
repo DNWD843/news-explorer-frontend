@@ -63,10 +63,13 @@
   margin-bottom: 0;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1280px) {
   .about {
     padding: 40px;
   }
+}
+
+@media screen and (max-width: 900px) {
   .about__image {
     width: 100%;
     max-width: 232px;

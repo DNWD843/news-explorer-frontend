@@ -1,5 +1,5 @@
 .saved-news-header {
-  padding: 6px 104px 0 104px;
+  padding: 6px calc((100% - 1232px) / 2) 0;
   display: flex;
   align-items: center;
   background: #fff;
@@ -71,9 +71,9 @@
   align-self: center;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1280px) {
   .saved-news-header {
-    padding: 2px 40px 0;
+    padding: 2px calc((100% - 1100px) / 2) 0;
   }
 
   .saved-news-header__button {
@@ -83,5 +83,11 @@
 
   .saved-news-header__button-title {
     font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 1180px) {
+  .saved-news-header {
+    padding: 2px 40px 0;
   }
 }

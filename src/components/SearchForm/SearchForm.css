@@ -96,7 +96,7 @@
   background-color: #347eff;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1280px) {
   .search-form__container {
     max-width: 452px;
     padding: 38px 0 48px;

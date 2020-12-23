@@ -1,6 +1,6 @@
 .footer {
   margin: 0;
-  padding: 28px 104px;
+  padding: 28px calc((100% - 1232px) / 2);
   box-sizing: border-box;
   background-color: #fff;
   color: #1a1b22;
@@ -90,9 +90,9 @@
   background-image: url('../../images/telegram_logo_icon.svg');
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1280px) {
   .footer {
-    padding: 20px 40px;
+    padding: 20px calc((100% - 1100px) / 2);
   }
 
   .footer__links {
@@ -101,5 +101,11 @@
 
   .footer__links-item_type_default {
     padding: 0 10px;
+  }
+}
+
+@media screen and (max-width: 1180px) {
+  .footer {
+    padding: 20px 40px;
   }
 }

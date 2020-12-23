@@ -211,11 +211,12 @@
   display: none;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1280px) {
   .news-card-list__item {
     max-width: 224px;
     height: 420px;
-    margin: 0 8px 8px 0;
+    margin-right: calc((100% - (224px * 3)) / 2);
+    margin-bottom: 24px;
   }
 
   .card__image {
@@ -249,5 +250,11 @@
 
   .card__tooltip {
     display: none;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .news-card-list__item {
+    margin: 0 8px 8px 0;
   }
 }
