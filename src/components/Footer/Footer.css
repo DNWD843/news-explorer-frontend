@@ -86,8 +86,8 @@
   background-image: url('../../images/github.svg');
 }
 
-.footer__social-icon_type_telegram {
-  background-image: url('../../images/telegram_logo_icon.svg');
+.footer__social-icon_type_facebook {
+  background-image: url('../../images/facebook.svg');
 }
 
 @media screen and (max-width: 1280px) {

@@ -3,7 +3,14 @@ import { MAIN } from '../../utils/routesMap';
 import './Footer.css';
 
 function Footer({ config }) {
-  const { copyrightText, navLinkText, outerLinkText, outerLink, socialLink } = config;
+  const {
+    copyrightText,
+    navLinkText,
+    outerLinkText,
+    outerLink,
+    socialLinkGithub,
+    socialLinkFacebook,
+  } = config;
   return (
     <>
       <footer className="footer">
@@ -23,8 +30,13 @@ function Footer({ config }) {
           </ul>
           <ul className="footer__social">
             <li className="footer__links-item footer__links-item_type_social">
-              <a href={socialLink} className="footer__social-icon-link">
+              <a href={socialLinkGithub} className="footer__social-icon-link">
                 <div className="footer__social-icon footer__social-icon_type_github"></div>
+              </a>
+            </li>
+            <li className="footer__links-item footer__links-item_type_social">
+              <a href={socialLinkFacebook} className="footer__social-icon-link">
+                <div className="footer__social-icon footer__social-icon_type_facebook"></div>
               </a>
             </li>
           </ul>

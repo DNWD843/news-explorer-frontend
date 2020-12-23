@@ -12,7 +12,8 @@ export const forFooter = {
   navLinkText: 'Главная',
   outerLinkText: 'Яндекс.Практикум',
   outerLink: 'https://praktikum.yandex.ru',
-  socialLink: 'https://github.com/DNWD843/news-explorer-frontend/tree/level-2',
+  socialLinkGithub: 'https://github.com/DNWD843',
+  socialLinkFacebook: 'https://facebook.com',
 };
 
 export const forHeader = { headerLogoText: 'NewsExplorer', authorizationTitle: 'Авторизоваться' };
