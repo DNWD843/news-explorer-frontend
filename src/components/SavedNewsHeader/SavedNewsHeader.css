@@ -1,3 +1,5 @@
+/*
+
 .saved-news-header {
   padding: 6px calc((100% - 1232px) / 2) 0;
   display: flex;
@@ -19,7 +21,7 @@
 }
 
 .saved-news-header__logo {
-  /*color: #fff;*/
+
   margin: 0;
   font-family: 'Roboto Slab';
   font-style: normal;
@@ -27,7 +29,7 @@
   font-size: 20px;
   line-height: 24px;
 }
-/*
+
 .saved-news-header__button {
   color: inherit;
   display: flex;
@@ -69,7 +71,7 @@
 
   align-self: center;
 }
-*/
+
 
 @media screen and (max-width: 1280px) {
   .saved-news-header {
@@ -91,3 +93,4 @@
     padding: 2px 40px 0;
   }
 }
+*/

@@ -13,6 +13,7 @@ import Register from '../Register/Register';
 import { useState } from 'react';
 import './App.css';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
+import SearchForm from '../SearchForm/SearchForm';
 
 function App() {
   const currentUser = { userName: 'Вася' }; // TODO: на следующем этапе сюда сохранять контекст пользователя
@@ -114,18 +115,23 @@ function App() {
             userName={currentUser.userName}
             config={config.forHeader}
             configForNavigation={config.forNavigation}
-            configForSearchForm={config.forSearchForm}
             onLogInClick={handleClickLogIn}
             onLogOutClick={handleClickLogOut}
-          />
+            isMain={true}
+            isSavedNews={false}
+          >
+            <SearchForm config={config.forSearchForm} />
+          </Header>
         </Route>
         <Route path={to.SAVED_NEWS}>
-          <SavedNewsHeader
+          <Header
             isLoggedIn={isLoggedIn}
             userName={currentUser.userName}
-            config={config.forSavedNewsHeader}
+            config={config.forHeader}
             configForNavigation={config.forNavigation}
             onLogOutClick={handleClickLogOut}
+            isMain={false}
+            isSavedNews={true}
           />
         </Route>
       </Switch>

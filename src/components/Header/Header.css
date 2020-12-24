@@ -1,18 +1,44 @@
-.header-container {
+.header {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-image: url('../../images/header-background.png');
+
+  /************************/
+  position: relative;
+}
+
+.header_type_main {
   color: #fff;
 }
 
-.header {
+.header_type_saved-news {
+  background: #fff;
+  color: #1a1b22;
+}
+
+.header__container {
   padding: 6px calc((100% - 1232px) / 2) 0;
   box-sizing: border-box;
   display: flex;
   align-items: center;
+
+  /************************
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  right: 0;
+  ***********/
+}
+
+.header__container_type_main {
   background: rgba(255, 255, 255, 0.01);
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+}
+
+.header__container_type_saved-news {
+  box-shadow: inset 0px -1px 0px #d1d2d6;
 }
 
 .header__link {
@@ -20,6 +46,11 @@
   color: #fff;
   text-decoration: none;
   padding: 0;
+  color: inherit;
+}
+
+.header__link:hover {
+  opacity: 0.9;
 }
 
 .header__logo {
@@ -29,7 +60,10 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
+
+  z-index: 9999999;
 }
+
 /*=======================================================================*/
 /*
 .header__button {
@@ -88,10 +122,15 @@
   background-repeat: no-repeat;
   background-color: transparent;
   cursor: pointer;
+  z-index: 999999;
 }
 
-.header__menu-button_normal {
+.header__menu-button_type_main {
   background-image: url('../../images/menu-button-mobile.svg');
+}
+
+.header__menu-button_type_saved-news {
+  background-image: url('../../images/menu-button-mobile-black.svg');
 }
 
 .header__menu-button_opened {
@@ -99,10 +138,10 @@
 }
 
 @media screen and (max-width: 1280px) {
-  .header {
+  .header__container {
     padding: 2px calc((100% - 1100px) / 2) 0;
   }
-
+  /*
   .header__button {
     margin: 12px 0;
     padding: 7px 15px;
@@ -110,17 +149,17 @@
 
   .header__button-title {
     font-size: 16px;
-  }
+  }*/
 }
 
 @media screen and (max-width: 1180px) {
-  .header {
+  .header__container {
     padding: 2px 40px 0;
   }
 }
 
-@media screen and (max-width: 480px) {
-  .header {
+@media screen and (max-width: 600px) {
+  .header__container {
     padding: 16px;
   }
 

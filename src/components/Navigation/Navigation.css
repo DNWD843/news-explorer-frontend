@@ -1,11 +1,11 @@
-.menu {
+.navbar {
   display: flex;
   margin: 0;
   padding: 0;
+  color: inherit;
 }
 
-.navbar {
-  /*border: 1px solid green;*/
+.navbar__links {
   display: flex;
   margin: 0;
   padding: 0;
@@ -29,6 +29,7 @@
   line-height: 24px;
   cursor: pointer;
   text-decoration: none;
+  color: inherit;
 }
 
 .navbar__link:hover {
@@ -38,14 +39,14 @@
 .navbar__link_color_grey {
   color: #b6bcbf;
 }
-
+/*
 .navbar__link_color_white {
   color: white;
 }
 
 .navbar__link_color_black {
   color: #1a1b22;
-}
+}*/
 
 .navbar__link_active {
   text-decoration: solid underline 3px;
@@ -64,11 +65,5 @@
 
   .navbar__link_active {
     text-underline-offset: 23px;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .menu {
-    display: none;
   }
 }

@@ -10,9 +10,10 @@ function Menu({
   onLogInClick,
   userName,
   authorizationTitle,
+  isMobile,
 }) {
   return (
-    <>
+    <div className={`menu ${isMobile ? 'menu_mobile' : 'menu_desktop'}`}>
       <Navigation config={configForNavigation} isLoggedIn={isLoggedIn} />
 
       {isLoggedIn ? (
@@ -32,7 +33,7 @@ function Menu({
           <span className="menu__button-title">{authorizationTitle}</span>
         </button>
       )}
-    </>
+    </div>
   );
 }
 
