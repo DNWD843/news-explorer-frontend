@@ -72,3 +72,14 @@
 .popup-info__redirect-link:hover {
   opacity: 0.9;
 }
+
+@media screen and (max-width: 600px) {
+  .popup-info__container {
+    padding: 16px;
+    max-width: 288px;
+  }
+
+  .popup-info__close-button {
+    right: 124px;
+  }
+}

@@ -33,3 +33,9 @@
   text-align: center;
   color: #b6bcbf;
 }
+
+@media screen and (max-width: 400px) {
+  .no-result__description {
+    max-width: 288px;
+  }
+}

@@ -1,29 +1,55 @@
 import { NavLink } from 'react-router-dom';
 import { MAIN, SAVED_NEWS } from '../../utils/routesMap';
+import classNames from 'classnames';
 import './Navigation.css';
 
 function Navigation({ isLoggedIn, onClick, isMobile, config }) {
   const { mainLinkText, savedNewsLinkText } = config;
+
+  const navbarClassName = classNames('navbar', {
+    navbar_mobile: isMobile,
+  });
+
+  const navLinksListClassName = classNames('navbar__links', {
+    navbar__links_mobile: isMobile,
+  });
+
+  const linkToMainPageClassName = classNames('navbar__link', {
+    navbar__link_mobile: isMobile,
+  });
+  const activeLinkClassName = classNames({
+    navbar__link_active: !isMobile,
+    '': isMobile,
+  });
+
+  const hiddenLinkClassName = classNames('navbar__item', {
+    navbar__item_hidden: !isLoggedIn,
+    '': isLoggedIn,
+  });
+
+  const linkToSavedNewsPageClassName = classNames('navbar__link', {
+    navbar__link_mobile: isMobile,
+    navbar__link_color_grey: !isMobile,
+  });
+
   return (
-    <nav className={`navbar  ${isMobile && 'navbar_mobile'}`}>
-      <ul className={`navbar__links ${isMobile && 'navbar__links_mobile'}`}>
+    <nav className={navbarClassName}>
+      <ul className={navLinksListClassName}>
         <li className="navbar__item">
           <NavLink
             exact
             to={MAIN}
-            className={`navbar__link ${isMobile && 'navbar__link_mobile'}`}
-            activeClassName={`${!isMobile ? 'navbar__link_active' : ''}`}
+            className={linkToMainPageClassName}
+            activeClassName={activeLinkClassName}
           >
             {mainLinkText}
           </NavLink>
         </li>
-        <li className={`navbar__item ${!isLoggedIn ? 'navbar__item_hidden' : ''}`}>
+        <li className={hiddenLinkClassName}>
           <NavLink
             to={SAVED_NEWS}
-            className={`navbar__link  ${
-              isMobile ? 'navbar__link_mobile' : 'navbar__link_color_grey'
-            }`}
-            activeClassName={`${!isMobile ? 'navbar__link_active' : ''}`}
+            className={linkToSavedNewsPageClassName}
+            activeClassName={activeLinkClassName}
             onClick={onClick}
           >
             {savedNewsLinkText}

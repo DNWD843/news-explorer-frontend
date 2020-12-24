@@ -1,7 +1,5 @@
-// import logo from './logo.svg';
 import { Switch, Route } from 'react-router-dom';
 import Header from '../Header/Header';
-import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import * as config from '../../configs/configsForComponents';
@@ -11,9 +9,9 @@ import savedCards from '../../mocks/savedCards'; // временно имити�
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import { useState } from 'react';
-import './App.css';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import SearchForm from '../SearchForm/SearchForm';
+import './App.css';
 
 function App() {
   const currentUser = { userName: 'Вася' }; // TODO: на следующем этапе сюда сохранять контекст пользователя
@@ -21,6 +19,7 @@ function App() {
   const [isLoginPopupOpened, setIsLoginPopupOpened] = useState(false);
   const [isRegisterPopupOpened, setIsRegisterPopupOpened] = useState(false);
   const [isRegSuccessTooltipOpened, setIsRegSuccessTooltipOpened] = useState(false);
+  const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   /**
@@ -30,13 +29,14 @@ function App() {
    * @public
    * @memberof App
    * @instance
-   * @since v.2.0.0
+   * @since v.1.0.0
    */
   const closeAllPopups = () => {
     document.removeEventListener('keydown', handleEscClose);
     setIsLoginPopupOpened(false);
     setIsRegisterPopupOpened(false);
     setIsRegSuccessTooltipOpened(false);
+    setIsMobileMenuOpened(false);
   };
 
   /**
@@ -47,7 +47,7 @@ function App() {
    * @public
    * @memberof App
    * @instance
-   * @since v.2.0.0
+   * @since v.1.0.0
    */
   const handleEscClose = (evt) => {
     if (evt.key === 'Escape') {
@@ -63,7 +63,7 @@ function App() {
    * @public
    * @memberof App
    * @instance
-   * @since v.2.0.0
+   * @since v.1.0.0
    */
   const handleClickOnOverlay = (evt) => {
     /**
@@ -97,13 +97,21 @@ function App() {
     evt.preventDefault();
     closeAllPopups();
     setIsRegSuccessTooltipOpened(true);
-    document.addEventListener('keydown', handleEscClose); //временно, для проверки закрытия подсказки по эскейп
+    document.addEventListener('keydown', handleEscClose);
   };
 
   const handleLoginSubmit = (evt) => {
     evt.preventDefault();
     closeAllPopups();
     setIsLoggedIn(true);
+  };
+
+  const handleClickMenuButton = () => {
+    if (isMobileMenuOpened || isLoginPopupOpened || isRegisterPopupOpened) {
+      closeAllPopups();
+    } else {
+      setIsMobileMenuOpened(true);
+    }
   };
 
   return (
@@ -119,6 +127,10 @@ function App() {
             onLogOutClick={handleClickLogOut}
             isMain={true}
             isSavedNews={false}
+            onMenuButtonClick={handleClickMenuButton}
+            isMobileMenuOpened={isMobileMenuOpened}
+            isPopupOpened={isLoginPopupOpened || isRegisterPopupOpened}
+            onOverlayClick={handleClickOnOverlay}
           >
             <SearchForm config={config.forSearchForm} />
           </Header>
@@ -132,6 +144,9 @@ function App() {
             onLogOutClick={handleClickLogOut}
             isMain={false}
             isSavedNews={true}
+            onMenuButtonClick={handleClickMenuButton}
+            isMobileMenuOpened={isMobileMenuOpened}
+            onOverlayClick={handleClickOnOverlay}
           />
         </Route>
       </Switch>

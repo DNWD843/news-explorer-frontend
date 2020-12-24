@@ -12,21 +12,16 @@
   top: 0px;
   left: 0px;
   right: 0;
-
+  z-index: 50;
   flex-direction: column;
   background: #1a1b22;
-  z-index: 50;
-
   align-items: flex-start;
   justify-content: center;
-
+  color: #fff;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
-
   margin-top: -286px;
   transition: margin 0.2s ease-in-out;
-
-  color: #fff;
 }
 
 .menu_opened {

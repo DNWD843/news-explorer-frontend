@@ -1,6 +1,6 @@
 import About from '../About/About';
-// import NoResult from '../NoResult/NoResult';
-// import Preloader from '../Preloader/Preloader';
+//import NoResult from '../NoResult/NoResult';  // компонент временно отключен. раскомментриовать для подключения
+//import Preloader from '../Preloader/Preloader';  // компонент временно отключен. раскомментриовать для подключения
 import SavedNews from '../SavedNews/SavedNews';
 import SearchResult from '../SearchResult/SearchResult';
 
@@ -28,8 +28,10 @@ function Main({
           <Route exact path={to.MAIN}>
             {
               <>
-                {/* <Preloader config={configForPreloader} />
-                <NoResult config={configForNoResult} />  */}
+                {/*
+                <Preloader config={configForPreloader} />  // компонент временно отключен. раскомментриовать для подключения
+                <NoResult config={configForNoResult} />  // компонент временно отключен. раскомментриовать для подключения
+              */}
                 <SearchResult
                   config={configForSearchResult}
                   configForNewsCard={configForNewsCard}

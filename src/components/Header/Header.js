@@ -1,7 +1,7 @@
-//import Navigation from '../Navigation/Navigation';
 import Menu from '../Menu/Menu';
 import { Switch, Route, Link } from 'react-router-dom';
-import { useState } from 'react';
+import { MAIN, SAVED_NEWS } from '../../utils/routesMap';
+import classNames from 'classnames';
 import './Header.css';
 
 function Header({
@@ -14,34 +14,43 @@ function Header({
   children,
   isMain,
   isSavedNews,
+  onMenuButtonClick,
+  isMobileMenuOpened,
+  isPopupOpened,
+  onOverlayClick,
 }) {
   const { headerLogoText, authorizationTitle } = config;
 
-  const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
+  const headerClassName = classNames('header', {
+    'header_type_saved-news': isSavedNews,
+    header_type_main: isMain,
+  });
 
-  const handleClickMenuButton = () => {
-    setIsMobileMenuOpened(!isMobileMenuOpened);
-  };
+  const headerContainerClassName = classNames('header__container', {
+    header__container_type_main: isMain,
+    'header__container_type_saved-news': isSavedNews && !isMobileMenuOpened,
+    header__container_mobile: isMobileMenuOpened,
+  });
+
+  const headerMobileMenuButtonClassName = classNames('header__menu-button', {
+    'header__menu-button_type_main': isMain,
+    'header__menu-button_type_saved-news': isSavedNews,
+    'header__menu-button_opened': isMobileMenuOpened || isPopupOpened,
+  });
+
+  const headerMobileMenuOverlayClassName = classNames('overlay', {
+    'header__menu-mobile-overlay': isMobileMenuOpened,
+  });
 
   return (
-    <header
-      className={`header ${isSavedNews && 'header_type_saved-news'}
-      ${isMain && 'header_type_main'}
-
-      `}
-    >
-      <div
-        className={`header__container ${isMain && 'header__container_type_main'}
-          ${isSavedNews && !isMobileMenuOpened && 'header__container_type_saved-news'}
-          ${isMobileMenuOpened && 'header__container_mobile'}
-          `}
-      >
+    <header className={headerClassName}>
+      <div className={headerContainerClassName}>
         <Switch>
-          <Route exact path="/">
+          <Route exact path={MAIN}>
             <p className="header__logo">{headerLogoText}</p>
           </Route>
-          <Route path="/saved-news">
-            <Link to="/" className="header__link">
+          <Route path={SAVED_NEWS}>
+            <Link to={MAIN} className="header__link">
               <p className="header__logo">{headerLogoText}</p>
             </Link>
           </Route>
@@ -58,17 +67,14 @@ function Header({
         />
         <button
           type="button"
-          onClick={handleClickMenuButton}
-          className={`header__menu-button ${isMain && 'header__menu-button_type_main'} ${
-            isSavedNews && !isMobileMenuOpened && 'header__menu-button_type_saved-news'
-          }
-          ${isMobileMenuOpened && (isSavedNews || isMain) && 'header__menu-button_opened'}
-            `}
-        ></button>
+          onClick={onMenuButtonClick}
+          className={headerMobileMenuButtonClassName}
+        />
       </div>
+
       {children}
 
-      <div className={` ${isMobileMenuOpened && 'header__menu-mobile-overlay'}`}>
+      <div className={headerMobileMenuOverlayClassName} onClick={onOverlayClick}>
         <Menu
           configForNavigation={configForNavigation}
           onLogInClick={onLogInClick}

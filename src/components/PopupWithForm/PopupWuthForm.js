@@ -16,9 +16,9 @@ function PopupWithForm({
   return (
     <div
       onClick={onOverlayClick}
-      className={`popup page__overlay ${isOpened ? 'popup_opened' : ''} page__overlay_mobile`}
+      className={`popup  ${isOpened ? 'popup_opened page__overlay' : ''}`}
     >
-      <div className="popup__container">
+      <div className={`popup__container ${isOpened && 'popup__container_mobile_opened'}`}>
         <button type="button" onClick={onClose} className="popup__close-button"></button>
         <form onSubmit={onSubmit} className="form popup__form">
           <h2 className="form__title">{formTitle}</h2>

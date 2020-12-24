@@ -53,14 +53,6 @@
 .navbar__link_color_grey {
   color: #b6bcbf;
 }
-/*
-.navbar__link_color_white {
-  color: white;
-}
-
-.navbar__link_color_black {
-  color: #1a1b22;
-}*/
 
 .navbar__link_active {
   text-decoration: solid underline 3px;

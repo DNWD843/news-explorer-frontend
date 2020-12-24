@@ -1,6 +1,7 @@
 import Navigation from '../Navigation/Navigation';
 import { Switch, Route } from 'react-router-dom';
-
+import classNames from 'classnames';
+import * as to from '../../utils/routesMap';
 import './Menu.css';
 
 function Menu({
@@ -13,41 +14,44 @@ function Menu({
   isMobile,
   isMobileMenuOpened,
 }) {
+  const menuClassName = classNames('menu', {
+    menu_mobile: isMobile,
+    menu_desktop: !isMobile,
+    menu_opened: isMobileMenuOpened,
+  });
+
+  const authButtonClassName = classNames('menu__button', {
+    menu__button_mobile: isMobile,
+  });
+  const authButtonTextClassName = classNames('menu__button-title');
+  const authButtonIconForMainPageClassName = classNames(
+    'menu__button-icon',
+    'menu__button-icon_main',
+  );
+  const authButtonIconForSavedNewsPageClassName = classNames('menu__button-icon', {
+    'menu__button-icon_saved-news': !isMobile,
+    'menu__button-icon_main': isMobile,
+  });
+
   return (
-    <div
-      className={`menu ${isMobile ? 'menu_mobile' : 'menu_desktop'} ${
-        isMobileMenuOpened && 'menu_opened'
-      }`}
-    >
+    <div className={menuClassName}>
       <Navigation config={configForNavigation} isLoggedIn={isLoggedIn} isMobile={isMobile} />
 
       {isLoggedIn ? (
-        <button
-          onClick={onLogOutClick}
-          type="button"
-          className={`menu__button ${isMobile && 'menu__button_mobile'}`}
-        >
-          <span className="menu__button-title">{userName}</span>
+        <button onClick={onLogOutClick} type="button" className={authButtonClassName}>
+          <span className={authButtonTextClassName}>{userName}</span>
           <Switch>
-            <Route exact path="/">
-              <div className="menu__button-icon menu__button-icon_main"></div>
+            <Route exact path={to.MAIN}>
+              <div className={authButtonIconForMainPageClassName}></div>
             </Route>
-            <Route path="/saved-news">
-              <div
-                className={`menu__button-icon ${
-                  !isMobile ? 'menu__button-icon_saved-news' : 'menu__button-icon_main'
-                }`}
-              ></div>
+            <Route path={to.SAVED_NEWS}>
+              <div className={authButtonIconForSavedNewsPageClassName}></div>
             </Route>
           </Switch>
         </button>
       ) : (
-        <button
-          onClick={onLogInClick}
-          type="button"
-          className={`menu__button ${isMobile && 'menu__button_mobile'}`}
-        >
-          <span className="menu__button-title">{authorizationTitle}</span>
+        <button onClick={onLogInClick} type="button" className={authButtonClassName}>
+          <span className={authButtonTextClassName}>{authorizationTitle}</span>
         </button>
       )}
     </div>
