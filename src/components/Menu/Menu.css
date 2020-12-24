@@ -12,18 +12,31 @@
   top: 0px;
   left: 0px;
   right: 0;
-  bottom: 100px;
+
   flex-direction: column;
-  background: black;
+  background: #1a1b22;
   z-index: 50;
 
   align-items: flex-start;
   justify-content: center;
+
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+
+  margin-top: -286px;
+  transition: margin 0.2s ease-in-out;
+
+  color: #fff;
+}
+
+.menu_opened {
+  margin-top: 0;
 }
 
 .menu__button {
   color: inherit;
   display: flex;
+  justify-content: center;
   margin: 13px 0;
   padding: 11px 15px;
   align-self: center;
@@ -34,6 +47,10 @@
   outline: none;
   cursor: pointer;
   color: inherit;
+}
+
+.menu__button_mobile {
+  width: 288px;
 }
 
 .menu__button:hover {
@@ -90,5 +107,10 @@
 
   .menu_mobile {
     display: flex;
+    padding: 76px calc((100% - 288px) / 2) 0;
+  }
+
+  .menu__button_mobile {
+    margin-bottom: 24px;
   }
 }

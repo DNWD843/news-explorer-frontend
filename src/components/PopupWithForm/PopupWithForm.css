@@ -17,6 +17,7 @@
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
 }
+
 .popup__container {
   position: relative;
   margin: 0;
@@ -61,8 +62,6 @@
   justify-content: flex-start;
 
   width: 100%;
-}
-.popup__form {
 }
 
 .form__title {
@@ -219,3 +218,35 @@
 
   color: #ff0000;
 }
+
+/* ***************************************************************** */
+/* мобильная версия */
+
+@media screen and (max-width: 600px) {
+  .popup {
+    align-items: flex-start;
+  }
+
+  .page__overlay_mobile {
+    top: 56px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  .popup__container {
+    padding: 16px 16px 10%;
+    justify-content: flex-start;
+    max-width: 320px;
+    height: 100%;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .popup__close-button {
+    display: none;
+  }
+}
+
+/* конец мобильной версии */
+/* ******************************************************************** */

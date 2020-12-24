@@ -2,7 +2,7 @@
 @import url('./vendor/fonts/fonts.css');
 
 .root {
-  background-color: #000000;
+  background-color: #fff;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-style: normal;
   margin: 0;
@@ -22,7 +22,7 @@
   max-width: 1440px;
   min-width: 320px;
   margin: 0 auto;
-  padding: 0 0 60px;
+  padding: 0;
   position: relative;
 }
 

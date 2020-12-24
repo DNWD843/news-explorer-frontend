@@ -5,10 +5,19 @@
   color: inherit;
 }
 
+.navbar_mobile {
+  flex-direction: column;
+}
+
 .navbar__links {
   display: flex;
   margin: 0;
   padding: 0;
+}
+
+.navbar__links_mobile {
+  margin-bottom: 22px;
+  flex-direction: column;
 }
 
 .navbar__item {
@@ -30,6 +39,11 @@
   cursor: pointer;
   text-decoration: none;
   color: inherit;
+}
+
+.navbar__link_mobile {
+  line-height: 56px;
+  text-decoration: none;
 }
 
 .navbar__link:hover {

@@ -1,6 +1,7 @@
 //import Navigation from '../Navigation/Navigation';
 import Menu from '../Menu/Menu';
 import { Switch, Route, Link } from 'react-router-dom';
+import { useState } from 'react';
 import './Header.css';
 
 function Header({
@@ -16,15 +17,24 @@ function Header({
 }) {
   const { headerLogoText, authorizationTitle } = config;
 
+  const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
+
+  const handleClickMenuButton = () => {
+    setIsMobileMenuOpened(!isMobileMenuOpened);
+  };
+
   return (
     <header
-      className={`header ${isSavedNews && 'header_type_saved-news'} ${
-        isMain && 'header_type_main'
-      }`}
+      className={`header ${isSavedNews && 'header_type_saved-news'}
+      ${isMain && 'header_type_main'}
+
+      `}
     >
       <div
         className={`header__container ${isMain && 'header__container_type_main'}
-          ${isSavedNews && 'header__container_type_saved-news'}`}
+          ${isSavedNews && !isMobileMenuOpened && 'header__container_type_saved-news'}
+          ${isMobileMenuOpened && 'header__container_mobile'}
+          `}
       >
         <Switch>
           <Route exact path="/">
@@ -48,21 +58,28 @@ function Header({
         />
         <button
           type="button"
+          onClick={handleClickMenuButton}
           className={`header__menu-button ${isMain && 'header__menu-button_type_main'} ${
-            isSavedNews && 'header__menu-button_type_saved-news'
-          }`}
+            isSavedNews && !isMobileMenuOpened && 'header__menu-button_type_saved-news'
+          }
+          ${isMobileMenuOpened && (isSavedNews || isMain) && 'header__menu-button_opened'}
+            `}
         ></button>
       </div>
       {children}
-      <Menu
-        configForNavigation={configForNavigation}
-        onLogInClick={onLogInClick}
-        onLogOutClick={onLogOutClick}
-        isLoggedIn={isLoggedIn}
-        userName={userName}
-        authorizationTitle={authorizationTitle}
-        isMobile={true}
-      />
+
+      <div className={` ${isMobileMenuOpened && 'header__menu-mobile-overlay'}`}>
+        <Menu
+          configForNavigation={configForNavigation}
+          onLogInClick={onLogInClick}
+          onLogOutClick={onLogOutClick}
+          isLoggedIn={isLoggedIn}
+          userName={userName}
+          authorizationTitle={authorizationTitle}
+          isMobile={true}
+          isMobileMenuOpened={isMobileMenuOpened}
+        />
+      </div>
     </header>
   );
 }

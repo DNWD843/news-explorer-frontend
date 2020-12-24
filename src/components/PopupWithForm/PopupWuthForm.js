@@ -16,7 +16,7 @@ function PopupWithForm({
   return (
     <div
       onClick={onOverlayClick}
-      className={`popup page__overlay ${isOpened ? 'popup_opened' : ''}`}
+      className={`popup page__overlay ${isOpened ? 'popup_opened' : ''} page__overlay_mobile`}
     >
       <div className="popup__container">
         <button type="button" onClick={onClose} className="popup__close-button"></button>

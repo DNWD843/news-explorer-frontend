@@ -132,6 +132,10 @@
     max-width: 288px;
   }
 
+  .search-form__title {
+    width: 288px;
+  }
+
   .search-form__description {
     margin: 0 0 122px 0;
   }
