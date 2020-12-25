@@ -30,17 +30,28 @@ function NewsCard({
     card__bookmark_marked: isLoggedIn && !isSavedNewsOpened && isSavedToCollection,
     'card__bookmark_page_saved-news': isSavedNewsOpened,
   });
+
+  const cardCategoryClassName = classNames({
+    card__category: isSavedNewsOpened,
+    'card__category card__category_hidden': !isSavedNewsOpened,
+  });
+
+  const cardTooltipClassName = classNames('card__tooltip', {
+    'card__tooltip_type_saved-news': isSavedNewsOpened,
+    card__tooltip_type_default: !isSavedNewsOpened,
+  });
+
   const handleClickOnBookmark = () => {
     if (isLoggedIn && !isSavedNewsOpened && !isSavedToCollection) {
-      console.log('новость добавляется в коллекцию');
+      console.log('новость добавляется в коллекцию'); //TODO: удалить на следующем этапе
       setIsSavedToCollection(true);
     }
     if (isLoggedIn && !isSavedNewsOpened && isSavedToCollection) {
-      console.log('новость удаляется из коллекции');
+      console.log('новость удаляется из коллекции'); //TODO: удалить на следующем этапе
       setIsSavedToCollection(false);
     }
     if (isSavedNewsOpened) {
-      console.log('новость удаляется из сохраненных новостей');
+      console.log('новость удаляется из сохраненных новостей'); //TODO: удалить на следующем этапе
     }
   };
 
@@ -58,13 +69,7 @@ function NewsCard({
           <p className="card__source">{source}</p>
         </div>
       </a>
-      <div
-        className={`${
-          isSavedNewsOpened ? 'card__category' : 'card__category card__category_hidden'
-        }`}
-      >
-        {keyword}
-      </div>
+      <div className={cardCategoryClassName}>{keyword}</div>
       <button
         type="button"
         onClick={handleClickOnBookmark}
@@ -72,11 +77,7 @@ function NewsCard({
         name="bookmark"
         disabled={!isLoggedIn}
       ></button>
-      <div
-        className={`card__tooltip ${
-          isSavedNewsOpened ? 'card__tooltip_type_saved-news' : 'card__tooltip_type_default'
-        }`}
-      >
+      <div className={cardTooltipClassName}>
         {isSavedNewsOpened && tooltipTextForSavedNewsPage}
         {!isLoggedIn && tooltipTextForMainPageNotLoggedIn}
         {!isSavedNewsOpened && isLoggedIn && !isSavedToCollection && tooltipTextForMainPageToSave}

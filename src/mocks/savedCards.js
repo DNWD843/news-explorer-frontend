@@ -34,7 +34,7 @@ const savedCards = [
   },
   {
     _id: '5fd3a627a01dba38a94d6898',
-    keyword: 'Фотография',
+    keyword: 'Мир',
     title: 'Лесные огоньки: история одной фотографии',
     text:
       'Фотограф отвлеклась от освещения суровой политической реальности Мексики, чтобы запечатлеть ускользающую красоту одного из местных чудес природы.',
@@ -67,7 +67,7 @@ const savedCards = [
   },
   {
     _id: '5fd48f1da01dba38a94d63a0',
-    keyword: 'Тайга',
+    keyword: 'Парки',
     title: '«Первозданная тайга»: новый фотопроект Игоря Шпиленка',
     text:
       'Знаменитый фотограф снимает первозданные леса России, чтобы рассказать о необходимости их сохранения. В этот раз он отправился в Двинско-Пинежскую тайгу, где...',
@@ -76,6 +76,7 @@ const savedCards = [
     link: 'https://developer.mozilla.org',
     image: 'https://wikipet.ru/uploads/posts/2019-02/1549868089_1.jpg',
   },
+  /*
   {
     _id: '5fd281f2e6676615db8a4c69',
     keyword: 'Парки',
@@ -98,6 +99,7 @@ const savedCards = [
     link: 'https://developer.mozilla.org',
     image: 'https://wikipet.ru/uploads/posts/2019-02/1549868089_1.jpg',
   },
+  */
 ];
 
 export default savedCards;
