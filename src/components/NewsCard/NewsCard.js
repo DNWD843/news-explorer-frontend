@@ -2,6 +2,23 @@ import classNames from 'classnames';
 import { useState } from 'react';
 import './NewsCard.css';
 
+/**
+ * @module NewsCard
+ * @description Функциональный компонент<br>
+ * Карточка статьи.
+ * @property {Object} config - объект с базовыми настройками отображения блока
+ * @property {String} source - источник статьи
+ * @property {String} keyword - ключевое слово статьи
+ * @property {String} title - заголовок статьи
+ * @property {String} text - текст статьи
+ * @property {String} date - дата статьи
+ * @property {String} link - ссылка на статью
+ * @property {String} image - ссылка на изображение
+ * @property {Boolean} isSavedNewsOpened - стейт состояния страницы с сохраненными новостями
+ * @property {Boolean} isLoggedIn -  стейт состяния пользователя: авторизован/не авторизован
+ * @returns {JSX}
+ * @since v.1.0.0
+ */
 function NewsCard({
   source,
   keyword,
@@ -41,23 +58,30 @@ function NewsCard({
     card__tooltip_type_default: !isSavedNewsOpened,
   });
 
+  /**
+   * @method handleClickOnBookmark
+   * @description Публичный метод<br>
+   * Вызывается при клике по флажку на карточке статьи. В зависимости от состояния пользователя,
+   *  страницы, на которой находится пользователь, сотояния карточки он сохраняет статью или
+   *  удаляет статью из коллекции
+   * @public
+   * @since v.1.0.0
+   */
   const handleClickOnBookmark = () => {
     if (isLoggedIn && !isSavedNewsOpened && !isSavedToCollection) {
       console.log('новость добавляется в коллекцию'); //TODO: удалить на следующем этапе
       setIsSavedToCollection(true);
-    }
-    if (isLoggedIn && !isSavedNewsOpened && isSavedToCollection) {
+    } else if (isLoggedIn && !isSavedNewsOpened && isSavedToCollection) {
       console.log('новость удаляется из коллекции'); //TODO: удалить на следующем этапе
       setIsSavedToCollection(false);
-    }
-    if (isSavedNewsOpened) {
+    } else if (isSavedNewsOpened) {
       console.log('новость удаляется из сохраненных новостей'); //TODO: удалить на следующем этапе
     }
   };
 
   return (
     <li className="card news-card-list__item">
-      <a href={link} className="card__link">
+      <a href={link} className="card__link" target="_blank" rel="noopener noreferrer">
         <img className="card__image" src={image} alt={altText} />
         <div className="card__info">
           <p className="card__date">{date}</p>

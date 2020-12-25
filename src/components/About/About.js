@@ -1,5 +1,14 @@
 import './About.css';
 
+/**
+ * @module About
+ * @description Функциональный компонент<br>
+ * Блок с информацией об авторе.<br>
+ * Принимает в пропсах объект с настройками блока - config.
+ * @property {Object} config -  объект с базовыми настройками отображения блока
+ * @returns {JSX}
+ * @since v.1.0.0
+ */
 function About({ config }) {
   const { imgSrc, imgAlt, title, aboutAuthor, somethingAbout } = config;
 

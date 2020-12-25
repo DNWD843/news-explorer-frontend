@@ -1,5 +1,14 @@
 import './SearchForm.css';
 
+/**
+ * @module SearchForm
+ * @description Функциональный компонент<br>
+ * Блок с формой поиска новостей.<br>
+ * Принимает в пропсах объект с настройками блока - config.
+ * @property {Object} config -  объект с базовыми настройками отображения блока
+ * @returns {JSX}
+ * @since v.1.0.0
+ */
 function SearchForm({ config }) {
   const { title, description, placeholderText, submitButtonText } = config;
   return (

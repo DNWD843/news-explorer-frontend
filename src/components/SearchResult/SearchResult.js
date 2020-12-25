@@ -3,6 +3,17 @@ import NewsCardList from '../NewsCardList/NewsCardList';
 import classNames from 'classnames';
 import './SearchResult.css';
 
+/**
+ * @module SearchResult
+ * @description Функциональный компонент<br>
+ * Блок отображает статьи, найденные в результате поиска по запросу пользователя.<br>
+ * @property {Object} config -  объект с базовыми настройками отображения блока
+ * @property {Object} configForNewsCard - объект с базовыми настройками отображения блока NewsCard
+ * @property {Array} searchResult - массив с данными статей, найденых в результате поиска по запросу пользователя.
+ * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
+ * @returns {JSX}
+ * @since v.1.0.0
+ */
 function SearchResult({ config, configForNewsCard, searchResult, isLoggedIn }) {
   const { title, showMoreButtonText } = config;
 
@@ -15,6 +26,13 @@ function SearchResult({ config, configForNewsCard, searchResult, isLoggedIn }) {
     'search-result__button_enabled': !isDisabled,
   });
 
+  /**
+   * @method handleClickShowMoreButton
+   * @description Обработчик клика по кнопке "Показать ещё". Отображает следующую
+   *  часть карточек статей, но не более трех за один раз.
+   * @public
+   * @since v.1.0.0
+   */
   const handleClickShowMoreButton = () => {
     let cardsQuantity;
     if (searchResult.length - cardsToRenderQuantity > 3) {

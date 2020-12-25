@@ -13,6 +13,14 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import SearchForm from '../SearchForm/SearchForm';
 import './App.css';
 
+/**
+ * @module App
+ * @description Функциональный компонент<br>
+ * Главный компонент приложения<br>
+ * Управляет всеми компонентами приложения<br>
+ * @returns {JSX}
+ * @since v.1.0.0
+ */
 function App() {
   const currentUser = { userName: 'Вася' }; // TODO: на следующем этапе сюда сохранять контекст пользователя
 
@@ -23,12 +31,11 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   /**
-   * @method  closeAllPopups
+   * @method
+   * @name closeAllPopups
    * @description Публичный метод<br>
    * Стрелочная функция, закрывает все попапы, удаляет слушатель нажатия клавиши Esc
    * @public
-   * @memberof App
-   * @instance
    * @since v.1.0.0
    */
   const closeAllPopups = () => {
@@ -45,8 +52,6 @@ function App() {
    * Стрелочная функция, закрывает попап при нажатии клавиши Esc
    * @param {Event} evt - событие
    * @public
-   * @memberof App
-   * @instance
    * @since v.1.0.0
    */
   const handleEscClose = (evt) => {
@@ -61,8 +66,6 @@ function App() {
    * Стрелочная функция, закрывает попап при клике по оверлею
    * @param {Event} evt - событие
    * @public
-   * @memberof App
-   * @instance
    * @since v.1.0.0
    */
   const handleClickOnOverlay = (evt) => {
@@ -77,22 +80,50 @@ function App() {
     }
   };
 
+  /**
+   * @method  handleClickLogIn
+   * @description Публичный метод<br>
+   * Стрелочная функция, открывает попап авторизации при клике по кнопке "Авторизация" или ссылке "Войти"
+   * @public
+   * @since v.1.0.0
+   */
   const handleClickLogIn = () => {
     closeAllPopups();
     setIsLoginPopupOpened(true);
     document.addEventListener('keydown', handleEscClose);
   };
 
+  /**
+   * @method  handleClickLogOut
+   * @description Публичный метод<br>
+   * Стрелочная функция, выход из аккаунта при клике по кнопке с иконкой "Выйти"
+   * @public
+   * @since v.1.0.0
+   */
   const handleClickLogOut = () => {
     setIsLoggedIn(false);
   };
 
+  /**
+   * @method  handleClickRegister
+   * @description Публичный метод<br>
+   * Стрелочная функция, открывает попап регистрации при клике по ссылке "Зарегистрироваться"
+   * @public
+   * @since v.1.0.0
+   */
   const handleClickRegister = () => {
     closeAllPopups();
     setIsRegisterPopupOpened(true);
     document.addEventListener('keydown', handleEscClose);
   };
 
+  /**
+   * @method  handleRegisterSubmit
+   * @description Публичный метод<br>
+   * Стрелочная функция, отправляет запрос на регистрацию пользователя, передает введенные данные
+   * @public
+   * @since v.1.0.0
+   */
   const handleRegisterSubmit = (evt) => {
     evt.preventDefault();
     closeAllPopups();
@@ -100,12 +131,27 @@ function App() {
     document.addEventListener('keydown', handleEscClose);
   };
 
+  /**
+   * @method  handleLoginSubmit
+   * @description Публичный метод<br>
+   * Стрелочная функция, отправляет запрос на авторизацию пользователя, передает введенные данные
+   * @public
+   * @since v.1.0.0
+   */
   const handleLoginSubmit = (evt) => {
     evt.preventDefault();
     closeAllPopups();
     setIsLoggedIn(true);
   };
 
+  /**
+   * @method  handleClickMenuButton
+   * @description Публичный метод<br>
+   * Стрелочная функция, открывает мобильное меню, закрывает мобильное меню или открытый попап
+   *  при клике по кнопке меню на мобильном разрешении
+   * @public
+   * @since v.1.0.0
+   */
   const handleClickMenuButton = () => {
     if (isMobileMenuOpened || isLoginPopupOpened || isRegisterPopupOpened) {
       closeAllPopups();

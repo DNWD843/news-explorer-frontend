@@ -1,6 +1,24 @@
 import classNames from 'classnames';
 import './PopupWithForm.css';
 
+/**
+ * @module PopupWithForm
+ * @description Функциональный компонент<br>
+ * Попап с формой регистрации или авторизации.<br>
+ * @property {String} formTitle - заголовок формы
+ * @property {String} submitButtonText - текст на кнопке сабмит
+ * @property {String} redirectTitleText - текст до ссылки переадресации
+ * @property {String} redirectLinkText - текст ссылки переадресации
+ * @property {Boolean} isOpened - стейт открытого состояния попапа
+ * @property {JSX} children - JSX фрагмент, например дополнительный инпут для формы регистрации
+ * @property {Function} onClose - колбэк, закрывает попап при клике по крестику
+ * @property {Function} onOverlayClick - колбэк, закрывает попап при клике по оверлею
+ * @property {Function} onRedirectLinkClick - колбэк, вызывается при клике по ссылке переадресации,
+ * @property {Boolean} isDisabled - стейт состояния кнопки сабмит
+ * @property {Function} onSubmit -  колбэк, вызывается при сабмите формы
+ * @returns {JSX}
+ * @since v.1.0.0
+ */
 function PopupWithForm({
   formTitle,
   submitButtonText,

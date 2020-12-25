@@ -1,10 +1,30 @@
 import NewsCardList from '../NewsCardList/NewsCardList';
-import classNames from 'classnames';
 import './SavedNews.css';
 
+/**
+ * @module SavedNews
+ * @description Функциональный компонент<br>
+ * Отрисовывает карточки со статьями, сохраненными пользователем в своей коллекции.<br>
+ * Отрисовка производится частями по три карточки.
+ * @property {Object} config - объект с базовыми настройками отображения блока
+ * @property {String} userName - имя пользователя
+ * @property {Array} savedArticles - массив с данными о сохраненных статьях
+ * @property {Object} configForNewsCard - объект с базовыми настройками отображения блока NewsCard
+ * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
+ * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
+ * @since v.1.0.0
+ */
 function SavedNews({ config, userName, savedArticles, configForNewsCard, isLoggedIn }) {
   const { pageName } = config;
 
+  /**
+   * @method getKeywordsTopList
+   * @description Метод обрабатывает ключевые слова (категории) статей и сортирует их по популярности.
+   *  Возвращает массив с ключевыми словами, отсортированными по популярности по убыванию.
+   * @param {Array} articlesArray - массив данных статей
+   * @public
+   * @since v.1.0.0
+   */
   const getKeywordsTopList = (articlesArray) => {
     const keywordsWithRangeNumber = articlesArray
       .map((article) => article.keyword)
@@ -16,13 +36,10 @@ function SavedNews({ config, userName, savedArticles, configForNewsCard, isLogge
         }
         return acc;
       }, {});
-
     const filteredKeywordsArray = Object.keys(keywordsWithRangeNumber);
-
     const result = filteredKeywordsArray.sort((a, b) => {
       return keywordsWithRangeNumber[b] - keywordsWithRangeNumber[a];
     });
-
     return result;
   };
   const top = getKeywordsTopList(savedArticles);
@@ -30,62 +47,6 @@ function SavedNews({ config, userName, savedArticles, configForNewsCard, isLogge
   const firstKeyword = top[0];
   const secondKeyword = top[1];
   const thirdKeyword = top[2];
-
-  /*
-  const totalKeywords = top.length;
-
-  let byKeywords;
-  let firstKeyword;
-  let secondKeyword;
-  let thirdKeyword;
-  let and;
-  let endOfHowManch = '';
-  let another;
-  let number;
-  const total = totalKeywords - 2;
-
-
-  switch (totalKeywords) {
-    case 1:
-      byKeywords = 'По ключевым слову: ';
-      firstKeyword = top[0];
-      secondKeyword = '';
-      thirdKeyword = '';
-      and = '';
-      another = '';
-      break;
-    case 2:
-      byKeywords = 'По ключевым словам: ';
-      firstKeyword = top[0];
-      secondKeyword = `, ${top[1]}`;
-      thirdKeyword = '';
-      and = '';
-      another = '';
-      break;
-    case 3:
-      byKeywords = 'По ключевым словам: ';
-      firstKeyword = top[0];
-      secondKeyword = `, ${top[1]}`;
-      thirdKeyword = `, ${top[2]}`;
-      and = '';
-      another = '';
-      break;
-    case 4:
-      byKeywords = 'По ключевым словам: ';
-      firstKeyword = top[0];
-      secondKeyword = `, ${top[1]}`;
-      and = ' и ';
-      another = `${totalKeywords - 2}-м другим`;
-      break;
-    default:
-      byKeywords = 'oops';
-      firstKeyword = 'oops';
-      secondKeyword = 'oops';
-      thirdKeyword = 'oops';
-      and = 'oops';
-      //let endOfHowManch = '';
-      another = 'oops';
-      */
 
   return (
     <section className="saved-news">

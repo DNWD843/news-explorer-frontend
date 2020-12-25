@@ -2,6 +2,15 @@ import { Link } from 'react-router-dom';
 import { MAIN } from '../../utils/routesMap';
 import './Footer.css';
 
+/**
+ * @module Footer
+ * @description Функциональный компонент<br>
+ * Футер, блок с навигационными и информационными ссылками.<br>
+ * Принимает в пропсах объект с настройками блока - config.
+ * @property {Object} config -  объект с базовыми настройками отображения блока
+ * @returns {JSX}
+ * @since v.1.0.0
+ */
 function Footer({ config }) {
   const {
     copyrightText,
@@ -23,19 +32,34 @@ function Footer({ config }) {
               </Link>
             </li>
             <li className="footer__links-item">
-              <a href={outerLink} className="footer__link">
+              <a
+                href={outerLink}
+                className="footer__link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {outerLinkText}
               </a>
             </li>
           </ul>
           <ul className="footer__social">
             <li className="footer__social-item">
-              <a href={socialLinkGithub} className="footer__social-link">
+              <a
+                href={socialLinkGithub}
+                className="footer__social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div className="footer__social-icon footer__social-icon_type_github"></div>
               </a>
             </li>
             <li className="footer__social-item">
-              <a href={socialLinkFacebook} className="footer__social-link">
+              <a
+                href={socialLinkFacebook}
+                className="footer__social-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div className="footer__social-icon footer__social-icon_type_facebook"></div>
               </a>
             </li>

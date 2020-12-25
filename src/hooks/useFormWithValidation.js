@@ -32,7 +32,7 @@ export function useFormWithValidation() {
    * @description Обработчик изменения полей инпутов.<br> При каждом вводе в поле инпута введенное значение
    *  и результаты валидации введенных значений и формы в целом сохраняются в соответствующие стейты.
    * @public
-   * @since v.2.0.6
+   * @since v.1.0.0
    */
   const handleInputChange = (event) => {
     const { name, value } = event.target;

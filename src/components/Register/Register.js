@@ -2,6 +2,19 @@ import { useEffect } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWuthForm';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 
+/**
+ * @module Register
+ * @description Функциональный компонент<br>
+ * Попап, форма регистрации в приложение.
+ * @property {Object} config - объект с базовыми настройками отображения блока
+ * @property {Boolean} isOpened - - стейт открытого состояния попапа
+ * @property {Function} onClose - колбэк, закрывает попапы при клике по крестику
+ * @property {Function} onOverlayClick - колбэк, закрывает попапы при клике по оверлею
+ * @property {Function} onRedirectLinkClick - колбэк, переводит на другую страницу
+ * @property {Function} onSubmit - колбэк, отправляет запрос при сабмите формы
+ * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
+ * @since v.1.0.0
+ */
 function Register({
   config,
   isOpened,
