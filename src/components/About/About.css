@@ -41,6 +41,7 @@
   max-width: 600px;
   max-height: 288px;
   list-style: none;
+  overflow-y: hidden;
 }
 
 .about__description-item {

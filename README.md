@@ -19,6 +19,3 @@ license: Yandex.Practicum
 `npm run build` - продакшен сборка приложения,  
 `npm run jsdoc:build` - сборка документации в папку documentation (если у Вас установлен JSDoc3),  
 `npm run jsdoc:npx` - сборка документации в папку documentation (если у Вас не установлен JSDoc3)
-
-Приложение задеплоено на gh-pages.  
-Посмотреть можно <a href="https://dnwd843.github.io/news-explorer-frontend/" target="_blank" rel="noopener noreferrer">по ссылке</a>
