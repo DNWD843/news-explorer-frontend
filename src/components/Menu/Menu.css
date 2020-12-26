@@ -65,22 +65,11 @@
 .menu__button-icon {
   margin: 0 0 0 7px;
   padding: 0;
-
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
+  object-fit: cover;
+  object-position: center;
   width: 24px;
   height: 24px;
   align-self: center;
-}
-
-.menu__button-icon_main {
-  background-image: url('../../images/logout-icon-white.svg');
-}
-
-.menu__button-icon_saved-news {
-  background-image: url('../../images/logout-icon-black.svg');
-  background-size: 75%;
 }
 
 @media screen and (max-width: 1280px) {

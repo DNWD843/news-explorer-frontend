@@ -27,7 +27,7 @@ function Footer({ config }) {
         <nav className="footer__menu">
           <ul className="footer__links">
             <li className="footer__links-item">
-              <Link exact="true" to={MAIN} className="footer__link">
+              <Link to={MAIN} className="footer__link">
                 {navLinkText}
               </Link>
             </li>

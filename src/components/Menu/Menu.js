@@ -2,6 +2,8 @@ import Navigation from '../Navigation/Navigation';
 import { Switch, Route } from 'react-router-dom';
 import classNames from 'classnames';
 import * as to from '../../utils/routesMap';
+import pathToMainIcon from '../../images/logout-icon-white.svg';
+import pathToSavedNewsIcon from '../../images/logout-icon-black.svg';
 import './Menu.css';
 
 /**
@@ -39,14 +41,8 @@ function Menu({
     menu__button_mobile: isMobile,
   });
   const authButtonTextClassName = classNames('menu__button-title');
-  const authButtonIconForMainPageClassName = classNames(
-    'menu__button-icon',
-    'menu__button-icon_main',
-  );
-  const authButtonIconForSavedNewsPageClassName = classNames('menu__button-icon', {
-    'menu__button-icon_saved-news': !isMobile,
-    'menu__button-icon_main': isMobile,
-  });
+  const authButtonIconForMainPageClassName = classNames('menu__button-icon');
+  const authButtonIconForSavedNewsPageClassName = classNames('menu__button-icon');
 
   return (
     <div className={menuClassName}>
@@ -57,10 +53,18 @@ function Menu({
           <span className={authButtonTextClassName}>{userName}</span>
           <Switch>
             <Route exact path={to.MAIN}>
-              <div className={authButtonIconForMainPageClassName}></div>
+              <img
+                src={pathToMainIcon}
+                alt="иконка кнопки выйти"
+                className={authButtonIconForMainPageClassName}
+              />
             </Route>
             <Route path={to.SAVED_NEWS}>
-              <div className={authButtonIconForSavedNewsPageClassName}></div>
+              <img
+                src={isMobile ? pathToMainIcon : pathToSavedNewsIcon}
+                alt="иконка кнопки выйти"
+                className={authButtonIconForSavedNewsPageClassName}
+              />
             </Route>
           </Switch>
         </button>

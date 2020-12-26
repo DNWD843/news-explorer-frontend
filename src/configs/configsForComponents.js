@@ -3,7 +3,7 @@ export const forAbout = {
   imgAlt: 'фото автора Wikipet',
   title: 'Об авторе',
   aboutAuthor: `Дмитрий Неклюдов - веб-разработчик, джуниор.
-                Стек технологий: HTML5/CSS3/Javascript/React/Node.js.`,
+                Стек технологий: HTML5 / CSS3 / Javascript / React / Node.js.`,
   somethingAbout: `Если Вам понравилась и, особенно, если не понравилась, эта работа, буду признателен за обратную связь.
      Пишите мне в Telegram - t.me/DNWD843.
      Добавляйтесь в LinkedIn - dnwd843. Больше работ на GitHub.`,
