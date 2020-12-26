@@ -3,7 +3,7 @@
 
 .root {
   background-color: #fff;
-  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-style: normal;
   margin: 0;
   /*   сглаживание шрифтов в Firefox и браузерах на движке Webkit (Яндекс.Браузер, Google Chrome, Opera, Safari)  */
@@ -24,10 +24,4 @@
   margin: 0 auto;
   padding: 0;
   position: relative;
-}
-
-@media screen and (max-width: 425px) {
-  .root__container {
-    /* padding-bottom: 36px; */
-  }
 }

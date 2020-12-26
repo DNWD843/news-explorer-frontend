@@ -15,7 +15,7 @@
 
 .no-result__title {
   margin: 0 auto 16px;
-  font-family: 'Roboto Slab';
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 26px;
   line-height: 30px;
@@ -26,7 +26,7 @@
 .no-result__description {
   max-width: 340px;
   margin: 0 auto;
-  font-family: 'Roboto';
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 18px;
   line-height: 24px;

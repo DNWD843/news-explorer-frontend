@@ -62,12 +62,11 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-
   width: 100%;
 }
 
 .form__title {
-  font-family: Roboto;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: 900;
   font-size: 24px;
   line-height: 28px;
@@ -77,7 +76,7 @@
 }
 
 .form__submit-error-element {
-  font-family: Inter;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
@@ -91,7 +90,7 @@
 }
 
 .form__submit-button {
-  font-family: Roboto;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
@@ -130,7 +129,7 @@
 .popup__redirect-title {
   margin: 0;
   padding: 0;
-  font-family: Inter;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -171,8 +170,8 @@
 }
 
 .form__input-label {
-  font-family: Inter;
-  font-weight: normal;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 400;
   font-size: 12px;
   line-height: 15px;
   color: #2f71e5;
@@ -187,7 +186,7 @@
   box-sizing: border-box;
   width: 100%;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -199,7 +198,7 @@
 }
 
 .form__input::placeholder {
-  font-family: Inter;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 17px;
@@ -211,7 +210,7 @@
   position: absolute;
   left: 0;
   bottom: -10px;
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 12px;
   line-height: 15px;
