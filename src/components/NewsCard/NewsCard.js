@@ -85,9 +85,11 @@ function NewsCard({
         <img className="card__image" src={image} alt={altText} />
         <div className="card__info">
           <p className="card__date">{date}</p>
-          <h2 className="card__title">{title}</h2>
 
           <div className="card__description-container">
+            <div className="card__title-container">
+              <h2 className="card__title">{title}</h2>
+            </div>
             <p className="card__description">{text}</p>
           </div>
           <p className="card__source">{source}</p>

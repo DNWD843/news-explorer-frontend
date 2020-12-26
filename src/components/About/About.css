@@ -39,9 +39,7 @@
   margin: 0;
   padding: 0;
   max-width: 600px;
-  max-height: 288px;
   list-style: none;
-  overflow-y: hidden;
 }
 
 .about__description-item {
@@ -56,6 +54,7 @@
   font-size: 18px;
   line-height: 24px;
   color: #1a1b22;
+  word-break: break-word;
 }
 
 .about__description-item:last-of-type {
@@ -87,7 +86,6 @@
   }
 
   .about__description {
-    max-height: 192px;
     margin-bottom: 26px;
   }
 }
@@ -107,6 +105,5 @@
 
   .about__description {
     margin: 0;
-    max-height: 288px;
   }
 }
