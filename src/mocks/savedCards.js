@@ -75,8 +75,8 @@ const savedCards = [
     source: 'Медиазона',
     link: 'https://developer.mozilla.org',
     image: 'https://wikipet.ru/uploads/posts/2019-02/1549868089_1.jpg',
-  },
-  /*
+  } /*,
+
   {
     _id: '5fd281f2e6676615db8a4c69',
     keyword: 'Парки',
@@ -98,8 +98,7 @@ const savedCards = [
     source: 'Афиша',
     link: 'https://developer.mozilla.org',
     image: 'https://wikipet.ru/uploads/posts/2019-02/1549868089_1.jpg',
-  },
-  */
+  },*/,
 ];
 
 export default savedCards;

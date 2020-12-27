@@ -1,4 +1,6 @@
 import NewsCardList from '../NewsCardList/NewsCardList';
+import pluralize from '../../utils/pluralize';
+import * as configuration from '../../configs/configForPluralizeUtility';
 import './SavedNews.css';
 
 /**
@@ -16,6 +18,9 @@ import './SavedNews.css';
  */
 function SavedNews({ config, userName, savedArticles, configForNewsCard, isLoggedIn }) {
   const { pageName } = config;
+
+  const titleTextFragment = pluralize(savedArticles.length, configuration.forSavedNewsTitle);
+  const titleText = userName.concat(titleTextFragment);
 
   /**
    * @method getKeywordsTopList
@@ -42,27 +47,26 @@ function SavedNews({ config, userName, savedArticles, configForNewsCard, isLogge
     });
     return result;
   };
-  const top = getKeywordsTopList(savedArticles);
 
+  const top = getKeywordsTopList(savedArticles);
   const firstKeyword = top[0];
   const secondKeyword = top[1];
   const thirdKeyword = top[2];
+  const byKeyWordsFragment = top.length === 1 ? 'По ключевому слову: ' : 'По ключевым словам: ';
 
   return (
     <section className="saved-news">
       <div className="saved-news__info">
         <p className="saved-news__page-name">{pageName}</p>
-        <h2 className="saved-news__title">
-          {userName}, у вас {savedArticles.length} сохранённых статей
-        </h2>
+        <h2 className="saved-news__title">{titleText}</h2>
         <p className="saved-news__keywords saved-news__keywords_accent_no-accent">
-          По ключевым словам:{' '}
+          {byKeyWordsFragment}
           <span className="saved-news__keywords saved-news__keywords_accent_bold">
-            {firstKeyword}, {secondKeyword} {top.length > 3 ? '' : thirdKeyword}
-          </span>{' '}
-          и{' '}
+            {firstKeyword} {secondKeyword ? `, ${secondKeyword}` : ''}
+          </span>
+          {top.length > 2 ? ' и ' : ''}
           <span className="saved-news__keywords saved-news__keywords_accent_bold">
-            {top.length > 3 ? `${top.length - 2} другим` : thirdKeyword}
+            {top.length > 3 ? ` ${top.length - 2} другим` : `${thirdKeyword || ''}`}
           </span>
         </p>
       </div>
