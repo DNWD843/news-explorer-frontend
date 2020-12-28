@@ -22,7 +22,11 @@
     "jsdoc:build": "jsdoc ./src/ ./src/components/About ./src/components/App ./src/components/Footer ./src/components/Header ./src/components/InfoTooltip ./src/components/Login ./src/components/Main ./src/components/Menu ./src/components/Navigation ./src/components/NewsCard ./src/components/NewsCardList ./src/components/NoResult ./src/components/PopupWithForm ./src/components/Preloader ./src/components/Register ./src/components/SavedNews ./src/components/SearchForm ./src/components/SearchResult  ./src/hooks/ ./src/utils/ ./README.md -d ./documentation",
     "jsdoc:npx": "npx jsdoc ./src/ ./src/components/About ./src/components/App ./src/components/Footer ./src/components/Header ./src/components/InfoTooltip ./src/components/Login ./src/components/Main ./src/components/Menu ./src/components/Navigation ./src/components/NewsCard ./src/components/NewsCardList ./src/components/NoResult ./src/components/PopupWithForm ./src/components/Preloader ./src/components/Register ./src/components/SavedNews ./src/components/SearchForm ./src/components/SearchResult  ./src/hooks/ ./src/utils/ ./README.md -d ./documentation"
   },
-  "homepage": "https://github.io/DNWD843/news-explorer-frontend",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DNWD843/news-explorer-frontend.git"
+  },
+  "homepage": "https://github.com/DNWD843/news-explorer-frontend/tree/gh-pages/",
   "eslintConfig": {
     "extends": [
       "react-app",
