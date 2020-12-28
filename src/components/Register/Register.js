@@ -40,7 +40,7 @@ function Register({
 
   const { values, errors, isFormValid, handleInputChange, resetForm } = useFormWithValidation();
 
-  const { email, password, name } = values;
+  const { email, regPassword, name } = values;
 
   useEffect(() => {
     resetForm();
@@ -81,17 +81,17 @@ function Register({
           <li className="form__field">
             <label className="form__input-label">{passwordLabel}</label>
             <input
-              id="password"
-              name="password"
+              id="regPassword"
+              name="regPassword"
               type="text"
               onChange={handleInputChange}
-              value={password || ''}
+              value={regPassword || ''}
               className="form__input"
               placeholder={passwordPlaceholder}
               required
             />
-            <span className="form__input-error" id="password-input-error">
-              {errors.password || ''}
+            <span className="form__input-error" id="regPassword-input-error">
+              {errors.regPassword || ''}
             </span>
           </li>
           <li className="form__field">

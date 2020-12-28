@@ -28,7 +28,7 @@ function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick,
   } = config;
 
   const { values, errors, isFormValid, handleInputChange, resetForm } = useFormWithValidation();
-  const { email, password } = values;
+  const { login, password } = values;
 
   useEffect(() => {
     resetForm();
@@ -53,17 +53,17 @@ function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick,
           <li className="form__field">
             <label className="form__input-label">{emailLabel}</label>
             <input
-              id="email"
-              name="email"
+              id="login"
+              name="login"
               type="email"
               onChange={handleInputChange}
-              value={email || ''}
+              value={login || ''}
               className="form__input"
               placeholder={emailPlaceholder}
               required
             />
-            <span className="form__input-error" id="email-input-error">
-              {errors.email || ''}
+            <span className="form__input-error" id="login-input-error">
+              {errors.login || ''}
             </span>
           </li>
           <li className="form__field">
