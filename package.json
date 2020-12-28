@@ -26,7 +26,7 @@
     "type": "git",
     "url": "git+https://github.com/DNWD843/news-explorer-frontend.git"
   },
-  "homepage": "https://github.com/DNWD843/news-explorer-frontend/tree/gh-pages/",
+  "homepage": "https://github.com/DNWD843/news-explorer-frontend/",
   "eslintConfig": {
     "extends": [
       "react-app",
