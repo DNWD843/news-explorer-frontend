@@ -1,8 +1,7 @@
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
-import * as config from '../../configs/configsForComponents';
 import * as to from '../../utils/routesMap';
 import searchResultCards from '../../mocks/searchResultCards'; // временно имитирую получение карточек от сервера
 import savedCards from '../../mocks/savedCards'; // временно имитирую получение карточек от сервера
@@ -11,6 +10,8 @@ import Register from '../Register/Register';
 import { useState } from 'react';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import SearchForm from '../SearchForm/SearchForm';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import SavedNews from '../SavedNews/SavedNews';
 import './App.css';
 
 /**
@@ -167,50 +168,42 @@ function App() {
           <Header
             isLoggedIn={isLoggedIn}
             userName={currentUser.userName}
-            config={config.forHeader}
-            configForNavigation={config.forNavigation}
             onLogInClick={handleClickLogIn}
             onLogOutClick={handleClickLogOut}
-            isMain={true}
-            isSavedNews={false}
             onMenuButtonClick={handleClickMenuButton}
             isMobileMenuOpened={isMobileMenuOpened}
             isPopupOpened={isLoginPopupOpened || isRegisterPopupOpened}
             onOverlayClick={handleClickOnOverlay}
           >
-            <SearchForm config={config.forSearchForm} />
+            <SearchForm />
           </Header>
-        </Route>
-        <Route path={to.SAVED_NEWS}>
-          <Header
+
+          <Main
+            searchResult={searchResultCards} //TODO: удалить
             isLoggedIn={isLoggedIn}
-            userName={currentUser.userName}
-            config={config.forHeader}
-            configForNavigation={config.forNavigation}
-            onLogOutClick={handleClickLogOut}
-            isMain={false}
-            isSavedNews={true}
-            onMenuButtonClick={handleClickMenuButton}
-            isMobileMenuOpened={isMobileMenuOpened}
-            onOverlayClick={handleClickOnOverlay}
           />
         </Route>
+
+        <ProtectedRoute
+          path={to.SAVED_NEWS}
+          isLoggedIn={isLoggedIn}
+          userName={currentUser.userName}
+          savedArticles={savedCards}
+          component={SavedNews}
+          onLogInClick={handleClickLogIn}
+          onLogOutClick={handleClickLogOut}
+          onMenuButtonClick={handleClickMenuButton}
+          isMobileMenuOpened={isMobileMenuOpened}
+          isPopupOpened={isLoginPopupOpened || isRegisterPopupOpened}
+          onOverlayClick={handleClickOnOverlay}
+        />
+        <Route path={to.MAIN}>
+          <Redirect to={to.MAIN} />
+        </Route>
       </Switch>
-      <Main
-        userName={currentUser.userName}
-        configForAbout={config.forAbout}
-        configForNoResult={config.forNoResult}
-        configForPreloader={config.forPreloader}
-        configForSavedNews={config.forSavedNews}
-        searchResult={searchResultCards} //TODO: удалить
-        configForSearchResult={config.forSearchResult}
-        savedArticles={savedCards} //TODO удалить
-        configForNewsCard={config.forNewsCard}
-        isLoggedIn={isLoggedIn}
-      />
-      <Footer config={config.forFooter} />
+
+      <Footer />
       <Login
-        config={config.forLogin}
         isOpened={isLoginPopupOpened}
         onClose={closeAllPopups}
         onOverlayClick={handleClickOnOverlay}
@@ -218,7 +211,6 @@ function App() {
         onSubmit={handleLoginSubmit}
       />
       <Register
-        config={config.forRegister}
         isOpened={isRegisterPopupOpened}
         onClose={closeAllPopups}
         onOverlayClick={handleClickOnOverlay}
@@ -226,10 +218,9 @@ function App() {
         onSubmit={handleRegisterSubmit}
       />
       <InfoTooltip
-        config={config.forRegistrationSuccessToolTip}
-        onOverlayClick={handleClickOnOverlay}
         isOpened={isRegSuccessTooltipOpened}
         onClose={closeAllPopups}
+        onOverlayClick={handleClickOnOverlay}
         onRedirectLinkClick={handleClickLogIn}
       />
     </>

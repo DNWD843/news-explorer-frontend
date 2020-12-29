@@ -86,3 +86,7 @@ export const forRegistrationSuccessToolTip = {
   redirectTitleText: 'Пользователь успешно зарегистрирован!',
   redirectLinkText: 'Войти',
 };
+
+export const forMenu = {
+  buttonImageAlt: 'иконка кнопки выйти',
+};

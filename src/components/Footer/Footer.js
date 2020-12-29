@@ -1,17 +1,16 @@
 import { Link } from 'react-router-dom';
 import { MAIN } from '../../utils/routesMap';
+import { forFooter as config } from '../../configs/configsForComponents';
 import './Footer.css';
 
 /**
  * @module Footer
  * @description Функциональный компонент<br>
  * Футер, блок с навигационными и информационными ссылками.<br>
- * Принимает в пропсах объект с настройками блока - config.
- * @property {Object} config -  объект с базовыми настройками отображения блока
  * @returns {JSX}
  * @since v.1.0.0
  */
-function Footer({ config }) {
+function Footer() {
   const {
     copyrightText,
     navLinkText,

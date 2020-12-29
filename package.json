@@ -1,6 +1,6 @@
 {
   "name": "news-explorer-frontend",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -22,7 +22,7 @@
     "jsdoc:build": "jsdoc ./src/ ./src/components/About ./src/components/App ./src/components/Footer ./src/components/Header ./src/components/InfoTooltip ./src/components/Login ./src/components/Main ./src/components/Menu ./src/components/Navigation ./src/components/NewsCard ./src/components/NewsCardList ./src/components/NoResult ./src/components/PopupWithForm ./src/components/Preloader ./src/components/Register ./src/components/SavedNews ./src/components/SearchForm ./src/components/SearchResult  ./src/hooks/ ./src/utils/ ./README.md -d ./documentation",
     "jsdoc:npx": "npx jsdoc ./src/ ./src/components/About ./src/components/App ./src/components/Footer ./src/components/Header ./src/components/InfoTooltip ./src/components/Login ./src/components/Main ./src/components/Menu ./src/components/Navigation ./src/components/NewsCard ./src/components/NewsCardList ./src/components/NoResult ./src/components/PopupWithForm ./src/components/Preloader ./src/components/Register ./src/components/SavedNews ./src/components/SearchForm ./src/components/SearchResult  ./src/hooks/ ./src/utils/ ./README.md -d ./documentation"
   },
-  "homepage": "https://DNWD843.github.io/",
+  "homepage": "https://DNWD843.github.io/news-explorer-frontend",
   "eslintConfig": {
     "extends": [
       "react-app",

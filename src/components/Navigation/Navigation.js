@@ -1,3 +1,4 @@
+import { forNavigation as config } from '../../configs/configsForComponents';
 import { NavLink } from 'react-router-dom';
 import { MAIN, SAVED_NEWS } from '../../utils/routesMap';
 import classNames from 'classnames';
@@ -7,7 +8,6 @@ import './Navigation.css';
  * @module Navigation
  * @description Функциональный компонент<br>
  * Блок навигации по сайту.<br>
- * @property {Object} config -  объект с базовыми настройками отображения блока
  * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
  * @property {Boolean} isMobile -стейт состояния меню - мобильное (на мобильном разрешении)
  * @property {Function} onClick - колбэк, вызывается при клике по навигационным ссылкам
@@ -15,7 +15,7 @@ import './Navigation.css';
  * @returns {JSX}
  * @since v.1.0.0
  */
-function Navigation({ isLoggedIn, onClick, isMobile, config }) {
+function Navigation({ isLoggedIn, onClick, isMobile }) {
   const { mainLinkText, savedNewsLinkText } = config;
 
   const navbarClassName = classNames('navbar', {

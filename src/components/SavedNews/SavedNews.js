@@ -1,6 +1,8 @@
 import NewsCardList from '../NewsCardList/NewsCardList';
 import pluralize from '../../utils/pluralize';
 import * as configuration from '../../configs/configForPluralizeUtility';
+import { forSavedNews as config } from '../../configs/configsForComponents';
+import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import './SavedNews.css';
 
 /**
@@ -8,15 +10,13 @@ import './SavedNews.css';
  * @description Функциональный компонент<br>
  * Отрисовывает карточки со статьями, сохраненными пользователем в своей коллекции.<br>
  * Отрисовка производится частями по три карточки.
- * @property {Object} config - объект с базовыми настройками отображения блока
  * @property {String} userName - имя пользователя
  * @property {Array} savedArticles - массив с данными о сохраненных статьях
- * @property {Object} configForNewsCard - объект с базовыми настройками отображения блока NewsCard
  * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
  * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
  * @since v.1.0.0
  */
-function SavedNews({ config, userName, savedArticles, configForNewsCard, isLoggedIn }) {
+function SavedNews({ isLoggedIn, userName, savedArticles, ...props }) {
   const { pageName } = config;
 
   const titleTextFragment = pluralize(savedArticles.length, configuration.forSavedNewsTitle);
@@ -55,30 +55,28 @@ function SavedNews({ config, userName, savedArticles, configForNewsCard, isLogge
   const byKeyWordsFragment = top.length === 1 ? 'По ключевому слову: ' : 'По ключевым словам: ';
 
   return (
-    <section className="saved-news">
-      <div className="saved-news__info">
-        <p className="saved-news__page-name">{pageName}</p>
-        <h2 className="saved-news__title">{titleText}</h2>
-        <p className="saved-news__keywords saved-news__keywords_accent_no-accent">
-          {byKeyWordsFragment}
-          <span className="saved-news__keywords saved-news__keywords_accent_bold">
-            {firstKeyword} {secondKeyword ? `, ${secondKeyword}` : ''}
-          </span>
-          {top.length > 2 ? ' и ' : ''}
-          <span className="saved-news__keywords saved-news__keywords_accent_bold">
-            {top.length > 3 ? ` ${top.length - 2} другим` : `${thirdKeyword || ''}`}
-          </span>
-        </p>
-      </div>
-      <div className="saved-news__container">
-        <NewsCardList
-          cards={savedArticles}
-          configForNewsCard={configForNewsCard}
-          isSavedNewsOpened={true}
-          isLoggedIn={isLoggedIn}
-        />
-      </div>
-    </section>
+    <>
+      <SavedNewsHeader isLoggedIn={isLoggedIn} userName={userName} {...props} />
+      <main className="saved-news">
+        <div className="saved-news__info">
+          <p className="saved-news__page-name">{pageName}</p>
+          <h2 className="saved-news__title">{titleText}</h2>
+          <p className="saved-news__keywords saved-news__keywords_accent_no-accent">
+            {byKeyWordsFragment}
+            <span className="saved-news__keywords saved-news__keywords_accent_bold">
+              {firstKeyword} {secondKeyword ? `, ${secondKeyword}` : ''}
+            </span>
+            {top.length > 2 ? ' и ' : ''}
+            <span className="saved-news__keywords saved-news__keywords_accent_bold">
+              {top.length > 3 ? ` ${top.length - 2} другим` : `${thirdKeyword || ''}`}
+            </span>
+          </p>
+        </div>
+        <div className="saved-news__container">
+          <NewsCardList cards={savedArticles} isSavedNewsOpened={true} isLoggedIn={isLoggedIn} />
+        </div>
+      </main>
+    </>
   );
 }
 

@@ -1,15 +1,14 @@
+import { forNoResult as config } from '../../configs/configsForComponents';
 import './NoResult.css';
 
 /**
  * @module NoResult
  * @description Функциональный компонент<br>
  * Блок с отображением отсутствия результатов поиска.<br>
- * Принимает в пропсах объект с настройками блока - config.
- * @property {Object} config -  объект с базовыми настройками отображения блока
  * @returns {JSX}
  * @since v.1.0.0
  */
-function NoResult({ config }) {
+function NoResult() {
   const { title, description } = config;
   return (
     <section className="no-result">

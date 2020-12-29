@@ -9,11 +9,10 @@ import './NewsCardList.css';
  * @property {Array} cards - массив с данными статей
  * @property {Boolean} isSavedNewsOpened - стейт состояния страницы с сохраненными новостями
  * @property {Boolean} isLoggedIn -  стейт состяния пользователя: авторизован/не авторизован
- * @property {Object} configForNewsCard - объект с базовыми настройками отображения блока NewsCard
  * @returns {JSX}
  * @since v.1.0.0
  */
-function NewsCardList({ cards, isSavedNewsOpened, isLoggedIn, configForNewsCard }) {
+function NewsCardList({ cards, isSavedNewsOpened, isLoggedIn }) {
   const newsCardListClassName = classNames('news-card-list', {
     'search-result__cards': !isSavedNewsOpened,
     'saved-news__container': isSavedNewsOpened,
@@ -25,7 +24,6 @@ function NewsCardList({ cards, isSavedNewsOpened, isLoggedIn, configForNewsCard 
         <NewsCard
           key={card._id}
           {...card}
-          config={configForNewsCard}
           isSavedNewsOpened={isSavedNewsOpened}
           isLoggedIn={isLoggedIn}
         />

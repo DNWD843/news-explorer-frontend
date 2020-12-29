@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWuthForm';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
+import { forRegister as config } from '../../configs/configsForComponents';
 
 /**
  * @module Register
  * @description Функциональный компонент<br>
  * Попап, форма регистрации в приложение.
- * @property {Object} config - объект с базовыми настройками отображения блока
- * @property {Boolean} isOpened - - стейт открытого состояния попапа
+ * @property {Boolean} isOpened - стейт открытого состояния попапа
  * @property {Function} onClose - колбэк, закрывает попапы при клике по крестику
  * @property {Function} onOverlayClick - колбэк, закрывает попапы при клике по оверлею
  * @property {Function} onRedirectLinkClick - колбэк, переводит на другую страницу
@@ -15,14 +15,7 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
  * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
  * @since v.1.0.0
  */
-function Register({
-  config,
-  isOpened,
-  onClose,
-  onOverlayClick,
-  onRedirectLinkClickClick,
-  onSubmit,
-}) {
+function Register({ isOpened, onClose, onOverlayClick, onRedirectLinkClickClick, onSubmit }) {
   const {
     formTitle,
     submitButtonText,

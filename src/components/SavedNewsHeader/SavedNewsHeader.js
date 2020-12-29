@@ -1,13 +1,14 @@
 import Menu from '../Menu/Menu';
+import { Link } from 'react-router-dom';
+import { MAIN } from '../../utils/routesMap';
 import classNames from 'classnames';
-import { forHeader as config } from '../../configs/configsForComponents';
-import './Header.css';
+import { forSavedNewsHeader as config } from '../../configs/configsForComponents';
+import './SavedNewsHeader.css';
 
 /**
- * @module Header
+ * @module SavedNewsHeader
  * @description Функциональный компонент<br>
  * Хэдер, блок содержит логотип и меню навигации по сайту.<br>
- * Принимает в пропсах объект с настройками блока - config и параметры.
  * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
  * @property {String} userName - имя пользователя
  * @property {Function} onLogInClick - колбэк, вызывается при клике по кнопке "Авторизоваться"
@@ -21,42 +22,43 @@ import './Header.css';
  * @returns {JSX}
  * @since v.1.0.0
  */
-function Header({
+function SavedNewsHeader({
   isLoggedIn,
   userName,
   onLogInClick,
   onLogOutClick,
-  children,
   onMenuButtonClick,
   isMobileMenuOpened,
   isPopupOpened,
   onOverlayClick,
 }) {
-  const { headerLogoText, authorizationTitle } = config;
+  const { headerLogoText } = config;
 
-  const headerContainerClassName = classNames('header__container', {
-    header__container_mobile: isMobileMenuOpened,
+  const headerContainerClassName = classNames('saved-news-header__container', {
+    'saved-news-header__container_mobile': isMobileMenuOpened,
   });
 
-  const headerMobileMenuButtonClassName = classNames('header__menu-button', {
-    'header__menu-button_not-pressed': !(isMobileMenuOpened && isPopupOpened),
-    'header__menu-button_pressed': isMobileMenuOpened || isPopupOpened,
+  const headerMobileMenuButtonClassName = classNames('saved-news-header__menu-button', {
+    'saved-news-header__menu-button_not-pressed': !(isMobileMenuOpened && isPopupOpened),
+    'saved-news-header__menu-button_pressed': isMobileMenuOpened || isPopupOpened,
   });
 
   const headerMobileMenuOverlayClassName = classNames('overlay', {
-    'header__menu-mobile-overlay': isMobileMenuOpened,
+    'saved-news-header__menu-mobile-overlay': isMobileMenuOpened,
   });
 
   return (
-    <header className="header">
+    <header className="saved-news-header">
       <div className={headerContainerClassName}>
-        <p className="header__logo">{headerLogoText}</p>
+        <Link to={MAIN} className="saved-news-header__link">
+          <p className="saved-news-header__logo">{headerLogoText}</p>
+        </Link>
+
         <Menu
           onLogInClick={onLogInClick}
           onLogOutClick={onLogOutClick}
           isLoggedIn={isLoggedIn}
           userName={userName}
-          authorizationTitle={authorizationTitle}
           isMobile={false}
         />
         <button
@@ -66,15 +68,12 @@ function Header({
         />
       </div>
 
-      {children}
-
       <div className={headerMobileMenuOverlayClassName} onClick={onOverlayClick}>
         <Menu
           onLogInClick={onLogInClick}
           onLogOutClick={onLogOutClick}
           isLoggedIn={isLoggedIn}
           userName={userName}
-          authorizationTitle={authorizationTitle}
           isMobile={true}
           isMobileMenuOpened={isMobileMenuOpened}
         />
@@ -83,4 +82,4 @@ function Header({
   );
 }
 
-export default Header;
+export default SavedNewsHeader;

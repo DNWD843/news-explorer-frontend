@@ -1,20 +1,19 @@
 import { useEffect, useState } from 'react';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import classNames from 'classnames';
+import { forSearchResult as config } from '../../configs/configsForComponents';
 import './SearchResult.css';
 
 /**
  * @module SearchResult
  * @description Функциональный компонент<br>
  * Блок отображает статьи, найденные в результате поиска по запросу пользователя.<br>
- * @property {Object} config -  объект с базовыми настройками отображения блока
- * @property {Object} configForNewsCard - объект с базовыми настройками отображения блока NewsCard
  * @property {Array} searchResult - массив с данными статей, найденых в результате поиска по запросу пользователя.
  * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
  * @returns {JSX}
  * @since v.1.0.0
  */
-function SearchResult({ config, configForNewsCard, searchResult, isLoggedIn }) {
+function SearchResult({ searchResult, isLoggedIn }) {
   const { title, showMoreButtonText } = config;
 
   const [cardsToRender, setCardsToRender] = useState([]);
@@ -51,11 +50,7 @@ function SearchResult({ config, configForNewsCard, searchResult, isLoggedIn }) {
   return (
     <section className="search-result">
       <h2 className="search-result__title">{title}</h2>
-      <NewsCardList
-        cards={cardsToRender}
-        configForNewsCard={configForNewsCard}
-        isLoggedIn={isLoggedIn}
-      />
+      <NewsCardList cards={cardsToRender} isSavedNewsOpened={false} isLoggedIn={isLoggedIn} />
       <button
         onClick={handleClickShowMoreButton}
         disabled={isDisabled}

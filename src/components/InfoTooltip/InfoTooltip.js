@@ -1,11 +1,11 @@
 import classNames from 'classnames';
+import { forRegistrationSuccessToolTip as config } from '../../configs/configsForComponents';
 import './InfoTooltip.css';
 
 /**
  * @module InfoTooltip
  * @description Функциональный компонент<br>
  * Всплывающая подсказка об успешной регистрации пользователя.<br>
- * @property {Object} config - объект с базовыми настройками отображения блока
  * @property {Function} onOverlayClick - колбэк, закрывает подсказку при клике по оверлею
  * @property {Boolean} isOpened - стейт открытого состояния подсказки
  * @property {Function} onClose - колбэк, закрывает попапы при клике по крестику
@@ -13,7 +13,7 @@ import './InfoTooltip.css';
  * @returns {JSX}
  * @since v.1.0.0
  */
-function InfoTooltip({ config, onOverlayClick, isOpened, onClose, onRedirectLinkClick }) {
+function InfoTooltip({ onOverlayClick, isOpened, onClose, onRedirectLinkClick }) {
   const { redirectTitleText, redirectLinkText } = config;
 
   const infoTooltipOverlayClassName = classNames('popup-info', 'page__overlay-info', {

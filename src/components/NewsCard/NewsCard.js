@@ -1,3 +1,4 @@
+import { forNewsCard as config } from '../../configs/configsForComponents';
 import classNames from 'classnames';
 import { useState } from 'react';
 import './NewsCard.css';
@@ -6,7 +7,6 @@ import './NewsCard.css';
  * @module NewsCard
  * @description Функциональный компонент<br>
  * Карточка статьи.
- * @property {Object} config - объект с базовыми настройками отображения блока
  * @property {String} source - источник статьи
  * @property {String} keyword - ключевое слово статьи
  * @property {String} title - заголовок статьи
@@ -27,7 +27,6 @@ function NewsCard({
   date,
   link,
   image,
-  config,
   isSavedNewsOpened,
   isLoggedIn,
 }) {

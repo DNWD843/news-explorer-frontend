@@ -1,3 +1,4 @@
+import { forLogin as config } from '../../configs/configsForComponents';
 import { useEffect } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWuthForm';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
@@ -6,7 +7,6 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
  * @module Login
  * @description Функциональный компонент<br>
  * Попап, форма входа (авторизации) в приложение.
- * @property {Object} config - объект с базовыми настройками отображения блока
  * @property {Boolean} isOpened - - стейт открытого состояния попапа
  * @property {Function} onClose - колбэк, закрывает попапы при клике по крестику
  * @property {Function} onOverlayClick - колбэк, закрывает попапы при клике по оверлею
@@ -15,7 +15,7 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
  * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
  * @since v.1.0.0
  */
-function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick, onSubmit }) {
+function Login({ isOpened, onClose, onOverlayClick, onRedirectLinkClick, onSubmit }) {
   const {
     formTitle,
     submitButtonText,
