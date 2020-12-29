@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/static/css/main.2b6b031f.chunk.css",
-    "main.js": "/static/js/main.29f054c0.chunk.js",
-    "main.js.map": "/static/js/main.29f054c0.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.83546e98.js",
-    "runtime-main.js.map": "/static/js/runtime-main.83546e98.js.map",
-    "static/js/2.ef67b09f.chunk.js": "/static/js/2.ef67b09f.chunk.js",
-    "static/js/2.ef67b09f.chunk.js.map": "/static/js/2.ef67b09f.chunk.js.map",
-    "index.html": "/index.html",
-    "static/css/main.2b6b031f.chunk.css.map": "/static/css/main.2b6b031f.chunk.css.map",
-    "static/js/2.ef67b09f.chunk.js.LICENSE.txt": "/static/js/2.ef67b09f.chunk.js.LICENSE.txt",
-    "static/media/NewsCard.css": "/static/media/bookmark-normal.01d70111.svg",
-    "static/media/Footer.css": "/static/media/github.2e9e6d20.svg",
-    "static/media/Header.css": "/static/media/menu-close-button-mobile.90a8751d.svg",
-    "static/media/index.css": "/static/media/sourcesanspro-regular.95f3ed41.woff",
-    "static/media/logout-icon-black.bde199c2.svg": "/static/media/logout-icon-black.bde199c2.svg",
-    "static/media/logout-icon-white.f67f251a.svg": "/static/media/logout-icon-white.f67f251a.svg",
-    "static/media/InfoTooltip.css": "/static/media/popup-close-icon.bc061867.svg"
+    "main.css": "/news-explorer-frontend/static/css/main.1e5f47e2.chunk.css",
+    "main.js": "/news-explorer-frontend/static/js/main.29f054c0.chunk.js",
+    "main.js.map": "/news-explorer-frontend/static/js/main.29f054c0.chunk.js.map",
+    "runtime-main.js": "/news-explorer-frontend/static/js/runtime-main.35cbe81f.js",
+    "runtime-main.js.map": "/news-explorer-frontend/static/js/runtime-main.35cbe81f.js.map",
+    "static/js/2.ef67b09f.chunk.js": "/news-explorer-frontend/static/js/2.ef67b09f.chunk.js",
+    "static/js/2.ef67b09f.chunk.js.map": "/news-explorer-frontend/static/js/2.ef67b09f.chunk.js.map",
+    "index.html": "/news-explorer-frontend/index.html",
+    "static/css/main.1e5f47e2.chunk.css.map": "/news-explorer-frontend/static/css/main.1e5f47e2.chunk.css.map",
+    "static/js/2.ef67b09f.chunk.js.LICENSE.txt": "/news-explorer-frontend/static/js/2.ef67b09f.chunk.js.LICENSE.txt",
+    "static/media/NewsCard.css": "/news-explorer-frontend/static/media/bookmark-normal.01d70111.svg",
+    "static/media/Footer.css": "/news-explorer-frontend/static/media/github.2e9e6d20.svg",
+    "static/media/Header.css": "/news-explorer-frontend/static/media/menu-close-button-mobile.90a8751d.svg",
+    "static/media/index.css": "/news-explorer-frontend/static/media/sourcesanspro-regular.95f3ed41.woff",
+    "static/media/logout-icon-black.bde199c2.svg": "/news-explorer-frontend/static/media/logout-icon-black.bde199c2.svg",
+    "static/media/logout-icon-white.f67f251a.svg": "/news-explorer-frontend/static/media/logout-icon-white.f67f251a.svg",
+    "static/media/InfoTooltip.css": "/news-explorer-frontend/static/media/popup-close-icon.bc061867.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.83546e98.js",
+    "static/js/runtime-main.35cbe81f.js",
     "static/js/2.ef67b09f.chunk.js",
-    "static/css/main.2b6b031f.chunk.css",
+    "static/css/main.1e5f47e2.chunk.css",
     "static/js/main.29f054c0.chunk.js"
   ]
 }
