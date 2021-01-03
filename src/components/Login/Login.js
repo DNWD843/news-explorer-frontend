@@ -27,12 +27,20 @@ function Login({ isOpened, onClose, onOverlayClick, onRedirectLinkClick, handleL
     passwordPlaceholder,
   } = config;
 
-  const { values, errors, isFormValid, handleInputChange, resetForm } = useFormWithValidation();
+  const {
+    values,
+    errors,
+    isFormValid,
+    handleInputChange,
+    resetForm,
+    formError,
+    setFormError,
+  } = useFormWithValidation();
   const { login, password } = values;
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleLogin({ email: login, password });
+    handleLogin({ email: login, password }, setFormError);
   };
 
   useEffect(() => {
@@ -52,6 +60,7 @@ function Login({ isOpened, onClose, onOverlayClick, onRedirectLinkClick, handleL
       onRedirectLinkClick={onRedirectLinkClick}
       isDisabled={!isFormValid}
       onSubmit={handleSubmit}
+      formError={formError}
     >
       <>
         <ul className="form__inputs">

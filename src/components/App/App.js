@@ -130,21 +130,18 @@ function App() {
    * @public
    * @since v.1.0.0
    */
-  const handleRegister = ({ email, password, name }, callback) => {
+  const handleRegister = ({ email, password, name }, showError) => {
     register(email, password, name)
-      .then((res) => {
-        if (!res) {
+      .then((serverError) => {
+        if (!serverError) {
           closeAllPopups();
           setIsRegSuccessTooltipOpened(true);
           document.addEventListener('keydown', handleEscClose);
         } else {
-          callback(res.message);
+          showError(serverError.message);
         }
       })
       .catch((err) => console.log({ err }));
-    /*.finally(() => {
-
-      });*/
   };
 
   /**
@@ -154,25 +151,20 @@ function App() {
    * @public
    * @since v.1.0.0
    */
-  const handleLogin = ({ email, password }) => {
+  const handleLogin = ({ email, password }, showError) => {
     login(email, password)
-      .then((JWT) => {
-        setToken(JWT.token);
-        return (
-          getUserData()
-            /*.then((userData) => {
+      .then((res) => {
+        console.log({ res });
+        if (res.token) {
+          setToken(res.token);
+          getUserData().then((userData) => {
             setCurrentUser(userData);
             setIsLoggedIn(true);
-          })
-          .catch((err) => console.log(err));
-      }) */
-            .then((userData) => userData)
-        );
-      })
-      .then((userData) => {
-        setCurrentUser(userData);
-        setIsLoggedIn(true);
-        closeAllPopups();
+            closeAllPopups();
+          });
+        } else {
+          showError(res.message);
+        }
       })
       .catch((err) => console.log(err));
   };
