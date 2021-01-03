@@ -31,14 +31,23 @@ function Register({ isOpened, onClose, onOverlayClick, onRedirectLinkClickClick,
     nameMaxLength,
   } = config;
 
-  const { values, errors, isFormValid, handleInputChange, resetForm } = useFormWithValidation();
+  const {
+    values,
+    errors,
+    isFormValid,
+    handleInputChange,
+    resetForm,
+    formError,
+    setFormError,
+  } = useFormWithValidation();
 
   const { email, regPassword, name } = values;
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const userRegistrationData = { email, password: regPassword, name };
-    handleRegister(userRegistrationData);
+    setFormError('');
+    handleRegister(userRegistrationData, setFormError);
   };
 
   useEffect(() => {
@@ -58,6 +67,7 @@ function Register({ isOpened, onClose, onOverlayClick, onRedirectLinkClickClick,
       onRedirectLinkClick={onRedirectLinkClickClick}
       isDisabled={!isFormValid}
       onSubmit={handleSubmit}
+      formError={formError}
     >
       <>
         <ul className="form__inputs">

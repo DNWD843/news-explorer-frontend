@@ -10,6 +10,8 @@ export const register = (email, password, name) => {
   })
     .then((res) => {
       if (res.ok) {
+        return !res.ok;
+      } else {
         return res.json();
       }
     })
@@ -35,14 +37,12 @@ export const getUserData = () => {
     method: 'GET',
     headers: {
       'Content-Type': 'applicaton/json',
-      authorization: `Bearer ${getToken()}`
+      authorization: `Bearer ${getToken()}`,
+    },
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
     }
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}: ${res.statusText}`);
-    });
-
+    return Promise.reject(`Ошибка: ${res.status}: ${res.statusText}`);
+  });
 };

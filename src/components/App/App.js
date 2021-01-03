@@ -130,16 +130,21 @@ function App() {
    * @public
    * @since v.1.0.0
    */
-  const handleRegister = ({ email, password, name }) => {
+  const handleRegister = ({ email, password, name }, callback) => {
     register(email, password, name)
       .then((res) => {
-        closeAllPopups();
+        if (!res) {
+          closeAllPopups();
+          setIsRegSuccessTooltipOpened(true);
+          document.addEventListener('keydown', handleEscClose);
+        } else {
+          callback(res.message);
+        }
       })
-      .catch((err) => console.log(err))
-      .finally(() => {
-        setIsRegSuccessTooltipOpened(true);
-        document.addEventListener('keydown', handleEscClose);
-      });
+      .catch((err) => console.log({ err }));
+    /*.finally(() => {
+
+      });*/
   };
 
   /**

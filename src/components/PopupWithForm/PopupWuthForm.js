@@ -31,6 +31,7 @@ function PopupWithForm({
   onRedirectLinkClick,
   isDisabled,
   onSubmit,
+  formError,
 }) {
   const overlayClassName = classNames('popup', {
     'popup_opened page__overlay': isOpened,
@@ -52,7 +53,7 @@ function PopupWithForm({
         <form onSubmit={onSubmit} className="form popup__form">
           <h2 className="form__title">{formTitle}</h2>
           {children}
-          <span className="form__submit-error-element"></span>
+          <span className="form__submit-error-element">{formError || ''}</span>
           <button type="submit" className={submitButtonClassName}>
             {submitButtonText}
           </button>
