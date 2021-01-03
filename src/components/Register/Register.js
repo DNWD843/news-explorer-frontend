@@ -15,7 +15,7 @@ import { forRegister as config } from '../../configs/configsForComponents';
  * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
  * @since v.1.0.0
  */
-function Register({ isOpened, onClose, onOverlayClick, onRedirectLinkClickClick, onSubmit }) {
+function Register({ isOpened, onClose, onOverlayClick, onRedirectLinkClickClick, handleRegister }) {
   const {
     formTitle,
     submitButtonText,
@@ -35,6 +35,12 @@ function Register({ isOpened, onClose, onOverlayClick, onRedirectLinkClickClick,
 
   const { email, regPassword, name } = values;
 
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    const userRegistrationData = { email, password: regPassword, name };
+    handleRegister(userRegistrationData);
+  };
+
   useEffect(() => {
     resetForm();
     //eslint-disable-next-line
@@ -51,7 +57,7 @@ function Register({ isOpened, onClose, onOverlayClick, onRedirectLinkClickClick,
       onOverlayClick={onOverlayClick}
       onRedirectLinkClick={onRedirectLinkClickClick}
       isDisabled={!isFormValid}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
       <>
         <ul className="form__inputs">

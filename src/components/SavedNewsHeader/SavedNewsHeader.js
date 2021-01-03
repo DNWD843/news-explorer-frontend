@@ -10,7 +10,6 @@ import './SavedNewsHeader.css';
  * @description Функциональный компонент<br>
  * Хэдер, блок содержит логотип и меню навигации по сайту.<br>
  * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
- * @property {String} userName - имя пользователя
  * @property {Function} onLogInClick - колбэк, вызывается при клике по кнопке "Авторизоваться"
  *  или ссылке "Войти", открывает попап авторизации
  * @property {Function} onLogOutClick - колбэк, переводит состояние пользователя в "не авторизован"
@@ -24,7 +23,6 @@ import './SavedNewsHeader.css';
  */
 function SavedNewsHeader({
   isLoggedIn,
-  userName,
   onLogInClick,
   onLogOutClick,
   onMenuButtonClick,
@@ -58,7 +56,6 @@ function SavedNewsHeader({
           onLogInClick={onLogInClick}
           onLogOutClick={onLogOutClick}
           isLoggedIn={isLoggedIn}
-          userName={userName}
           isMobile={false}
         />
         <button
@@ -73,7 +70,6 @@ function SavedNewsHeader({
           onLogInClick={onLogInClick}
           onLogOutClick={onLogOutClick}
           isLoggedIn={isLoggedIn}
-          userName={userName}
           isMobile={true}
           isMobileMenuOpened={isMobileMenuOpened}
         />

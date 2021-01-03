@@ -12,6 +12,9 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import SearchForm from '../SearchForm/SearchForm';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import SavedNews from '../SavedNews/SavedNews';
+import { register, login, getUserData } from '../../utils/MainApi';
+import { removeToken, setToken } from '../../utils/token';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './App.css';
 
 /**
@@ -23,13 +26,14 @@ import './App.css';
  * @since v.1.0.0
  */
 function App() {
-  const currentUser = { userName: 'Вася' }; // TODO: на следующем этапе сюда сохранять контекст пользователя
+  //const currentUser = { userName: 'Вася' }; // TODO: на следующем этапе сюда сохранять контекст пользователя
 
   const [isLoginPopupOpened, setIsLoginPopupOpened] = useState(false);
   const [isRegisterPopupOpened, setIsRegisterPopupOpened] = useState(false);
   const [isRegSuccessTooltipOpened, setIsRegSuccessTooltipOpened] = useState(false);
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
   /**
    * @method
@@ -102,6 +106,7 @@ function App() {
    * @since v.1.0.0
    */
   const handleClickLogOut = () => {
+    removeToken();
     setIsLoggedIn(false);
   };
 
@@ -119,30 +124,52 @@ function App() {
   };
 
   /**
-   * @method  handleRegisterSubmit
+   * @method  handleRegister
    * @description Публичный метод<br>
    * Стрелочная функция, отправляет запрос на регистрацию пользователя, передает введенные данные
    * @public
    * @since v.1.0.0
    */
-  const handleRegisterSubmit = (evt) => {
-    evt.preventDefault();
-    closeAllPopups();
-    setIsRegSuccessTooltipOpened(true);
-    document.addEventListener('keydown', handleEscClose);
+  const handleRegister = ({ email, password, name }) => {
+    register(email, password, name)
+      .then((res) => {
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        setIsRegSuccessTooltipOpened(true);
+        document.addEventListener('keydown', handleEscClose);
+      });
   };
 
   /**
-   * @method  handleLoginSubmit
+   * @method  handleLogin
    * @description Публичный метод<br>
    * Стрелочная функция, отправляет запрос на авторизацию пользователя, передает введенные данные
    * @public
    * @since v.1.0.0
    */
-  const handleLoginSubmit = (evt) => {
-    evt.preventDefault();
-    closeAllPopups();
-    setIsLoggedIn(true);
+  const handleLogin = ({ email, password }) => {
+    login(email, password)
+      .then((JWT) => {
+        setToken(JWT.token);
+        return (
+          getUserData()
+            /*.then((userData) => {
+            setCurrentUser(userData);
+            setIsLoggedIn(true);
+          })
+          .catch((err) => console.log(err));
+      }) */
+            .then((userData) => userData)
+        );
+      })
+      .then((userData) => {
+        setCurrentUser(userData);
+        setIsLoggedIn(true);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err));
   };
 
   /**
@@ -163,66 +190,66 @@ function App() {
 
   return (
     <>
-      <Switch>
-        <Route exact path={to.MAIN}>
-          <Header
+      <CurrentUserContext.Provider value={currentUser}>
+        <Switch>
+          <Route exact path={to.MAIN}>
+            <Header
+              isLoggedIn={isLoggedIn}
+              onLogInClick={handleClickLogIn}
+              onLogOutClick={handleClickLogOut}
+              onMenuButtonClick={handleClickMenuButton}
+              isMobileMenuOpened={isMobileMenuOpened}
+              isPopupOpened={isLoginPopupOpened || isRegisterPopupOpened}
+              onOverlayClick={handleClickOnOverlay}
+            >
+              <SearchForm />
+            </Header>
+
+            <Main
+              searchResult={searchResultCards} //TODO: удалить
+              isLoggedIn={isLoggedIn}
+            />
+          </Route>
+
+          <ProtectedRoute
+            path={to.SAVED_NEWS}
             isLoggedIn={isLoggedIn}
-            userName={currentUser.userName}
+            savedArticles={savedCards}
+            component={SavedNews}
             onLogInClick={handleClickLogIn}
             onLogOutClick={handleClickLogOut}
             onMenuButtonClick={handleClickMenuButton}
             isMobileMenuOpened={isMobileMenuOpened}
             isPopupOpened={isLoginPopupOpened || isRegisterPopupOpened}
             onOverlayClick={handleClickOnOverlay}
-          >
-            <SearchForm />
-          </Header>
-
-          <Main
-            searchResult={searchResultCards} //TODO: удалить
-            isLoggedIn={isLoggedIn}
           />
-        </Route>
+          <Route path={to.MAIN}>
+            <Redirect to={to.MAIN} />
+          </Route>
+        </Switch>
 
-        <ProtectedRoute
-          path={to.SAVED_NEWS}
-          isLoggedIn={isLoggedIn}
-          userName={currentUser.userName}
-          savedArticles={savedCards}
-          component={SavedNews}
-          onLogInClick={handleClickLogIn}
-          onLogOutClick={handleClickLogOut}
-          onMenuButtonClick={handleClickMenuButton}
-          isMobileMenuOpened={isMobileMenuOpened}
-          isPopupOpened={isLoginPopupOpened || isRegisterPopupOpened}
+        <Footer />
+        <Login
+          isOpened={isLoginPopupOpened}
+          onClose={closeAllPopups}
           onOverlayClick={handleClickOnOverlay}
+          onRedirectLinkClick={handleClickRegister}
+          handleLogin={handleLogin}
         />
-        <Route path={to.MAIN}>
-          <Redirect to={to.MAIN} />
-        </Route>
-      </Switch>
-
-      <Footer />
-      <Login
-        isOpened={isLoginPopupOpened}
-        onClose={closeAllPopups}
-        onOverlayClick={handleClickOnOverlay}
-        onRedirectLinkClick={handleClickRegister}
-        onSubmit={handleLoginSubmit}
-      />
-      <Register
-        isOpened={isRegisterPopupOpened}
-        onClose={closeAllPopups}
-        onOverlayClick={handleClickOnOverlay}
-        onRedirectLinkClickClick={handleClickLogIn}
-        onSubmit={handleRegisterSubmit}
-      />
-      <InfoTooltip
-        isOpened={isRegSuccessTooltipOpened}
-        onClose={closeAllPopups}
-        onOverlayClick={handleClickOnOverlay}
-        onRedirectLinkClick={handleClickLogIn}
-      />
+        <Register
+          isOpened={isRegisterPopupOpened}
+          onClose={closeAllPopups}
+          onOverlayClick={handleClickOnOverlay}
+          onRedirectLinkClickClick={handleClickLogIn}
+          handleRegister={handleRegister}
+        />
+        <InfoTooltip
+          isOpened={isRegSuccessTooltipOpened}
+          onClose={closeAllPopups}
+          onOverlayClick={handleClickOnOverlay}
+          onRedirectLinkClick={handleClickLogIn}
+        />
+      </CurrentUserContext.Provider>
     </>
   );
 }

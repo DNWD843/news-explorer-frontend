@@ -17,8 +17,7 @@ license: Yandex.Practicum
 **Используемые команды**  
 `npm start` - запуск приложения в режиме разработки,  
 `npm run build` - продакшен сборка приложения,  
-`npm run jsdoc:build` - сборка документации в папку documentation (если у Вас установлен JSDoc3),  
-`npm run jsdoc:npx` - сборка документации в папку documentation (если у Вас не установлен JSDoc3)
+`npm run jsdoc:build` - сборка документации в папку documentation
 
 **Описание версий**  
 **_Версия 1.1.0_**  
@@ -26,3 +25,6 @@ license: Yandex.Practicum
 
 **_Версия 1.0.0_**  
 Верстка: созданы компоненты приложения, написаны стили.
+
+**Посмотреть проект**  
+Для просмотра проекта пройдите по <a href="https://dnwd843.github.io/news-explorer-frontend/" target="_blank" rel="noreferrer noopener">ссылке</a>

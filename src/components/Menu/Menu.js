@@ -1,3 +1,4 @@
+import React from 'react';
 import Navigation from '../Navigation/Navigation';
 import { Switch, Route } from 'react-router-dom';
 import classNames from 'classnames';
@@ -5,6 +6,7 @@ import * as to from '../../utils/routesMap';
 import pathToMainIcon from '../../images/logout-icon-white.svg';
 import pathToSavedNewsIcon from '../../images/logout-icon-black.svg';
 import { forMenu as config } from '../../configs/configsForComponents';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Menu.css';
 
 /**
@@ -25,12 +27,12 @@ function Menu({
   isLoggedIn,
   onLogOutClick,
   onLogInClick,
-  userName,
   authorizationTitle,
   isMobile,
   isMobileMenuOpened,
 }) {
   const { buttonImageAlt } = config;
+  const currentUser = React.useContext(CurrentUserContext);
   const menuClassName = classNames('menu', {
     menu_mobile: isMobile,
     menu_desktop: !isMobile,
@@ -47,7 +49,7 @@ function Menu({
 
       {isLoggedIn ? (
         <button onClick={onLogOutClick} type="button" className={authButtonClassName}>
-          <span className="menu__button-title">{userName}</span>
+          <span className="menu__button-title">{currentUser.name}</span>
           <Switch>
             <Route exact path={to.MAIN}>
               <img src={pathToMainIcon} alt={buttonImageAlt} className="menu__button-icon" />
@@ -62,10 +64,10 @@ function Menu({
           </Switch>
         </button>
       ) : (
-        <button onClick={onLogInClick} type="button" className={authButtonClassName}>
-          <span className="menu__button-title">{authorizationTitle}</span>
-        </button>
-      )}
+          <button onClick={onLogInClick} type="button" className={authButtonClassName}>
+            <span className="menu__button-title">{authorizationTitle}</span>
+          </button>
+        )}
     </div>
   );
 }

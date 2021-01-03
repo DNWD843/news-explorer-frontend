@@ -1,8 +1,10 @@
+import React from 'react';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import pluralize from '../../utils/pluralize';
 import * as configuration from '../../configs/configForPluralizeUtility';
 import { forSavedNews as config } from '../../configs/configsForComponents';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './SavedNews.css';
 
 /**
@@ -10,17 +12,17 @@ import './SavedNews.css';
  * @description Функциональный компонент<br>
  * Отрисовывает карточки со статьями, сохраненными пользователем в своей коллекции.<br>
  * Отрисовка производится частями по три карточки.
- * @property {String} userName - имя пользователя
  * @property {Array} savedArticles - массив с данными о сохраненных статьях
  * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
  * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
  * @since v.1.0.0
  */
-function SavedNews({ isLoggedIn, userName, savedArticles, ...props }) {
+function SavedNews({ isLoggedIn, savedArticles, ...props }) {
   const { pageName } = config;
+  const currentUser = React.useContext(CurrentUserContext);
 
   const titleTextFragment = pluralize(savedArticles.length, configuration.forSavedNewsTitle);
-  const titleText = userName.concat(titleTextFragment);
+  const titleText = currentUser.name.concat(titleTextFragment);
 
   /**
    * @method getKeywordsTopList
@@ -56,7 +58,7 @@ function SavedNews({ isLoggedIn, userName, savedArticles, ...props }) {
 
   return (
     <>
-      <SavedNewsHeader isLoggedIn={isLoggedIn} userName={userName} {...props} />
+      <SavedNewsHeader isLoggedIn={isLoggedIn} {...props} />
       <main className="saved-news">
         <div className="saved-news__info">
           <p className="saved-news__page-name">{pageName}</p>

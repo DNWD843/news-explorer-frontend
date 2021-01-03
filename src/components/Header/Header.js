@@ -9,7 +9,6 @@ import './Header.css';
  * Хэдер, блок содержит логотип и меню навигации по сайту.<br>
  * Принимает в пропсах объект с настройками блока - config и параметры.
  * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
- * @property {String} userName - имя пользователя
  * @property {Function} onLogInClick - колбэк, вызывается при клике по кнопке "Авторизоваться"
  *  или ссылке "Войти", открывает попап авторизации
  * @property {Function} onLogOutClick - колбэк, переводит состояние пользователя в "не авторизован"
@@ -23,7 +22,6 @@ import './Header.css';
  */
 function Header({
   isLoggedIn,
-  userName,
   onLogInClick,
   onLogOutClick,
   children,
@@ -55,7 +53,6 @@ function Header({
           onLogInClick={onLogInClick}
           onLogOutClick={onLogOutClick}
           isLoggedIn={isLoggedIn}
-          userName={userName}
           authorizationTitle={authorizationTitle}
           isMobile={false}
         />
@@ -73,7 +70,6 @@ function Header({
           onLogInClick={onLogInClick}
           onLogOutClick={onLogOutClick}
           isLoggedIn={isLoggedIn}
-          userName={userName}
           authorizationTitle={authorizationTitle}
           isMobile={true}
           isMobileMenuOpened={isMobileMenuOpened}

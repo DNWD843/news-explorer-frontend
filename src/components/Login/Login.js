@@ -15,7 +15,7 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
  * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
  * @since v.1.0.0
  */
-function Login({ isOpened, onClose, onOverlayClick, onRedirectLinkClick, onSubmit }) {
+function Login({ isOpened, onClose, onOverlayClick, onRedirectLinkClick, handleLogin }) {
   const {
     formTitle,
     submitButtonText,
@@ -29,6 +29,11 @@ function Login({ isOpened, onClose, onOverlayClick, onRedirectLinkClick, onSubmi
 
   const { values, errors, isFormValid, handleInputChange, resetForm } = useFormWithValidation();
   const { login, password } = values;
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    handleLogin({ email: login, password });
+  };
 
   useEffect(() => {
     resetForm();
@@ -46,7 +51,7 @@ function Login({ isOpened, onClose, onOverlayClick, onRedirectLinkClick, onSubmi
       onOverlayClick={onOverlayClick}
       onRedirectLinkClick={onRedirectLinkClick}
       isDisabled={!isFormValid}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
       <>
         <ul className="form__inputs">
