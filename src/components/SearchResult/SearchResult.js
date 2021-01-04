@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import classNames from 'classnames';
-import { forSearchResult as config } from '../../configs/configsForComponents';
+import { forSearchResult as config } from '../../configs/configForComponents';
 import './SearchResult.css';
 
 /**

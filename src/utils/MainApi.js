@@ -35,12 +35,9 @@ export const getUserDataFromDataBase = () => {
       'Content-Type': 'applicaton/json',
       authorization: `Bearer ${getTokenFromStorage()}`,
     },
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}: ${res.statusText}`);
-  });
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
 };
 
 export const getSavedNewsFromDataBase = () => {
@@ -50,10 +47,7 @@ export const getSavedNewsFromDataBase = () => {
       'Content-Type': 'applicaton/json',
       authorization: `Bearer ${getTokenFromStorage()}`,
     },
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка: ${res.status}: ${res.statusText}`);
-  });
+  })
+    .then((res) => res.json())
+    .catch((err) => console.log(err));
 };

@@ -5,7 +5,7 @@ import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import * as to from '../../utils/routesMap';
 import searchResultCards from '../../mocks/searchResultCards'; // временно имитирую получение карточек от сервера
-import savedCards from '../../mocks/savedCards'; // временно имитирую получение карточек от сервера
+//import savedCards from '../../mocks/savedCards'; // временно имитирую получение карточек от сервера
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
@@ -19,6 +19,8 @@ import {
   getSavedNewsFromDataBase,
 } from '../../utils/MainApi';
 import {
+  //getFoundNewsFromStorage,
+  getSavedNewsFromStorage,
   getTokenFromStorage,
   getUserDataFromStorage,
   removeSavedNewsFromStorage,
@@ -49,6 +51,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [savedNewsCards, setSavedNewsCards] = useState([]);
+  const [foundNewsCards, setFoundNewsCards] = useState(searchResultCards);
 
   /**
    * @method
@@ -162,19 +165,6 @@ function App() {
       .catch((err) => console.log({ err }));
   };
 
-  const getAllDataFromDataBase = () => {
-    Promise.all([getUserDataFromDataBase(), getSavedNewsFromDataBase()]).then(
-      ([userData, savedNews]) => {
-        setCurrentUser(userData);
-        setUserDataToStorage(userData);
-        setSavedNewsToStorage(savedCards); //временно замокал карточки
-        setSavedNewsCards(savedCards); //временно замокал карточки
-        setIsLoggedIn(true);
-        closeAllPopups();
-      },
-    );
-  };
-
   /**
    * @method  handleLogin
    * @description Публичный метод<br>
@@ -187,7 +177,25 @@ function App() {
       .then((res) => {
         if (res.token) {
           setTokenToStorage(res.token);
-          getAllDataFromDataBase();
+          Promise.all([getUserDataFromDataBase(), getSavedNewsFromDataBase()])
+            .then(([userData, savedNews]) => {
+              console.log({ userData, savedNews });
+              if (userData.message) {
+                showError(userData.message);
+              } else if (savedNews.message) {
+                showError(savedNews.message);
+              } else {
+                setCurrentUser(userData);
+                setUserDataToStorage(userData);
+                setSavedNewsToStorage(savedNews);
+                setSavedNewsCards(savedNews);
+                setIsLoggedIn(true);
+                closeAllPopups();
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         } else {
           showError(res.message);
         }
@@ -214,8 +222,12 @@ function App() {
   useEffect(() => {
     const user = getUserDataFromStorage();
     const token = getTokenFromStorage();
+    const savedNews = getSavedNewsFromStorage();
+    //const foundNews = getFoundNewsFromStorage();
     if (user && token) {
       setCurrentUser(user);
+      setSavedNewsCards(savedNews);
+      //setFoundNewsCards(foundNews);
       setIsLoggedIn(true);
     }
   }, []);
@@ -237,10 +249,7 @@ function App() {
               <SearchForm />
             </Header>
 
-            <Main
-              searchResult={searchResultCards} //TODO: удалить
-              isLoggedIn={isLoggedIn}
-            />
+            <Main searchResult={foundNewsCards} isLoggedIn={isLoggedIn} />
           </Route>
 
           <ProtectedRoute

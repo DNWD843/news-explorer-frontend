@@ -1,7 +1,7 @@
 import About from '../About/About';
 //import NoResult from '../NoResult/NoResult'; // компонент временно отключен. раскомментриовать для подключения
 //import Preloader from '../Preloader/Preloader'; // компонент временно отключен. раскомментриовать для подключения
-//import SearchResult from '../SearchResult/SearchResult';
+import SearchResult from '../SearchResult/SearchResult';
 import './Main.css';
 
 /**
@@ -18,8 +18,8 @@ function Main({ isLoggedIn, searchResult }) {
     <>
       <main className="content">
         {/* <Preloader /> // компонент временно отключен. раскомментриовать для подключения
-        <NoResult /> // компонент временно отключен. раскомментриовать для подключения
-       <SearchResult searchResult={searchResult} isLoggedIn={isLoggedIn} /> */}
+        <NoResult /> // компонент временно отключен. раскомментриовать для подключения*/}
+        <SearchResult searchResult={searchResult} isLoggedIn={isLoggedIn} />
         <About />
       </main>
     </>
