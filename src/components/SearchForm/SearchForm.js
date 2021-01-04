@@ -1,4 +1,4 @@
-import { forSearchForm as config } from '../../configs/configsForComponents';
+import { forSearchForm as config } from '../../configs/configForComponents';
 import './SearchForm.css';
 
 /**

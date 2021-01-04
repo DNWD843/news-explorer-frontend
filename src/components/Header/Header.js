@@ -1,6 +1,6 @@
 import Menu from '../Menu/Menu';
 import classNames from 'classnames';
-import { forHeader as config } from '../../configs/configsForComponents';
+import { forHeader as config } from '../../configs/configForComponents';
 import './Header.css';
 
 /**

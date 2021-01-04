@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { forRegistrationSuccessToolTip as config } from '../../configs/configsForComponents';
+import { forRegistrationSuccessToolTip as config } from '../../configs/configForComponents';
 import './InfoTooltip.css';
 
 /**

@@ -1,4 +1,4 @@
-import { forAbout as config } from '../../configs/configsForComponents';
+import { forAbout as config } from '../../configs/configForComponents';
 import './About.css';
 
 /**

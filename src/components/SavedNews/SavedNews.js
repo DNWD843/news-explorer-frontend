@@ -2,7 +2,7 @@ import React from 'react';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import pluralize from '../../utils/pluralize';
 import * as configuration from '../../configs/configForPluralizeUtility';
-import { forSavedNews as config } from '../../configs/configsForComponents';
+import { forSavedNews as config } from '../../configs/configForComponents';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './SavedNews.css';

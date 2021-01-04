@@ -1,4 +1,4 @@
-import { forNavigation as config } from '../../configs/configsForComponents';
+import { forNavigation as config } from '../../configs/configForComponents';
 import { NavLink } from 'react-router-dom';
 import { MAIN, SAVED_NEWS } from '../../utils/routesMap';
 import classNames from 'classnames';

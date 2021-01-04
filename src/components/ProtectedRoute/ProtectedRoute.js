@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { MAIN } from '../../utils/routesMap';
 
-const ProtectedRoute = ({ component: Component, ...props }) => {
+const ProtectedRoute = ({ component: Component, openLoginPopup, ...props }) => {
   return (
     <Route>{() => (props.isLoggedIn ? <Component {...props} /> : <Redirect to={MAIN} />)}</Route>
   );

@@ -2,7 +2,7 @@ import Menu from '../Menu/Menu';
 import { Link } from 'react-router-dom';
 import { MAIN } from '../../utils/routesMap';
 import classNames from 'classnames';
-import { forSavedNewsHeader as config } from '../../configs/configsForComponents';
+import { forSavedNewsHeader as config } from '../../configs/configForComponents';
 import './SavedNewsHeader.css';
 
 /**

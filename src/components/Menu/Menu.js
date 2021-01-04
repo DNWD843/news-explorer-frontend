@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import * as to from '../../utils/routesMap';
 import pathToMainIcon from '../../images/logout-icon-white.svg';
 import pathToSavedNewsIcon from '../../images/logout-icon-black.svg';
-import { forMenu as config } from '../../configs/configsForComponents';
+import { forMenu as config } from '../../configs/configForComponents';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './Menu.css';
 
@@ -64,10 +64,10 @@ function Menu({
           </Switch>
         </button>
       ) : (
-          <button onClick={onLogInClick} type="button" className={authButtonClassName}>
-            <span className="menu__button-title">{authorizationTitle}</span>
-          </button>
-        )}
+        <button onClick={onLogInClick} type="button" className={authButtonClassName}>
+          <span className="menu__button-title">{authorizationTitle}</span>
+        </button>
+      )}
     </div>
   );
 }

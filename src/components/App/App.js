@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -7,13 +8,26 @@ import searchResultCards from '../../mocks/searchResultCards'; // временн
 import savedCards from '../../mocks/savedCards'; // временно имитирую получение карточек от сервера
 import Login from '../Login/Login';
 import Register from '../Register/Register';
-import { useState } from 'react';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import SearchForm from '../SearchForm/SearchForm';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import SavedNews from '../SavedNews/SavedNews';
-import { register, login, getUserData } from '../../utils/MainApi';
-import { removeToken, setToken } from '../../utils/token';
+import {
+  register,
+  login,
+  getUserDataFromDataBase,
+  getSavedNewsFromDataBase,
+} from '../../utils/MainApi';
+import {
+  getTokenFromStorage,
+  getUserDataFromStorage,
+  removeSavedNewsFromStorage,
+  removeTokenFromStorage,
+  removeUserDataFromStorage,
+  setSavedNewsToStorage,
+  setTokenToStorage,
+  setUserDataToStorage,
+} from '../../utils/storage';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './App.css';
 
@@ -34,6 +48,7 @@ function App() {
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [savedNewsCards, setSavedNewsCards] = useState([]);
 
   /**
    * @method
@@ -106,8 +121,11 @@ function App() {
    * @since v.1.0.0
    */
   const handleClickLogOut = () => {
-    removeToken();
+    removeTokenFromStorage();
+    removeUserDataFromStorage();
+    removeSavedNewsFromStorage();
     setIsLoggedIn(false);
+    setCurrentUser({});
   };
 
   /**
@@ -144,6 +162,19 @@ function App() {
       .catch((err) => console.log({ err }));
   };
 
+  const getAllDataFromDataBase = () => {
+    Promise.all([getUserDataFromDataBase(), getSavedNewsFromDataBase()]).then(
+      ([userData, savedNews]) => {
+        setCurrentUser(userData);
+        setUserDataToStorage(userData);
+        setSavedNewsToStorage(savedCards); //временно замокал карточки
+        setSavedNewsCards(savedCards); //временно замокал карточки
+        setIsLoggedIn(true);
+        closeAllPopups();
+      },
+    );
+  };
+
   /**
    * @method  handleLogin
    * @description Публичный метод<br>
@@ -154,14 +185,9 @@ function App() {
   const handleLogin = ({ email, password }, showError) => {
     login(email, password)
       .then((res) => {
-        console.log({ res });
         if (res.token) {
-          setToken(res.token);
-          getUserData().then((userData) => {
-            setCurrentUser(userData);
-            setIsLoggedIn(true);
-            closeAllPopups();
-          });
+          setTokenToStorage(res.token);
+          getAllDataFromDataBase();
         } else {
           showError(res.message);
         }
@@ -185,11 +211,20 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    const user = getUserDataFromStorage();
+    const token = getTokenFromStorage();
+    if (user && token) {
+      setCurrentUser(user);
+      setIsLoggedIn(true);
+    }
+  }, []);
+
   return (
     <>
       <CurrentUserContext.Provider value={currentUser}>
         <Switch>
-          <Route exact path={to.MAIN}>
+          <Route path={to.MAIN} exact>
             <Header
               isLoggedIn={isLoggedIn}
               onLogInClick={handleClickLogIn}
@@ -211,7 +246,7 @@ function App() {
           <ProtectedRoute
             path={to.SAVED_NEWS}
             isLoggedIn={isLoggedIn}
-            savedArticles={savedCards}
+            savedArticles={savedNewsCards}
             component={SavedNews}
             onLogInClick={handleClickLogIn}
             onLogOutClick={handleClickLogOut}
@@ -220,6 +255,7 @@ function App() {
             isPopupOpened={isLoginPopupOpened || isRegisterPopupOpened}
             onOverlayClick={handleClickOnOverlay}
           />
+
           <Route path={to.MAIN}>
             <Redirect to={to.MAIN} />
           </Route>

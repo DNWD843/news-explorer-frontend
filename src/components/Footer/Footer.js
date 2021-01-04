@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { MAIN } from '../../utils/routesMap';
-import { forFooter as config } from '../../configs/configsForComponents';
+import { forFooter as config } from '../../configs/configForComponents';
 import './Footer.css';
 
 /**

@@ -1,4 +1,4 @@
-import { forLogin as config } from '../../configs/configsForComponents';
+import { forLogin as config } from '../../configs/configForComponents';
 import { useEffect } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWuthForm';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';

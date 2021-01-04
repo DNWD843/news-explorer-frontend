@@ -1,4 +1,4 @@
-import { forNewsCard as config } from '../../configs/configsForComponents';
+import { forNewsCard as config } from '../../configs/configForComponents';
 import classNames from 'classnames';
 import { useState } from 'react';
 import './NewsCard.css';

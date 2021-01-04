@@ -1,6 +1,6 @@
 import { BASE_URL } from '../configs';
 import * as PATH_TO from './endpoints';
-import { getToken } from './token';
+import { getTokenFromStorage } from './storage';
 
 export const register = (email, password, name) => {
   return fetch(`${BASE_URL}${PATH_TO.REGISTER}`, {
@@ -28,12 +28,27 @@ export const login = (email, password) => {
     .catch((err) => console.log(err));
 };
 
-export const getUserData = () => {
+export const getUserDataFromDataBase = () => {
   return fetch(`${BASE_URL}${PATH_TO.USER}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'applicaton/json',
-      authorization: `Bearer ${getToken()}`,
+      authorization: `Bearer ${getTokenFromStorage()}`,
+    },
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}: ${res.statusText}`);
+  });
+};
+
+export const getSavedNewsFromDataBase = () => {
+  return fetch(`${BASE_URL}${PATH_TO.SAVED_NEWS}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'applicaton/json',
+      authorization: `Bearer ${getTokenFromStorage()}`,
     },
   }).then((res) => {
     if (res.ok) {

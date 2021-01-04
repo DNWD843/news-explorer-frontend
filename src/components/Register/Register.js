@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWuthForm';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
-import { forRegister as config } from '../../configs/configsForComponents';
+import { forRegister as config } from '../../configs/configForComponents';
 
 /**
  * @module Register
