@@ -20,6 +20,7 @@ import './NewsCard.css';
  * @since v.1.0.0
  */
 function NewsCard({
+  _id,
   source,
   keyword,
   title,
@@ -29,6 +30,7 @@ function NewsCard({
   image,
   isSavedNewsOpened,
   isLoggedIn,
+  handleDeleteArticle,
 }) {
   const {
     altText,
@@ -70,11 +72,9 @@ function NewsCard({
     if (isLoggedIn && !isSavedNewsOpened && !isSavedToCollection) {
       console.log('новость добавляется в коллекцию'); //TODO: удалить на следующем этапе
       setIsSavedToCollection(true);
-    } else if (isLoggedIn && !isSavedNewsOpened && isSavedToCollection) {
-      console.log('новость удаляется из коллекции'); //TODO: удалить на следующем этапе
+    } else if ((isLoggedIn && !isSavedNewsOpened && isSavedToCollection) || isSavedNewsOpened) {
+      handleDeleteArticle({ _id });
       setIsSavedToCollection(false);
-    } else if (isSavedNewsOpened) {
-      console.log('новость удаляется из сохраненных новостей'); //TODO: удалить на следующем этапе
     }
   };
 

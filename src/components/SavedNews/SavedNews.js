@@ -17,7 +17,7 @@ import './SavedNews.css';
  * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
  * @since v.1.0.0
  */
-function SavedNews({ isLoggedIn, savedArticles, ...props }) {
+function SavedNews({ isLoggedIn, savedArticles, handleDeleteArticle, ...props }) {
   const { pageName } = config;
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -75,7 +75,12 @@ function SavedNews({ isLoggedIn, savedArticles, ...props }) {
           </p>
         </div>
         <div className="saved-news__container">
-          <NewsCardList cards={savedArticles} isSavedNewsOpened={true} isLoggedIn={isLoggedIn} />
+          <NewsCardList
+            cards={savedArticles}
+            isSavedNewsOpened={true}
+            isLoggedIn={isLoggedIn}
+            handleDeleteArticle={handleDeleteArticle}
+          />
         </div>
       </main>
     </>

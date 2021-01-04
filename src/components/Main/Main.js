@@ -13,13 +13,17 @@ import './Main.css';
  * @returns {JSX}
  * @since v.1.0.0
  */
-function Main({ isLoggedIn, searchResult }) {
+function Main({ isLoggedIn, searchResult, handleDeleteArticle }) {
   return (
     <>
       <main className="content">
         {/* <Preloader /> // компонент временно отключен. раскомментриовать для подключения
         <NoResult /> // компонент временно отключен. раскомментриовать для подключения*/}
-        <SearchResult searchResult={searchResult} isLoggedIn={isLoggedIn} />
+        <SearchResult
+          searchResult={searchResult}
+          isLoggedIn={isLoggedIn}
+          handleDeleteArticle={handleDeleteArticle}
+        />
         <About />
       </main>
     </>

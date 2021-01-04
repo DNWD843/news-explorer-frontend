@@ -13,7 +13,7 @@ import './SearchResult.css';
  * @returns {JSX}
  * @since v.1.0.0
  */
-function SearchResult({ searchResult, isLoggedIn }) {
+function SearchResult({ searchResult, isLoggedIn, handleDeleteArticle }) {
   const { title, showMoreButtonText } = config;
 
   const [cardsToRender, setCardsToRender] = useState([]);
@@ -50,7 +50,12 @@ function SearchResult({ searchResult, isLoggedIn }) {
   return (
     <section className="search-result">
       <h2 className="search-result__title">{title}</h2>
-      <NewsCardList cards={cardsToRender} isSavedNewsOpened={false} isLoggedIn={isLoggedIn} />
+      <NewsCardList
+        cards={cardsToRender}
+        isSavedNewsOpened={false}
+        isLoggedIn={isLoggedIn}
+        handleDeleteArticle={handleDeleteArticle}
+      />
       <button
         onClick={handleClickShowMoreButton}
         disabled={isDisabled}

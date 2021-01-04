@@ -17,6 +17,7 @@ import {
   login,
   getUserDataFromDataBase,
   getSavedNewsFromDataBase,
+  deleteArticle,
 } from '../../utils/MainApi';
 import {
   //getFoundNewsFromStorage,
@@ -179,7 +180,6 @@ function App() {
           setTokenToStorage(res.token);
           Promise.all([getUserDataFromDataBase(), getSavedNewsFromDataBase()])
             .then(([userData, savedNews]) => {
-              console.log({ userData, savedNews });
               if (userData.message) {
                 showError(userData.message);
               } else if (savedNews.message) {
@@ -219,6 +219,22 @@ function App() {
     }
   };
 
+  const handleDeleteArticle = (card) => {
+    deleteArticle(card._id)
+      .then((res) => {
+        console.log({ res });
+        const resultCardsArray = savedNewsCards.filter((savedCard) => {
+          return savedCard._id !== card._id;
+        });
+        setSavedNewsCards(resultCardsArray);
+        removeSavedNewsFromStorage();
+        setSavedNewsToStorage(resultCardsArray);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     const user = getUserDataFromStorage();
     const token = getTokenFromStorage();
@@ -249,7 +265,11 @@ function App() {
               <SearchForm />
             </Header>
 
-            <Main searchResult={foundNewsCards} isLoggedIn={isLoggedIn} />
+            <Main
+              searchResult={foundNewsCards}
+              isLoggedIn={isLoggedIn}
+              handleDeleteArticle={handleDeleteArticle}
+            />
           </Route>
 
           <ProtectedRoute
@@ -263,6 +283,7 @@ function App() {
             isMobileMenuOpened={isMobileMenuOpened}
             isPopupOpened={isLoginPopupOpened || isRegisterPopupOpened}
             onOverlayClick={handleClickOnOverlay}
+            handleDeleteArticle={handleDeleteArticle}
           />
 
           <Route path={to.MAIN}>

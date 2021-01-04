@@ -15,7 +15,9 @@ export const register = (email, password, name) => {
         return res.json();
       }
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const login = (email, password) => {
@@ -25,7 +27,9 @@ export const login = (email, password) => {
     body: JSON.stringify({ password, email }),
   })
     .then((res) => res.json())
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const getUserDataFromDataBase = () => {
@@ -37,7 +41,9 @@ export const getUserDataFromDataBase = () => {
     },
   })
     .then((res) => res.json())
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 export const getSavedNewsFromDataBase = () => {
@@ -49,5 +55,22 @@ export const getSavedNewsFromDataBase = () => {
     },
   })
     .then((res) => res.json())
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+export const deleteArticle = (articleId) => {
+  return fetch(`${BASE_URL}${PATH_TO.SAVED_NEWS}/${articleId}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${getTokenFromStorage()}`,
+    },
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка ${res.status}: ${res.statusText}`);
+  });
 };
