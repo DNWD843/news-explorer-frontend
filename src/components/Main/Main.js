@@ -1,6 +1,6 @@
 import About from '../About/About';
-import NoResult from '../NoResult/NoResult'; // компонент временно отключен. раскомментриовать для подключения
-//import Preloader from '../Preloader/Preloader'; // компонент временно отключен. раскомментриовать для подключения
+import NoResult from '../NoResult/NoResult';
+import Preloader from '../Preloader/Preloader';
 import SearchResult from '../SearchResult/SearchResult';
 import './Main.css';
 
@@ -13,11 +13,11 @@ import './Main.css';
  * @returns {JSX}
  * @since v.1.0.0
  */
-function Main({ isLoggedIn, isSearchDone, searchResult, handleDeleteArticle, handleSaveArticle }) {
+function Main({ isLoggedIn, isSearchDone, isSearching, searchResult, handleDeleteArticle, handleSaveArticle }) {
   return (
     <>
       <main className="content">
-        {/* <Preloader /> // компонент временно отключен. раскомментриовать для подключения*/}
+        {isSearching && <Preloader />}
         {isSearchDone && searchResult.length === 0 && <NoResult />}
         {searchResult.length > 0 && (
           <SearchResult

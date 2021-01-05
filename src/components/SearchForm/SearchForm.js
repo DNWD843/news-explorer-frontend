@@ -19,7 +19,6 @@ function SearchForm({ handleSearchFormSubmit }) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log({ searchInput });
     handleSearchFormSubmit(searchInput);
   };
 
@@ -44,6 +43,7 @@ function SearchForm({ handleSearchFormSubmit }) {
               value={searchInput || ''}
               placeholder={placeholderText}
               required
+
             />
           </div>
           <span className="search-form__input-error" id="searchInput-error">

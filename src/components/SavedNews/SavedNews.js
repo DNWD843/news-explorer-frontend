@@ -64,7 +64,7 @@ function SavedNews({ isLoggedIn, savedArticles, handleDeleteArticle, ...props })
           <p className="saved-news__page-name">{pageName}</p>
           <h2 className="saved-news__title">{titleText}</h2>
           <p className="saved-news__keywords saved-news__keywords_accent_no-accent">
-            {byKeyWordsFragment}
+            {top.length ? byKeyWordsFragment : ''}
             <span className="saved-news__keywords saved-news__keywords_accent_bold">
               {firstKeyword} {secondKeyword ? `, ${secondKeyword}` : ''}
             </span>
@@ -74,14 +74,14 @@ function SavedNews({ isLoggedIn, savedArticles, handleDeleteArticle, ...props })
             </span>
           </p>
         </div>
-        <div className="saved-news__container">
+        {savedArticles.length ? (<div className="saved-news__container">
           <NewsCardList
             cards={savedArticles}
             isSavedNewsOpened={true}
             isLoggedIn={isLoggedIn}
             handleDeleteArticle={handleDeleteArticle}
           />
-        </div>
+        </div>) : ''}
       </main>
     </>
   );

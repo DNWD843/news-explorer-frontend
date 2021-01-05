@@ -48,7 +48,6 @@ import './App.css';
  * @since v.1.0.0
  */
 function App() {
-  //const currentUser = { userName: 'Вася' }; // TODO: на следующем этапе сюда сохранять контекст пользователя
 
   const [isLoginPopupOpened, setIsLoginPopupOpened] = useState(false);
   const [isRegisterPopupOpened, setIsRegisterPopupOpened] = useState(false);
@@ -59,6 +58,7 @@ function App() {
   const [savedNewsCards, setSavedNewsCards] = useState([]);
   const [foundNewsCards, setFoundNewsCards] = useState([]);
   const [isSearchDone, setIsSearchDone] = useState(false);
+  const [isSearching, setIsSearching] = useState(false);
 
   /**
    * @method
@@ -131,11 +131,11 @@ function App() {
    * @since v.1.0.0
    */
   const handleClickLogOut = () => {
+    setIsLoggedIn(false);
     removeTokenFromStorage();
     removeUserDataFromStorage();
     removeSavedNewsFromStorage();
     removeFoundNewsFromStorage();
-    setIsLoggedIn(false);
     setCurrentUser({});
     setFoundNewsCards([]);
     setIsSearchDone(false);
@@ -231,12 +231,10 @@ function App() {
   const handleDeleteArticle = (article) => {
     deleteArticle(article._id)
       .then((res) => {
-        console.log({ res });
         const resultCardsArray = savedNewsCards.filter((savedCard) => {
           return savedCard._id !== article._id;
         });
         setSavedNewsCards(resultCardsArray);
-        removeSavedNewsFromStorage();
         setSavedNewsToStorage(resultCardsArray);
       })
       .catch((err) => {
@@ -246,11 +244,9 @@ function App() {
 
   const handleSaveArticle = (article) => {
     addArticleToSavedNews(article)
-      .then((card) => {
-        console.log(card);
-        const resultCardsArray = savedNewsCards.concat(card);
+      .then((newCard) => {
+        const resultCardsArray = savedNewsCards.concat(newCard);
         setSavedNewsCards(resultCardsArray);
-        removeSavedNewsFromStorage();
         setSavedNewsToStorage(resultCardsArray);
       })
       .catch((err) => {
@@ -260,13 +256,13 @@ function App() {
 
   const handleSearchFormSubmit = (userQuery) => {
     setIsSearchDone(false);
+    setIsSearching(true);
     setFoundNewsCards([]);
     getArticlesFromNewsApi(userQuery)
       .then((res) => {
         const formattedNewsCards = res.articles.map((article, index) => ({
           _id: index + 1,
           source: article.source.name,
-
           keyword: userQuery[0].toUpperCase().concat(userQuery.slice(1).toLowerCase()),
           title: article.title,
           text: article.description,
@@ -275,26 +271,30 @@ function App() {
           image: article.urlToImage,
         }));
         setFoundNewsCards(formattedNewsCards);
-        setIsSearchDone(true);
+        //setIsSearchDone(true);
         if (isLoggedIn) {
           setFoundNewsToStorage(formattedNewsCards);
         }
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsSearching(false);
+        setIsSearchDone(true);
       });
   };
 
   useEffect(() => {
-    const user = getUserDataFromStorage();
-    const token = getTokenFromStorage();
-    const savedNews = getSavedNewsFromStorage();
-    const foundNews = getFoundNewsFromStorage();
-    if (user && token) {
-      setCurrentUser(user);
-      setSavedNewsCards(savedNews);
-      if (foundNews) {
-        setFoundNewsCards(foundNews);
+    const userDataFromStorage = getUserDataFromStorage();
+    const tokenFromStorage = getTokenFromStorage();
+    const savedNewsFromStorage = getSavedNewsFromStorage();
+    const foundNewsFromStorage = getFoundNewsFromStorage();
+    if (userDataFromStorage && tokenFromStorage) {
+      setCurrentUser(userDataFromStorage);
+      setSavedNewsCards(savedNewsFromStorage);
+      if (foundNewsFromStorage) {
+        setFoundNewsCards(foundNewsFromStorage);
         setIsSearchDone(true);
       }
       setIsLoggedIn(true);
@@ -318,6 +318,7 @@ function App() {
               <SearchForm handleSearchFormSubmit={handleSearchFormSubmit} />
             </Header>
             <Main
+              isSearching={isSearching}
               isSearchDone={isSearchDone}
               searchResult={foundNewsCards}
               isLoggedIn={isLoggedIn}

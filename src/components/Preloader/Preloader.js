@@ -1,4 +1,4 @@
-import { forPreloader as config } from '../../configs/configsForComponents';
+import { forPreloader as config } from '../../configs/configForComponents';
 import './Preloader.css';
 
 /**
