@@ -92,6 +92,7 @@ function NewsCard({
             </div>
             <p className="card__description">{text}</p>
           </div>
+
           <p className="card__source">{source}</p>
         </div>
       </a>

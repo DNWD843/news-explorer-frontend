@@ -1,4 +1,4 @@
-import { forNoResult as config } from '../../configs/configsForComponents';
+import { forNoResult as config } from '../../configs/configForComponents';
 import './NoResult.css';
 
 /**

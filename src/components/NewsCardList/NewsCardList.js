@@ -26,9 +26,9 @@ function NewsCardList({
 
   return (
     <ul className={newsCardListClassName}>
-      {cards.map((card) => (
+      {cards.map((card, index) => (
         <NewsCard
-          key={card._id}
+          key={index + 1}
           {...card}
           isSavedNewsOpened={isSavedNewsOpened}
           isLoggedIn={isLoggedIn}

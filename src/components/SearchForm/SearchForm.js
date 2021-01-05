@@ -1,4 +1,6 @@
 import { forSearchForm as config } from '../../configs/configForComponents';
+import { useFormWithValidation } from '../../hooks/useFormWithValidation';
+import { useEffect } from 'react';
 import './SearchForm.css';
 
 /**
@@ -8,10 +10,26 @@ import './SearchForm.css';
  * @returns {JSX}
  * @since v.1.0.0
  */
-function SearchForm() {
+function SearchForm({ handleSearchFormSubmit }) {
   const { title, description, placeholderText, submitButtonText } = config;
+
+  const { values, errors, isFormValid, handleInputChange, resetForm } = useFormWithValidation();
+
+  const { searchInput } = values;
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    console.log({ searchInput });
+    handleSearchFormSubmit(searchInput);
+  };
+
+  useEffect(() => {
+    resetForm();
+    //eslint-disable-next-line
+  }, []);
+
   return (
-    <form className="search-form">
+    <form className="search-form" onSubmit={handleSubmit}>
       <div className="search-form__container">
         <h1 className="search-form__title">{title}</h1>
         <p className="search-form__description">{description}</p>
@@ -19,12 +37,21 @@ function SearchForm() {
           <div className="search-form__field">
             <input
               type="text"
-              name="search-input"
+              id="searchInput"
+              name="searchInput"
               className="search-form__input"
+              onChange={handleInputChange}
+              value={searchInput || ''}
               placeholder={placeholderText}
+              required
             />
           </div>
-          <button className="search-form__submit-button">{submitButtonText}</button>
+          <span className="search-form__input-error" id="searchInput-error">
+            {errors.searchInput || ''}
+          </span>
+          <button className="search-form__submit-button" disabled={!isFormValid}>
+            {submitButtonText}
+          </button>
         </div>
       </div>
     </form>

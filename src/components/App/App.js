@@ -4,7 +4,8 @@ import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import * as to from '../../utils/routesMap';
-import searchResultCards from '../../mocks/searchResultCards'; // временно имитирую получение карточек от сервера
+import { getFormattedDate } from '../../utils/date';
+//import searchResultCards from '../../mocks/searchResultCards'; // временно имитирую получение карточек от сервера
 //import savedCards from '../../mocks/savedCards'; // временно имитирую получение карточек от сервера
 import Login from '../Login/Login';
 import Register from '../Register/Register';
@@ -21,18 +22,21 @@ import {
   addArticleToSavedNews,
 } from '../../utils/MainApi';
 import {
-  //getFoundNewsFromStorage,
+  getFoundNewsFromStorage,
   getSavedNewsFromStorage,
   getTokenFromStorage,
   getUserDataFromStorage,
+  removeFoundNewsFromStorage,
   removeSavedNewsFromStorage,
   removeTokenFromStorage,
   removeUserDataFromStorage,
+  setFoundNewsToStorage,
   setSavedNewsToStorage,
   setTokenToStorage,
   setUserDataToStorage,
 } from '../../utils/storage';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { getArticlesFromNewsApi } from '../../utils/NewsApi';
 import './App.css';
 
 /**
@@ -53,7 +57,8 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [savedNewsCards, setSavedNewsCards] = useState([]);
-  const [foundNewsCards, setFoundNewsCards] = useState(searchResultCards);
+  const [foundNewsCards, setFoundNewsCards] = useState([]);
+  const [isSearchDone, setIsSearchDone] = useState(false);
 
   /**
    * @method
@@ -129,8 +134,11 @@ function App() {
     removeTokenFromStorage();
     removeUserDataFromStorage();
     removeSavedNewsFromStorage();
+    removeFoundNewsFromStorage();
     setIsLoggedIn(false);
     setCurrentUser({});
+    setFoundNewsCards([]);
+    setIsSearchDone(false);
   };
 
   /**
@@ -250,15 +258,45 @@ function App() {
       });
   };
 
+  const handleSearchFormSubmit = (userQuery) => {
+    setIsSearchDone(false);
+    setFoundNewsCards([]);
+    getArticlesFromNewsApi(userQuery)
+      .then((res) => {
+        const formattedNewsCards = res.articles.map((article, index) => ({
+          _id: index + 1,
+          source: article.source.name,
+
+          keyword: userQuery[0].toUpperCase().concat(userQuery.slice(1).toLowerCase()),
+          title: article.title,
+          text: article.description,
+          date: getFormattedDate(article.publishedAt),
+          link: article.url,
+          image: article.urlToImage,
+        }));
+        setFoundNewsCards(formattedNewsCards);
+        setIsSearchDone(true);
+        if (isLoggedIn) {
+          setFoundNewsToStorage(formattedNewsCards);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     const user = getUserDataFromStorage();
     const token = getTokenFromStorage();
     const savedNews = getSavedNewsFromStorage();
-    //const foundNews = getFoundNewsFromStorage();
+    const foundNews = getFoundNewsFromStorage();
     if (user && token) {
       setCurrentUser(user);
       setSavedNewsCards(savedNews);
-      //setFoundNewsCards(foundNews);
+      if (foundNews) {
+        setFoundNewsCards(foundNews);
+        setIsSearchDone(true);
+      }
       setIsLoggedIn(true);
     }
   }, []);
@@ -277,15 +315,16 @@ function App() {
               isPopupOpened={isLoginPopupOpened || isRegisterPopupOpened}
               onOverlayClick={handleClickOnOverlay}
             >
-              <SearchForm />
+              <SearchForm handleSearchFormSubmit={handleSearchFormSubmit} />
             </Header>
-
             <Main
+              isSearchDone={isSearchDone}
               searchResult={foundNewsCards}
               isLoggedIn={isLoggedIn}
               handleDeleteArticle={handleDeleteArticle}
               handleSaveArticle={handleSaveArticle}
             />
+            )
           </Route>
 
           <ProtectedRoute

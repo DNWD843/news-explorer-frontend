@@ -60,6 +60,19 @@
   transform: translateX(-2px);
 }
 
+.search-form__input-error {
+  position: absolute;
+  left: 25px;
+  bottom: -30px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  height: 2em;
+
+  color: #ff0000;
+}
+
 @media screen and (max-width: 1280px) {
   .saved-news {
     padding-bottom: 24px;
