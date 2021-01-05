@@ -18,6 +18,7 @@ import {
   getUserDataFromDataBase,
   getSavedNewsFromDataBase,
   deleteArticle,
+  addArticleToSavedNews,
 } from '../../utils/MainApi';
 import {
   //getFoundNewsFromStorage,
@@ -219,13 +220,27 @@ function App() {
     }
   };
 
-  const handleDeleteArticle = (card) => {
-    deleteArticle(card._id)
+  const handleDeleteArticle = (article) => {
+    deleteArticle(article._id)
       .then((res) => {
         console.log({ res });
         const resultCardsArray = savedNewsCards.filter((savedCard) => {
-          return savedCard._id !== card._id;
+          return savedCard._id !== article._id;
         });
+        setSavedNewsCards(resultCardsArray);
+        removeSavedNewsFromStorage();
+        setSavedNewsToStorage(resultCardsArray);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleSaveArticle = (article) => {
+    addArticleToSavedNews(article)
+      .then((card) => {
+        console.log(card);
+        const resultCardsArray = savedNewsCards.concat(card);
         setSavedNewsCards(resultCardsArray);
         removeSavedNewsFromStorage();
         setSavedNewsToStorage(resultCardsArray);
@@ -269,6 +284,7 @@ function App() {
               searchResult={foundNewsCards}
               isLoggedIn={isLoggedIn}
               handleDeleteArticle={handleDeleteArticle}
+              handleSaveArticle={handleSaveArticle}
             />
           </Route>
 

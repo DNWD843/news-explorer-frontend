@@ -13,7 +13,7 @@ import './Main.css';
  * @returns {JSX}
  * @since v.1.0.0
  */
-function Main({ isLoggedIn, searchResult, handleDeleteArticle }) {
+function Main({ isLoggedIn, searchResult, handleDeleteArticle, handleSaveArticle }) {
   return (
     <>
       <main className="content">
@@ -23,6 +23,7 @@ function Main({ isLoggedIn, searchResult, handleDeleteArticle }) {
           searchResult={searchResult}
           isLoggedIn={isLoggedIn}
           handleDeleteArticle={handleDeleteArticle}
+          handleSaveArticle={handleSaveArticle}
         />
         <About />
       </main>

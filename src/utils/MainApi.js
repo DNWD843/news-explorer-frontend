@@ -74,3 +74,19 @@ export const deleteArticle = (articleId) => {
     return Promise.reject(`Ошибка ${res.status}: ${res.statusText}`);
   });
 };
+
+export const addArticleToSavedNews = (article) => {
+  return fetch(`${BASE_URL}${PATH_TO.SAVED_NEWS}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      authorization: `Bearer ${getTokenFromStorage()}`,
+    },
+    body: JSON.stringify(article),
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка ${res.status}: ${res.statusText}`);
+  });
+};

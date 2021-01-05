@@ -13,7 +13,7 @@ import './SearchResult.css';
  * @returns {JSX}
  * @since v.1.0.0
  */
-function SearchResult({ searchResult, isLoggedIn, handleDeleteArticle }) {
+function SearchResult({ searchResult, isLoggedIn, handleDeleteArticle, handleSaveArticle }) {
   const { title, showMoreButtonText } = config;
 
   const [cardsToRender, setCardsToRender] = useState([]);
@@ -55,6 +55,7 @@ function SearchResult({ searchResult, isLoggedIn, handleDeleteArticle }) {
         isSavedNewsOpened={false}
         isLoggedIn={isLoggedIn}
         handleDeleteArticle={handleDeleteArticle}
+        handleSaveArticle={handleSaveArticle}
       />
       <button
         onClick={handleClickShowMoreButton}

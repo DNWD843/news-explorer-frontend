@@ -30,7 +30,8 @@ function NewsCard({
   image,
   isSavedNewsOpened,
   isLoggedIn,
-  handleDeleteArticle,
+  deleteArticle,
+  saveArticle,
 }) {
   const {
     altText,
@@ -70,10 +71,10 @@ function NewsCard({
    */
   const handleClickOnBookmark = () => {
     if (isLoggedIn && !isSavedNewsOpened && !isSavedToCollection) {
-      console.log('новость добавляется в коллекцию'); //TODO: удалить на следующем этапе
+      saveArticle({ source, keyword, title, text, date, link, image });
       setIsSavedToCollection(true);
     } else if ((isLoggedIn && !isSavedNewsOpened && isSavedToCollection) || isSavedNewsOpened) {
-      handleDeleteArticle({ _id });
+      deleteArticle({ _id });
       setIsSavedToCollection(false);
     }
   };

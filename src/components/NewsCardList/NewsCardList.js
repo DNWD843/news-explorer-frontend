@@ -12,7 +12,13 @@ import './NewsCardList.css';
  * @returns {JSX}
  * @since v.1.0.0
  */
-function NewsCardList({ cards, isSavedNewsOpened, isLoggedIn, handleDeleteArticle }) {
+function NewsCardList({
+  cards,
+  isSavedNewsOpened,
+  isLoggedIn,
+  handleDeleteArticle,
+  handleSaveArticle,
+}) {
   const newsCardListClassName = classNames('news-card-list', {
     'search-result__cards': !isSavedNewsOpened,
     'saved-news__container': isSavedNewsOpened,
@@ -26,7 +32,8 @@ function NewsCardList({ cards, isSavedNewsOpened, isLoggedIn, handleDeleteArticl
           {...card}
           isSavedNewsOpened={isSavedNewsOpened}
           isLoggedIn={isLoggedIn}
-          handleDeleteArticle={handleDeleteArticle}
+          deleteArticle={handleDeleteArticle}
+          saveArticle={handleSaveArticle}
         />
       ))}
     </ul>
