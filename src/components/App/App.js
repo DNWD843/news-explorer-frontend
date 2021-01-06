@@ -236,18 +236,20 @@ function App() {
         });
         setSavedNewsCards(resultCardsArray);
         setSavedNewsToStorage(resultCardsArray);
+        findAndUpdateFoundNewsCard(article._id, foundNewsCards, { _id: undefined });
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const handleSaveArticle = (article) => {
+  const handleSaveArticle = (article, id) => {
     addArticleToSavedNews(article)
       .then((newCard) => {
         const resultCardsArray = savedNewsCards.concat(newCard);
         setSavedNewsCards(resultCardsArray);
         setSavedNewsToStorage(resultCardsArray);
+        findAndUpdateFoundNewsCard(id, foundNewsCards, newCard);
       })
       .catch((err) => {
         console.log(err);
@@ -271,7 +273,6 @@ function App() {
           image: article.urlToImage,
         }));
         setFoundNewsCards(formattedNewsCards);
-        //setIsSearchDone(true);
         if (isLoggedIn) {
           setFoundNewsToStorage(formattedNewsCards);
         }
@@ -283,6 +284,16 @@ function App() {
         setIsSearching(false);
         setIsSearchDone(true);
       });
+  };
+
+  const findAndUpdateFoundNewsCard = (id, cardsArray, newCard) => {
+    const arrayWithUpdatedCard = cardsArray.map((card, index) =>
+      card._id === id ? (() => {
+        card._id = newCard._id ? newCard._id : index + 1;
+        return card;
+      })() : card);
+    setFoundNewsCards(arrayWithUpdatedCard);
+    setFoundNewsToStorage(arrayWithUpdatedCard);
   };
 
   useEffect(() => {

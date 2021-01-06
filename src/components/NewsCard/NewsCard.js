@@ -1,6 +1,5 @@
 import { forNewsCard as config } from '../../configs/configForComponents';
 import classNames from 'classnames';
-import { useState } from 'react';
 import './NewsCard.css';
 
 /**
@@ -41,7 +40,7 @@ function NewsCard({
     tooltipTextForSavedNewsPage,
   } = config;
 
-  const [isSavedToCollection, setIsSavedToCollection] = useState(false);
+  const isSavedToCollection = typeof (_id) !== 'number';
 
   const cardBookmarkClassName = classNames('card__bookmark', {
     card__bookmark_page_main:
@@ -71,11 +70,9 @@ function NewsCard({
    */
   const handleClickOnBookmark = () => {
     if (isLoggedIn && !isSavedNewsOpened && !isSavedToCollection) {
-      saveArticle({ source, keyword, title, text, date, link, image });
-      setIsSavedToCollection(true);
+      saveArticle({ source, keyword, title, text, date, link, image }, _id);
     } else if ((isLoggedIn && !isSavedNewsOpened && isSavedToCollection) || isSavedNewsOpened) {
       deleteArticle({ _id });
-      setIsSavedToCollection(false);
     }
   };
 
