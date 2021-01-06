@@ -29,6 +29,7 @@ function SavedNewsHeader({
   isMobileMenuOpened,
   isPopupOpened,
   onOverlayClick,
+  children,
 }) {
   const { headerLogoText } = config;
 
@@ -64,7 +65,7 @@ function SavedNewsHeader({
           className={headerMobileMenuButtonClassName}
         />
       </div>
-
+      {children}
       <div className={headerMobileMenuOverlayClassName} onClick={onOverlayClick}>
         <Menu
           onLogInClick={onLogInClick}

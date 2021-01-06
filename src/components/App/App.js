@@ -325,7 +325,6 @@ function App() {
               handleDeleteArticle={handleDeleteArticle}
               handleSaveArticle={handleSaveArticle}
             />
-            )
           </Route>
 
           <ProtectedRoute

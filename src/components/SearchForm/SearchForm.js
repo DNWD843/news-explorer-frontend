@@ -45,10 +45,11 @@ function SearchForm({ handleSearchFormSubmit }) {
               required
 
             />
+            <span className="search-form__input-error" id="searchInput-error">
+              {errors.searchInput || ''}
+            </span>
           </div>
-          <span className="search-form__input-error" id="searchInput-error">
-            {errors.searchInput || ''}
-          </span>
+
           <button className="search-form__submit-button" disabled={!isFormValid}>
             {submitButtonText}
           </button>

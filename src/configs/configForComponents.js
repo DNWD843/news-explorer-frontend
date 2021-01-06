@@ -39,7 +39,7 @@ export const forNoResult = {
 
 export const forPreloader = { title: 'Идет поиск новостей...' };
 
-export const forSavedNews = { pageName: 'Сохраненные статьи' };
+export const forSavedNewsInfo = { pageName: 'Сохраненные статьи' };
 
 export const forSavedNewsHeader = { headerLogoText: 'NewsExplorer' };
 
