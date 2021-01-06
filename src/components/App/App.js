@@ -37,6 +37,10 @@ import {
 } from '../../utils/storage';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { getArticlesFromNewsApi } from '../../utils/NewsApi';
+import {
+  INVALID_AUTHORIZATION_DATA_MESSAGE,
+  INVALID_REGISTRATION_DATA_MESSAGE,
+} from '../../configs';
 import './App.css';
 
 /**
@@ -48,7 +52,6 @@ import './App.css';
  * @since v.1.0.0
  */
 function App() {
-
   const [isLoginPopupOpened, setIsLoginPopupOpened] = useState(false);
   const [isRegisterPopupOpened, setIsRegisterPopupOpened] = useState(false);
   const [isRegSuccessTooltipOpened, setIsRegSuccessTooltipOpened] = useState(false);
@@ -60,7 +63,6 @@ function App() {
   const [isSearchDone, setIsSearchDone] = useState(false);
   const [isRequestProcessing, setIsRequestProcessing] = useState(false);
   const [isSearchInProgress, setIsSearchInProgress] = useState(false);
-
 
   /**
    * @method
@@ -171,6 +173,9 @@ function App() {
           setIsRegSuccessTooltipOpened(true);
           document.addEventListener('keydown', handleEscClose);
         } else {
+          if (serverError.statusCode) {
+            serverError.message = INVALID_REGISTRATION_DATA_MESSAGE;
+          }
           showError(serverError.message);
         }
       })
@@ -209,11 +214,18 @@ function App() {
               console.log(err);
             });
         } else {
+          if (res.statusCode) {
+            res.message = INVALID_AUTHORIZATION_DATA_MESSAGE;
+          }
           showError(res.message);
         }
       })
-      .catch((err) => { console.log(err); })
-      .finally(() => { setIsRequestProcessing(false); });
+      .catch((err) => {
+        console.log({ err });
+      })
+      .finally(() => {
+        setIsRequestProcessing(false);
+      });
   };
 
   /**
@@ -292,10 +304,13 @@ function App() {
 
   const findAndUpdateFoundNewsCard = (id, cardsArray, newCard) => {
     const arrayWithUpdatedCard = cardsArray.map((card, index) =>
-      card._id === id ? (() => {
-        card._id = newCard._id ? newCard._id : index + 1;
-        return card;
-      })() : card);
+      card._id === id
+        ? (() => {
+            card._id = newCard._id ? newCard._id : index + 1;
+            return card;
+          })()
+        : card,
+    );
     setFoundNewsCards(arrayWithUpdatedCard);
     setFoundNewsToStorage(arrayWithUpdatedCard);
   };
@@ -330,7 +345,10 @@ function App() {
               isPopupOpened={isLoginPopupOpened || isRegisterPopupOpened}
               onOverlayClick={handleClickOnOverlay}
             >
-              <SearchForm handleSearchFormSubmit={handleSearchFormSubmit} isSearchInProgress={isSearchInProgress} />
+              <SearchForm
+                handleSearchFormSubmit={handleSearchFormSubmit}
+                isSearchInProgress={isSearchInProgress}
+              />
             </Header>
             <Main
               isSearchInProgress={isSearchInProgress}
