@@ -58,7 +58,9 @@ function App() {
   const [savedNewsCards, setSavedNewsCards] = useState([]);
   const [foundNewsCards, setFoundNewsCards] = useState([]);
   const [isSearchDone, setIsSearchDone] = useState(false);
-  const [isSearching, setIsSearching] = useState(false);
+  const [isRequestProcessing, setIsRequestProcessing] = useState(false);
+  const [isSearchInProgress, setIsSearchInProgress] = useState(false);
+
 
   /**
    * @method
@@ -183,6 +185,7 @@ function App() {
    * @since v.1.0.0
    */
   const handleLogin = ({ email, password }, showError) => {
+    setIsRequestProcessing(true);
     login(email, password)
       .then((res) => {
         if (res.token) {
@@ -209,7 +212,8 @@ function App() {
           showError(res.message);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => { console.log(err); })
+      .finally(() => { setIsRequestProcessing(false); });
   };
 
   /**
@@ -258,7 +262,7 @@ function App() {
 
   const handleSearchFormSubmit = (userQuery) => {
     setIsSearchDone(false);
-    setIsSearching(true);
+    setIsSearchInProgress(true);
     setFoundNewsCards([]);
     getArticlesFromNewsApi(userQuery)
       .then((res) => {
@@ -281,7 +285,7 @@ function App() {
         console.log(err);
       })
       .finally(() => {
-        setIsSearching(false);
+        setIsSearchInProgress(false);
         setIsSearchDone(true);
       });
   };
@@ -326,10 +330,10 @@ function App() {
               isPopupOpened={isLoginPopupOpened || isRegisterPopupOpened}
               onOverlayClick={handleClickOnOverlay}
             >
-              <SearchForm handleSearchFormSubmit={handleSearchFormSubmit} />
+              <SearchForm handleSearchFormSubmit={handleSearchFormSubmit} isSearchInProgress={isSearchInProgress} />
             </Header>
             <Main
-              isSearching={isSearching}
+              isSearchInProgress={isSearchInProgress}
               isSearchDone={isSearchDone}
               searchResult={foundNewsCards}
               isLoggedIn={isLoggedIn}
@@ -364,6 +368,7 @@ function App() {
           onOverlayClick={handleClickOnOverlay}
           onRedirectLinkClick={handleClickRegister}
           handleLogin={handleLogin}
+          isRequestProcessing={isRequestProcessing}
         />
         <Register
           isOpened={isRegisterPopupOpened}
@@ -371,6 +376,7 @@ function App() {
           onOverlayClick={handleClickOnOverlay}
           onRedirectLinkClickClick={handleClickLogIn}
           handleRegister={handleRegister}
+          isRequestProcessing={isRequestProcessing}
         />
         <InfoTooltip
           isOpened={isRegSuccessTooltipOpened}

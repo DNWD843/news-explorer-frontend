@@ -68,6 +68,11 @@
   color: #b6bcbf;
 }
 
+.search-form__input:disabled {
+  outline: none;
+  background: transparent;
+}
+
 .search-form__submit-button {
   display: flex;
   align-items: center;
@@ -110,7 +115,6 @@
   font-size: 12px;
   line-height: 15px;
   height: 2em;
-
   color: #ff0000;
 }
 

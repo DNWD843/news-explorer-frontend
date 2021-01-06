@@ -15,7 +15,7 @@ import { forRegister as config } from '../../configs/configForComponents';
  * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
  * @since v.1.0.0
  */
-function Register({ isOpened, onClose, onOverlayClick, onRedirectLinkClickClick, handleRegister }) {
+function Register({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRedirectLinkClickClick, handleRegister }) {
   const {
     formTitle,
     submitButtonText,
@@ -81,6 +81,7 @@ function Register({ isOpened, onClose, onOverlayClick, onRedirectLinkClickClick,
               value={email || ''}
               className={`form__input`}
               placeholder={emailPlaceholder}
+              disabled={isRequestProcessing}
               required
             />
             <span className="form__input-error" id="email-input-error">
@@ -97,6 +98,7 @@ function Register({ isOpened, onClose, onOverlayClick, onRedirectLinkClickClick,
               value={regPassword || ''}
               className="form__input"
               placeholder={passwordPlaceholder}
+              disabled={isRequestProcessing}
               required
             />
             <span className="form__input-error" id="regPassword-input-error">
@@ -115,6 +117,7 @@ function Register({ isOpened, onClose, onOverlayClick, onRedirectLinkClickClick,
               placeholder={namePlaceholder}
               minLength={nameMinLength}
               maxLength={nameMaxLength}
+              disabled={isRequestProcessing}
               required
             />
             <span className="form__input-error" id="name-input-error">

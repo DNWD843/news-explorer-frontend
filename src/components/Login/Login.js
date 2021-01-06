@@ -15,7 +15,7 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
  * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
  * @since v.1.0.0
  */
-function Login({ isOpened, onClose, onOverlayClick, onRedirectLinkClick, handleLogin }) {
+function Login({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRedirectLinkClick, handleLogin }) {
   const {
     formTitle,
     submitButtonText,
@@ -74,6 +74,7 @@ function Login({ isOpened, onClose, onOverlayClick, onRedirectLinkClick, handleL
               value={login || ''}
               className="form__input"
               placeholder={emailPlaceholder}
+              disabled={isRequestProcessing}
               required
             />
             <span className="form__input-error" id="login-input-error">
@@ -90,6 +91,7 @@ function Login({ isOpened, onClose, onOverlayClick, onRedirectLinkClick, handleL
               value={password || ''}
               className="form__input"
               placeholder={passwordPlaceholder}
+              disabled={isRequestProcessing}
               required
             />
             <span className="form__input-error" id="password-input-error">

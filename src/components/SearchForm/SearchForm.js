@@ -10,7 +10,7 @@ import './SearchForm.css';
  * @returns {JSX}
  * @since v.1.0.0
  */
-function SearchForm({ handleSearchFormSubmit }) {
+function SearchForm({ handleSearchFormSubmit, isSearchInProgress }) {
   const { title, description, placeholderText, submitButtonText } = config;
 
   const { values, errors, isFormValid, handleInputChange, resetForm } = useFormWithValidation();
@@ -42,6 +42,7 @@ function SearchForm({ handleSearchFormSubmit }) {
               onChange={handleInputChange}
               value={searchInput || ''}
               placeholder={placeholderText}
+              disabled={isSearchInProgress}
               required
 
             />
