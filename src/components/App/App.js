@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import * as to from '../../utils/routesMap';
 import { getFormattedDate } from '../../utils/date';
-//import searchResultCards from '../../mocks/searchResultCards'; // временно имитирую получение карточек от сервера
-//import savedCards from '../../mocks/savedCards'; // временно имитирую получение карточек от сервера
 import Login from '../Login/Login';
 import Register from '../Register/Register';
 import InfoTooltip from '../InfoTooltip/InfoTooltip';
@@ -63,6 +61,8 @@ function App() {
   const [isSearchDone, setIsSearchDone] = useState(false);
   const [isRequestProcessing, setIsRequestProcessing] = useState(false);
   const [isSearchInProgress, setIsSearchInProgress] = useState(false);
+
+  const history = useHistory();
 
   /**
    * @method
@@ -143,6 +143,7 @@ function App() {
     setCurrentUser({});
     setFoundNewsCards([]);
     setIsSearchDone(false);
+    history.push(to.MAIN);
   };
 
   /**
@@ -328,6 +329,8 @@ function App() {
         setIsSearchDone(true);
       }
       setIsLoggedIn(true);
+    } else {
+      setIsLoginPopupOpened(true);
     }
   }, []);
 
@@ -374,9 +377,11 @@ function App() {
             handleDeleteArticle={handleDeleteArticle}
           />
 
+          {/*
           <Route path={to.MAIN}>
             <Redirect to={to.MAIN} />
           </Route>
+*/}
         </Switch>
 
         <Footer />
