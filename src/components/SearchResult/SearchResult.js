@@ -14,7 +14,7 @@ import './SearchResult.css';
  * @since v.1.0.0
  */
 function SearchResult({ searchResult, isLoggedIn, handleDeleteArticle, handleSaveArticle }) {
-  const { title, showMoreButtonText } = config;
+  const { TITLE, SHOW_MORE_BUTTON_TEXT } = config;
 
   const [cardsToRender, setCardsToRender] = useState([]);
   const [cardsToRenderQuantity, setCardsToRenderQuantity] = useState(3);
@@ -49,7 +49,7 @@ function SearchResult({ searchResult, isLoggedIn, handleDeleteArticle, handleSav
 
   return (
     <section className="search-result">
-      <h2 className="search-result__title">{title}</h2>
+      <h2 className="search-result__title">{TITLE}</h2>
       <NewsCardList
         cards={cardsToRender}
         isSavedNewsOpened={false}
@@ -63,7 +63,7 @@ function SearchResult({ searchResult, isLoggedIn, handleDeleteArticle, handleSav
         type="button"
         className={showMoreButtonClassName}
       >
-        {showMoreButtonText}
+        {SHOW_MORE_BUTTON_TEXT}
       </button>
     </section>
   );

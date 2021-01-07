@@ -15,20 +15,27 @@ import { forRegister as config } from '../../configs/configForComponents';
  * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
  * @since v.1.0.0
  */
-function Register({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRedirectLinkClickClick, handleRegister }) {
+function Register({
+  isOpened,
+  isRequestProcessing,
+  onClose,
+  onOverlayClick,
+  onRedirectLinkClickClick,
+  handleRegister,
+}) {
   const {
-    formTitle,
-    submitButtonText,
-    redirectTitleText,
-    redirectLinkText,
-    emailLabel,
-    emailPlaceholder,
-    passwordLabel,
-    passwordPlaceholder,
-    nameLabel,
-    namePlaceholder,
-    nameMinLength,
-    nameMaxLength,
+    FORM_TITLE,
+    SUBMIT_BUTTON_TEXT,
+    REDIRECT_TITLE_TEXT,
+    REDIRECT_LINK_TEXT,
+    EMAIL_LABEL,
+    EMAIL_PLACEHOLDER,
+    PASSWORD_LABEL,
+    PASSWORD_PLACEHOLDER,
+    NAME_LABEL,
+    NAME_PLACEHOLDER,
+    NAME_MIN_LENGTH,
+    NAME_MAX_LENGTH,
   } = config;
 
   const {
@@ -57,10 +64,10 @@ function Register({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRe
 
   return (
     <PopupWithForm
-      formTitle={formTitle}
-      submitButtonText={submitButtonText}
-      redirectTitleText={redirectTitleText}
-      redirectLinkText={redirectLinkText}
+      formTitle={FORM_TITLE}
+      submitButtonText={SUBMIT_BUTTON_TEXT}
+      redirectTitleText={REDIRECT_TITLE_TEXT}
+      redirectLinkText={REDIRECT_LINK_TEXT}
       isOpened={isOpened}
       onClose={onClose}
       onOverlayClick={onOverlayClick}
@@ -72,7 +79,7 @@ function Register({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRe
       <>
         <ul className="form__inputs">
           <li className="form__field">
-            <label className="form__input-label">{emailLabel}</label>
+            <label className="form__input-label">{EMAIL_LABEL}</label>
             <input
               id="email"
               name="email"
@@ -80,7 +87,7 @@ function Register({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRe
               onChange={handleInputChange}
               value={email || ''}
               className={`form__input`}
-              placeholder={emailPlaceholder}
+              placeholder={EMAIL_PLACEHOLDER}
               disabled={isRequestProcessing}
               required
             />
@@ -89,7 +96,7 @@ function Register({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRe
             </span>
           </li>
           <li className="form__field">
-            <label className="form__input-label">{passwordLabel}</label>
+            <label className="form__input-label">{PASSWORD_LABEL}</label>
             <input
               id="regPassword"
               name="regPassword"
@@ -97,7 +104,7 @@ function Register({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRe
               onChange={handleInputChange}
               value={regPassword || ''}
               className="form__input"
-              placeholder={passwordPlaceholder}
+              placeholder={PASSWORD_PLACEHOLDER}
               disabled={isRequestProcessing}
               required
             />
@@ -106,7 +113,7 @@ function Register({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRe
             </span>
           </li>
           <li className="form__field">
-            <label className="form__input-label">{nameLabel}</label>
+            <label className="form__input-label">{NAME_LABEL}</label>
             <input
               id="name"
               name="name"
@@ -114,9 +121,9 @@ function Register({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRe
               onChange={handleInputChange}
               value={name || ''}
               className="form__input"
-              placeholder={namePlaceholder}
-              minLength={nameMinLength}
-              maxLength={nameMaxLength}
+              placeholder={NAME_PLACEHOLDER}
+              minLength={NAME_MIN_LENGTH}
+              maxLength={NAME_MAX_LENGTH}
               disabled={isRequestProcessing}
               required
             />

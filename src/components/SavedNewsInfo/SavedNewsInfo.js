@@ -7,7 +7,7 @@ import './SavedNewsInfo.css';
 
 function SavedNewsInfo({ savedArticles }) {
   const currentUser = React.useContext(CurrentUserContext);
-  const { pageName } = config;
+  const { PAGE_NAME, BY_KEYWORD, BY_KEYWORDS, AND, ANOTHER } = config;
 
   const titleTextFragment = pluralize(savedArticles.length, configuration.forSavedNewsTitle);
   const titleText = currentUser.name.concat(titleTextFragment);
@@ -42,20 +42,22 @@ function SavedNewsInfo({ savedArticles }) {
   const firstKeyword = keywordsList[0];
   const secondKeyword = keywordsList[1];
   const thirdKeyword = keywordsList[2];
-  const byKeyWordsFragment = keywordsList.length === 1 ? 'По ключевому слову: ' : 'По ключевым словам: ';
+  const byKeyWordsFragment = keywordsList.length === 1 ? BY_KEYWORD : BY_KEYWORDS;
 
   return (
     <div className="saved-news-info">
-      <p className="saved-news-info__page-name">{pageName}</p>
+      <p className="saved-news-info__page-name">{PAGE_NAME}</p>
       <h2 className="saved-news-info__title">{titleText}</h2>
       <p className="saved-news-info__keywords saved-news-info__keywords_accent_no-accent">
         {keywordsList.length ? byKeyWordsFragment : ''}
         <span className="saved-news-info__keywords saved-news-info__keywords_accent_bold">
           {firstKeyword} {secondKeyword ? `, ${secondKeyword}` : ''}
         </span>
-        {keywordsList.length > 2 ? ' и ' : ''}
+        {keywordsList.length > 2 ? AND : ''}
         <span className="saved-news-info__keywords saved-news-info__keywords_accent_bold">
-          {keywordsList.length > 3 ? ` ${keywordsList.length - 2} другим` : `${thirdKeyword || ''}`}
+          {keywordsList.length > 3
+            ? ` ${keywordsList.length - 2} ${ANOTHER}`
+            : `${thirdKeyword || ''}`}
         </span>
       </p>
     </div>

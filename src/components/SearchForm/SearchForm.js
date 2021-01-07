@@ -11,7 +11,7 @@ import './SearchForm.css';
  * @since v.1.0.0
  */
 function SearchForm({ handleSearchFormSubmit, isSearchInProgress }) {
-  const { title, description, placeholderText, submitButtonText, EMPTY_INPUT_ERROR } = config;
+  const { TITLE, DESCRIPTION, PLACEHOLDER_TEXT, SUBMIT_BUTTON_TEXT, EMPTY_INPUT_ERROR } = config;
 
   const { values, errors, isFormValid, handleInputChange, resetForm } = useFormWithValidation();
 
@@ -30,8 +30,8 @@ function SearchForm({ handleSearchFormSubmit, isSearchInProgress }) {
   return (
     <form className="search-form" onSubmit={handleSubmit}>
       <div className="search-form__container">
-        <h1 className="search-form__title">{title}</h1>
-        <p className="search-form__description">{description}</p>
+        <h1 className="search-form__title">{TITLE}</h1>
+        <p className="search-form__description">{DESCRIPTION}</p>
         <div className="search-form__search-stroke">
           <div className="search-form__field">
             <input
@@ -41,7 +41,7 @@ function SearchForm({ handleSearchFormSubmit, isSearchInProgress }) {
               className="search-form__input"
               onChange={handleInputChange}
               value={searchInput || ''}
-              placeholder={placeholderText}
+              placeholder={PLACEHOLDER_TEXT}
               disabled={isSearchInProgress}
               required
             />
@@ -51,7 +51,7 @@ function SearchForm({ handleSearchFormSubmit, isSearchInProgress }) {
           </div>
 
           <button className="search-form__submit-button" disabled={!isFormValid}>
-            {submitButtonText}
+            {SUBMIT_BUTTON_TEXT}
           </button>
         </div>
       </div>

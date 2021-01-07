@@ -33,14 +33,14 @@ function NewsCard({
   saveArticle,
 }) {
   const {
-    altText,
-    tooltipTextForMainPageNotLoggedIn,
-    tooltipTextForMainPageToSave,
-    tooltipTextForMainPageToDelete,
-    tooltipTextForSavedNewsPage,
+    ALT_TEXT,
+    TOOLTIP_MAIN_PAGE_NOT_LOGGED_IN,
+    TOOLTIP_MAIN_PAGE_TO_SAVE,
+    TOOLTIP_MAIN_PAGE_TO_DELETE,
+    TOOLTIP_SAVED_NEWS,
   } = config;
 
-  const isSavedToCollection = typeof (_id) !== 'number';
+  const isSavedToCollection = typeof _id !== 'number';
 
   const cardBookmarkClassName = classNames('card__bookmark', {
     card__bookmark_page_main:
@@ -79,7 +79,7 @@ function NewsCard({
   return (
     <li className="card news-card-list__item">
       <a href={link} className="card__link" target="_blank" rel="noopener noreferrer">
-        <img className="card__image" src={image} alt={altText} />
+        <img className="card__image" src={image} alt={ALT_TEXT} />
         <div className="card__info">
           <p className="card__date">{date}</p>
 
@@ -102,10 +102,10 @@ function NewsCard({
         disabled={!isLoggedIn}
       ></button>
       <div className={cardTooltipClassName}>
-        {isSavedNewsOpened && tooltipTextForSavedNewsPage}
-        {!isLoggedIn && tooltipTextForMainPageNotLoggedIn}
-        {!isSavedNewsOpened && isLoggedIn && !isSavedToCollection && tooltipTextForMainPageToSave}
-        {!isSavedNewsOpened && isLoggedIn && isSavedToCollection && tooltipTextForMainPageToDelete}
+        {isSavedNewsOpened && TOOLTIP_SAVED_NEWS}
+        {!isLoggedIn && TOOLTIP_MAIN_PAGE_NOT_LOGGED_IN}
+        {!isSavedNewsOpened && isLoggedIn && !isSavedToCollection && TOOLTIP_MAIN_PAGE_TO_SAVE}
+        {!isSavedNewsOpened && isLoggedIn && isSavedToCollection && TOOLTIP_MAIN_PAGE_TO_DELETE}
       </div>
     </li>
   );

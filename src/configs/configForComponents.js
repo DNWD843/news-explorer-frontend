@@ -1,35 +1,36 @@
 export const forAbout = {
-  imgSrc: 'https://wikipet.ru/uploads/posts/2019-02/1549868089_1.jpg',
-  imgAlt: 'фото автора Wikipet',
-  title: 'Об авторе',
-  aboutAuthor: `Дмитрий Неклюдов - веб-разработчик, джуниор.
+  IMG_SRC: 'https://wikipet.ru/uploads/posts/2019-02/1549868089_1.jpg',
+  IMG_ALT: 'фото автора Wikipet',
+  TITLE: 'Об авторе',
+  ABOUT_AUTHOR: `Дмитрий Неклюдов - веб-разработчик, джуниор.
                 Стек технологий: HTML5 / CSS3 / Javascript / React / Node.js.`,
-  somethingAbout: `Если Вам понравилась и, особенно, если не понравилась, эта работа, буду признателен за обратную связь.
-     Пишите мне в Telegram - t.me/DNWD843.
-     Добавляйтесь в LinkedIn - dnwd843. Больше работ на GitHub.`,
+  DESCRIPTION: `Если Вам понравилась или не понравилась эта работа, буду признателен за обратную связь.
+     Пишите мне в Telegram - t.me/DNWD843. Добавляйтесь в LinkedIn - dnwd843. Больше работ на GitHub.`,
 };
 
 export const forFooter = {
-  copyrightText: '© 2020 Supersite, Powered by News API',
-  navLinkText: 'Главная',
-  outerLinkText: 'Яндекс.Практикум',
-  outerLink: 'https://praktikum.yandex.ru',
-  socialLinkGithub: 'https://github.com/DNWD843',
-  socialLinkFacebook: 'https://facebook.com',
+  COPYRIGHT_TEXT: '© 2020 Supersite, Powered by News API',
+  NAV_LINK_TEXT: 'Главная',
+  OUTER_LINK_TEXT: 'Яндекс.Практикум',
+  OUTER_LINK: 'https://praktikum.yandex.ru',
+  SOCIAL_LINK_GITHUB: 'https://github.com/DNWD843',
+  SOCIAL_LINK_FACEBOOK: 'https://facebook.com',
 };
 
-export const forHeader = { headerLogoText: 'NewsExplorer', authorizationTitle: 'Авторизоваться' };
+export const forHeader = {
+  HEADER_LOGO_TEXT: 'NewsExplorer',
+};
 
 export const forNavigation = {
-  mainLinkText: 'Главная',
-  savedNewsLinkText: 'Сохраненные статьи',
+  MAIN_LINK_TEXT: 'Главная',
+  SAVED_NEWS_LINK_TEXT: 'Сохраненные статьи',
 };
 
 export const forSearchForm = {
-  title: 'Что творится в мире?',
-  description: 'Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.',
-  placeholderText: 'Введите тему новости',
-  submitButtonText: 'Искать',
+  TITLE: 'Что творится в мире?',
+  DESCRIPTION: 'Находите самые свежие статьи на любую тему и сохраняйте в своём личном кабинете.',
+  PLACEHOLDER_TEXT: 'Введите тему новости',
+  SUBMIT_BUTTON_TEXT: 'Искать',
   EMPTY_INPUT_ERROR: 'Нужно ввести ключевое слово',
 };
 
@@ -41,56 +42,63 @@ export const forNoResult = {
     'Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз',
 };
 
-export const forPreloader = { title: 'Идет поиск новостей...' };
+export const forPreloader = { TITLE: 'Идет поиск новостей...' };
 
-export const forSavedNewsInfo = { pageName: 'Сохраненные статьи' };
+export const forSavedNewsInfo = {
+  PAGE_NAME: 'Сохраненные статьи',
+  BY_KEYWORD: 'По ключевому слову: ',
+  BY_KEYWORDS: 'По ключевым словам: ',
+  AND: ' и ',
+  ANOTHER: 'другим',
+};
 
-export const forSavedNewsHeader = { headerLogoText: 'NewsExplorer' };
+export const forSavedNewsHeader = { HEADER_LOGO_TEXT: 'NewsExplorer' };
 
 export const forSearchResult = {
-  title: 'Результаты поиска',
-  showMoreButtonText: 'Показать еще',
+  TITLE: 'Результаты поиска',
+  SHOW_MORE_BUTTON_TEXT: 'Показать еще',
 };
 
 export const forNewsCard = {
-  altText: 'изображение к статье',
-  tooltipTextForMainPageNotLoggedIn: 'Войдите, чтобы сохранять статьи',
-  tooltipTextForSavedNewsPage: 'Убрать из сохранённых',
-  tooltipTextForMainPageToSave: 'Сохранить',
-  tooltipTextForMainPageToDelete: 'Отменить сохранение',
+  ALT_TEXT: 'изображение к статье',
+  TOOLTIP_MAIN_PAGE_NOT_LOGGED_IN: 'Войдите, чтобы сохранять статьи',
+  TOOLTIP_SAVED_NEWS: 'Убрать из сохранённых',
+  TOOLTIP_MAIN_PAGE_TO_SAVE: 'Сохранить',
+  TOOLTIP_MAIN_PAGE_TO_DELETE: 'Отменить сохранение',
 };
 
 export const forRegister = {
-  formTitle: 'Регистрация',
-  submitButtonText: 'Зарегистрироваться',
-  redirectTitleText: 'или ',
-  redirectLinkText: 'Войти',
-  emailLabel: 'Email',
-  emailPlaceholder: 'Введите почту',
-  passwordLabel: 'Пароль',
-  passwordPlaceholder: 'Введите пароль',
-  nameLabel: 'Имя',
-  namePlaceholder: 'Введите своё имя',
-  nameMinLength: '2',
-  nameMaxLength: '30',
+  FORM_TITLE: 'Регистрация',
+  SUBMIT_BUTTON_TEXT: 'Зарегистрироваться',
+  REDIRECT_TITLE_TEXT: 'или ',
+  REDIRECT_LINK_TEXT: 'Войти',
+  EMAIL_LABEL: 'Email',
+  EMAIL_PLACEHOLDER: 'Введите почту',
+  PASSWORD_LABEL: 'Пароль',
+  PASSWORD_PLACEHOLDER: 'Введите пароль',
+  NAME_LABEL: 'Имя',
+  NAME_PLACEHOLDER: 'Введите своё имя',
+  NAME_MIN_LENGTH: '2',
+  NAME_MAX_LENGTH: '30',
 };
 
 export const forLogin = {
-  formTitle: 'Вход',
-  submitButtonText: 'Войти',
-  redirectTitleText: 'или ',
-  redirectLinkText: 'Зарегистрироваться',
-  emailLabel: 'Email',
-  emailPlaceholder: 'Введите почту',
-  passwordLabel: 'Пароль',
-  passwordPlaceholder: 'Введите пароль',
+  FORM_TITLE: 'Вход',
+  SUBMIT_BUTTON_TEXT: 'Войти',
+  REDIRECT_TITLE_TEXT: 'или ',
+  REDIRECT_LINK_TEXT: 'Зарегистрироваться',
+  EMAIL_LABEL: 'Email',
+  EMAIL_PLACEHOLDER: 'Введите почту',
+  PASSWORD_LABEL: 'Пароль',
+  PASSWORD_PLACEHOLDER: 'Введите пароль',
 };
 
 export const forRegistrationSuccessToolTip = {
-  redirectTitleText: 'Пользователь успешно зарегистрирован!',
-  redirectLinkText: 'Войти',
+  REDIRECT_TITLE_TEXT: 'Пользователь успешно зарегистрирован!',
+  REDIRECT_LINK_TEXT: 'Войти',
 };
 
 export const forMenu = {
-  buttonImageAlt: 'иконка кнопки выйти',
+  BUTTON_IMAGE_ALT: 'иконка кнопки выйти',
+  AUTHORIZATION_TITLE: 'Авторизоваться',
 };

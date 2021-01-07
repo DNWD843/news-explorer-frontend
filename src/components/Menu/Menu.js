@@ -23,15 +23,8 @@ import './Menu.css';
  * @returns {JSX}
  * @since v.1.0.0
  */
-function Menu({
-  isLoggedIn,
-  onLogOutClick,
-  onLogInClick,
-  authorizationTitle,
-  isMobile,
-  isMobileMenuOpened,
-}) {
-  const { buttonImageAlt } = config;
+function Menu({ isLoggedIn, onLogOutClick, onLogInClick, isMobile, isMobileMenuOpened }) {
+  const { BUTTON_IMAGE_ALT, AUTHORIZATION_TITLE } = config;
   const currentUser = useContext(CurrentUserContext);
   const menuClassName = classNames('menu', {
     menu_mobile: isMobile,
@@ -52,12 +45,12 @@ function Menu({
           <span className="menu__button-title">{currentUser.name}</span>
           <Switch>
             <Route exact path={to.MAIN}>
-              <img src={pathToMainIcon} alt={buttonImageAlt} className="menu__button-icon" />
+              <img src={pathToMainIcon} alt={BUTTON_IMAGE_ALT} className="menu__button-icon" />
             </Route>
             <Route path={to.SAVED_NEWS}>
               <img
                 src={isMobile ? pathToMainIcon : pathToSavedNewsIcon}
-                alt={buttonImageAlt}
+                alt={BUTTON_IMAGE_ALT}
                 className="menu__button-icon"
               />
             </Route>
@@ -65,7 +58,7 @@ function Menu({
         </button>
       ) : (
         <button onClick={onLogInClick} type="button" className={authButtonClassName}>
-          <span className="menu__button-title">{authorizationTitle}</span>
+          <span className="menu__button-title">{AUTHORIZATION_TITLE}</span>
         </button>
       )}
     </div>

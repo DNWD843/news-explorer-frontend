@@ -30,7 +30,7 @@ function Header({
   isPopupOpened,
   onOverlayClick,
 }) {
-  const { headerLogoText, authorizationTitle } = config;
+  const { HEADER_LOGO_TEXT } = config;
 
   const headerContainerClassName = classNames('header__container', {
     header__container_mobile: isMobileMenuOpened,
@@ -48,13 +48,13 @@ function Header({
   return (
     <header className="header">
       <div className={headerContainerClassName}>
-        <p className="header__logo">{headerLogoText}</p>
+        <p className="header__logo">{HEADER_LOGO_TEXT}</p>
         <Menu
           onLogInClick={onLogInClick}
           onLogOutClick={onLogOutClick}
           isLoggedIn={isLoggedIn}
-          authorizationTitle={authorizationTitle}
           isMobile={false}
+          isMobileMenuOpened={isMobileMenuOpened}
         />
         <button
           type="button"
@@ -70,7 +70,6 @@ function Header({
           onLogInClick={onLogInClick}
           onLogOutClick={onLogOutClick}
           isLoggedIn={isLoggedIn}
-          authorizationTitle={authorizationTitle}
           isMobile={true}
           isMobileMenuOpened={isMobileMenuOpened}
         />

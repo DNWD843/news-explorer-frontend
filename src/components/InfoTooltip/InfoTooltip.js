@@ -14,7 +14,7 @@ import './InfoTooltip.css';
  * @since v.1.0.0
  */
 function InfoTooltip({ onOverlayClick, isOpened, onClose, onRedirectLinkClick }) {
-  const { redirectTitleText, redirectLinkText } = config;
+  const { REDIRECT_TITLE_TEXT, REDIRECT_LINK_TEXT } = config;
 
   const infoTooltipOverlayClassName = classNames('popup-info', 'page__overlay-info', {
     'popup-info_opened': isOpened,
@@ -24,9 +24,9 @@ function InfoTooltip({ onOverlayClick, isOpened, onClose, onRedirectLinkClick })
     <div onClick={onOverlayClick} className={infoTooltipOverlayClassName}>
       <div className="popup-info__container">
         <button type="button" onClick={onClose} className="popup-info__close-button"></button>
-        <h2 className="popup-info__tooltip-title">{redirectTitleText}</h2>
+        <h2 className="popup-info__tooltip-title">{REDIRECT_TITLE_TEXT}</h2>
         <p onClick={onRedirectLinkClick} className="popup-info__redirect-link">
-          {redirectLinkText}
+          {REDIRECT_LINK_TEXT}
         </p>
       </div>
     </div>

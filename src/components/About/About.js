@@ -9,19 +9,19 @@ import './About.css';
  * @since v.1.0.0
  */
 function About() {
-  const { imgSrc, imgAlt, title, aboutAuthor, somethingAbout } = config;
+  const { IMG_SRC, IMG_ALT, TITLE, ABOUT_AUTHOR, DESCRIPTION } = config;
 
   return (
     <section className="about">
-      <img className="about__image" src={imgSrc} alt={imgAlt} />
+      <img className="about__image" src={IMG_SRC} alt={IMG_ALT} />
       <div className="about__info">
-        <h2 className="about__title">{title}</h2>
+        <h2 className="about__title">{TITLE}</h2>
         <ul className="about__description">
           <li className="about__description-item">
-            <p className="about__description-fragment">{aboutAuthor}</p>
+            <p className="about__description-fragment">{ABOUT_AUTHOR}</p>
           </li>
           <li className="about__description-item">
-            <p className="about__description-fragment">{somethingAbout}</p>
+            <p className="about__description-fragment">{DESCRIPTION}</p>
           </li>
         </ul>
       </div>

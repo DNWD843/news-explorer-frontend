@@ -31,7 +31,7 @@ function SavedNewsHeader({
   onOverlayClick,
   children,
 }) {
-  const { headerLogoText } = config;
+  const { HEADER_LOGO_TEXT } = config;
 
   const headerContainerClassName = classNames('saved-news-header__container', {
     'saved-news-header__container_mobile': isMobileMenuOpened,
@@ -50,7 +50,7 @@ function SavedNewsHeader({
     <header className="saved-news-header">
       <div className={headerContainerClassName}>
         <Link to={MAIN} className="saved-news-header__link">
-          <p className="saved-news-header__logo">{headerLogoText}</p>
+          <p className="saved-news-header__logo">{HEADER_LOGO_TEXT}</p>
         </Link>
 
         <Menu
@@ -58,6 +58,7 @@ function SavedNewsHeader({
           onLogOutClick={onLogOutClick}
           isLoggedIn={isLoggedIn}
           isMobile={false}
+          isMobileMenuOpened={isMobileMenuOpened}
         />
         <button
           type="button"

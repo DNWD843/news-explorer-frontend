@@ -9,11 +9,11 @@ import './Preloader.css';
  * @since v.1.0.0
  */
 function Preloader() {
-  const { title } = config;
+  const { TITLE } = config;
   return (
     <div className="preloader">
       <div className="preloader__element"></div>
-      <p className="preloader__title">{title}</p>
+      <p className="preloader__title">{TITLE}</p>
     </div>
   );
 }

@@ -15,16 +15,23 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
  * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
  * @since v.1.0.0
  */
-function Login({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRedirectLinkClick, handleLogin }) {
+function Login({
+  isOpened,
+  isRequestProcessing,
+  onClose,
+  onOverlayClick,
+  onRedirectLinkClick,
+  handleLogin,
+}) {
   const {
-    formTitle,
-    submitButtonText,
-    redirectTitleText,
-    redirectLinkText,
-    emailLabel,
-    emailPlaceholder,
-    passwordLabel,
-    passwordPlaceholder,
+    FORM_TITLE,
+    SUBMIT_BUTTON_TEXT,
+    REDIRECT_TITLE_TEXT,
+    REDIRECT_LINK_TEXT,
+    EMAIL_LABEL,
+    EMAIL_PLACEHOLDER,
+    PASSWORD_LABEL,
+    PASSWORD_PLACEHOLDER,
   } = config;
 
   const {
@@ -36,6 +43,7 @@ function Login({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRedir
     formError,
     setFormError,
   } = useFormWithValidation();
+
   const { login, password } = values;
 
   const handleSubmit = (evt) => {
@@ -50,10 +58,10 @@ function Login({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRedir
 
   return (
     <PopupWithForm
-      formTitle={formTitle}
-      submitButtonText={submitButtonText}
-      redirectTitleText={redirectTitleText}
-      redirectLinkText={redirectLinkText}
+      formTitle={FORM_TITLE}
+      submitButtonText={SUBMIT_BUTTON_TEXT}
+      redirectTitleText={REDIRECT_TITLE_TEXT}
+      redirectLinkText={REDIRECT_LINK_TEXT}
       isOpened={isOpened}
       onClose={onClose}
       onOverlayClick={onOverlayClick}
@@ -65,7 +73,7 @@ function Login({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRedir
       <>
         <ul className="form__inputs">
           <li className="form__field">
-            <label className="form__input-label">{emailLabel}</label>
+            <label className="form__input-label">{EMAIL_LABEL}</label>
             <input
               id="login"
               name="login"
@@ -73,7 +81,7 @@ function Login({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRedir
               onChange={handleInputChange}
               value={login || ''}
               className="form__input"
-              placeholder={emailPlaceholder}
+              placeholder={EMAIL_PLACEHOLDER}
               disabled={isRequestProcessing}
               required
             />
@@ -82,7 +90,7 @@ function Login({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRedir
             </span>
           </li>
           <li className="form__field">
-            <label className="form__input-label">{passwordLabel}</label>
+            <label className="form__input-label">{PASSWORD_LABEL}</label>
             <input
               id="password"
               name="password"
@@ -90,7 +98,7 @@ function Login({ isOpened, isRequestProcessing, onClose, onOverlayClick, onRedir
               onChange={handleInputChange}
               value={password || ''}
               className="form__input"
-              placeholder={passwordPlaceholder}
+              placeholder={PASSWORD_PLACEHOLDER}
               disabled={isRequestProcessing}
               required
             />

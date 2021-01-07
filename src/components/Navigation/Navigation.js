@@ -16,7 +16,7 @@ import './Navigation.css';
  * @since v.1.0.0
  */
 function Navigation({ isLoggedIn, onClick, isMobile }) {
-  const { mainLinkText, savedNewsLinkText } = config;
+  const { MAIN_LINK_TEXT, SAVED_NEWS_LINK_TEXT } = config;
 
   const navbarClassName = classNames('navbar', {
     navbar_mobile: isMobile,
@@ -54,7 +54,7 @@ function Navigation({ isLoggedIn, onClick, isMobile }) {
             className={linkToMainPageClassName}
             activeClassName={activeLinkClassName}
           >
-            {mainLinkText}
+            {MAIN_LINK_TEXT}
           </NavLink>
         </li>
         <li className={hiddenLinkClassName}>
@@ -64,7 +64,7 @@ function Navigation({ isLoggedIn, onClick, isMobile }) {
             activeClassName={activeLinkClassName}
             onClick={onClick}
           >
-            {savedNewsLinkText}
+            {SAVED_NEWS_LINK_TEXT}
           </NavLink>
         </li>
       </ul>
