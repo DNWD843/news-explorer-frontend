@@ -61,6 +61,7 @@ function App() {
   const [isSearchDone, setIsSearchDone] = useState(false);
   const [isRequestProcessing, setIsRequestProcessing] = useState(false);
   const [isSearchInProgress, setIsSearchInProgress] = useState(false);
+  const [isSearchFailed, setIsSearchFailed] = useState(false);
 
   const history = useHistory();
 
@@ -274,6 +275,7 @@ function App() {
   };
 
   const handleSearchFormSubmit = (userQuery) => {
+    setIsSearchFailed(false);
     setIsSearchDone(false);
     setIsSearchInProgress(true);
     setFoundNewsCards([]);
@@ -296,6 +298,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        setIsSearchFailed(true);
       })
       .finally(() => {
         setIsSearchInProgress(false);
@@ -356,6 +359,7 @@ function App() {
             <Main
               isSearchInProgress={isSearchInProgress}
               isSearchDone={isSearchDone}
+              isSearchFailed={isSearchFailed}
               searchResult={foundNewsCards}
               isLoggedIn={isLoggedIn}
               handleDeleteArticle={handleDeleteArticle}

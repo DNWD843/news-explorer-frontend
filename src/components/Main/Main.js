@@ -13,20 +13,32 @@ import './Main.css';
  * @returns {JSX}
  * @since v.1.0.0
  */
-function Main({ isLoggedIn, isSearchDone, isSearchInProgress, searchResult, handleDeleteArticle, handleSaveArticle }) {
+function Main({
+  isLoggedIn,
+  isSearchDone,
+  isSearchInProgress,
+  isSearchFailed,
+  searchResult,
+  handleDeleteArticle,
+  handleSaveArticle,
+}) {
   return (
     <>
       <main className="content">
         {isSearchInProgress && <Preloader />}
-        {isSearchDone && searchResult.length === 0 && <NoResult />}
-        {searchResult.length > 0 && (
-          <SearchResult
-            searchResult={searchResult}
-            isLoggedIn={isLoggedIn}
-            handleDeleteArticle={handleDeleteArticle}
-            handleSaveArticle={handleSaveArticle}
-          />
-        )}
+        {isSearchDone ? (
+          !isSearchFailed && searchResult.length > 0 ? (
+            <SearchResult
+              searchResult={searchResult}
+              isLoggedIn={isLoggedIn}
+              handleDeleteArticle={handleDeleteArticle}
+              handleSaveArticle={handleSaveArticle}
+            />
+          ) : (
+            <NoResult isSearchFailed={isSearchFailed} />
+          )
+        ) : null}
+
         <About />
       </main>
     </>

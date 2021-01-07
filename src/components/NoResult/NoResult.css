@@ -34,6 +34,12 @@
   color: #b6bcbf;
 }
 
+@media screen and (max-width: 540px) {
+  .no-result__title {
+    max-width: 288px;
+  }
+}
+
 @media screen and (max-width: 400px) {
   .no-result__description {
     max-width: 288px;

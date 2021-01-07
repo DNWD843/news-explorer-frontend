@@ -11,7 +11,7 @@ import './SearchForm.css';
  * @since v.1.0.0
  */
 function SearchForm({ handleSearchFormSubmit, isSearchInProgress }) {
-  const { title, description, placeholderText, submitButtonText } = config;
+  const { title, description, placeholderText, submitButtonText, EMPTY_INPUT_ERROR } = config;
 
   const { values, errors, isFormValid, handleInputChange, resetForm } = useFormWithValidation();
 
@@ -44,10 +44,9 @@ function SearchForm({ handleSearchFormSubmit, isSearchInProgress }) {
               placeholder={placeholderText}
               disabled={isSearchInProgress}
               required
-
             />
             <span className="search-form__input-error" id="searchInput-error">
-              {errors.searchInput || ''}
+              {errors.searchInput ? EMPTY_INPUT_ERROR : ''}
             </span>
           </div>
 

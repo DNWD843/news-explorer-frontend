@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Navigation from '../Navigation/Navigation';
 import { Switch, Route } from 'react-router-dom';
 import classNames from 'classnames';
@@ -32,7 +32,7 @@ function Menu({
   isMobileMenuOpened,
 }) {
   const { buttonImageAlt } = config;
-  const currentUser = React.useContext(CurrentUserContext);
+  const currentUser = useContext(CurrentUserContext);
   const menuClassName = classNames('menu', {
     menu_mobile: isMobile,
     menu_desktop: !isMobile,

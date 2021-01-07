@@ -1,5 +1,5 @@
 export const BASE_URL = 'https://api.truthseeker.students.nomoreparties.xyz';
-//export const BASE_URL = 'http://localhost:4000';
+//export const BASE_URL = 'http://localhost:4000'; // for dev mode
 
 export const TOKEN_KEY = 'token';
 
@@ -9,9 +9,8 @@ export const FOUND_NEWS_KEY = 'foundNews';
 
 export const SAVED_NEWS_KEY = 'savedNews';
 
-export const NEWS_API_URL = 'https://newsapi.org/v2';
-
-//export const COUNTRY = 'ru';
+//export const NEWS_API_URL = 'https://newsapi.org/v2'; // for dev mode
+export const NEWS_API_URL = 'https://nomoreparties.co/news/v2'; // for production
 
 export const PAGE_SIZE = '100';
 
