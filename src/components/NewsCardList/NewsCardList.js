@@ -16,6 +16,7 @@ function NewsCardList({
   cards,
   isSavedNewsOpened,
   isLoggedIn,
+  openRegisterPopup,
   handleDeleteArticle,
   handleSaveArticle,
 }) {
@@ -32,6 +33,7 @@ function NewsCardList({
           {...card}
           isSavedNewsOpened={isSavedNewsOpened}
           isLoggedIn={isLoggedIn}
+          openRegisterPopup={openRegisterPopup}
           deleteArticle={handleDeleteArticle}
           saveArticle={handleSaveArticle}
         />

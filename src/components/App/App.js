@@ -362,6 +362,7 @@ function App() {
               isSearchFailed={isSearchFailed}
               searchResult={foundNewsCards}
               isLoggedIn={isLoggedIn}
+              openRegisterPopup={handleClickRegister}
               handleDeleteArticle={handleDeleteArticle}
               handleSaveArticle={handleSaveArticle}
             />

@@ -29,6 +29,7 @@ function NewsCard({
   image,
   isSavedNewsOpened,
   isLoggedIn,
+  openRegisterPopup,
   deleteArticle,
   saveArticle,
 }) {
@@ -69,7 +70,9 @@ function NewsCard({
    * @since v.1.0.0
    */
   const handleClickOnBookmark = () => {
-    if (isLoggedIn && !isSavedNewsOpened && !isSavedToCollection) {
+    if (!isLoggedIn) {
+      openRegisterPopup();
+    } else if (isLoggedIn && !isSavedNewsOpened && !isSavedToCollection) {
       saveArticle({ source, keyword, title, text, date, link, image }, _id);
     } else if ((isLoggedIn && !isSavedNewsOpened && isSavedToCollection) || isSavedNewsOpened) {
       deleteArticle({ _id });
@@ -99,7 +102,6 @@ function NewsCard({
         onClick={handleClickOnBookmark}
         className={cardBookmarkClassName}
         name="bookmark"
-        disabled={!isLoggedIn}
       ></button>
       <div className={cardTooltipClassName}>
         {isSavedNewsOpened && TOOLTIP_SAVED_NEWS}

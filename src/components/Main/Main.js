@@ -19,6 +19,7 @@ function Main({
   isSearchInProgress,
   isSearchFailed,
   searchResult,
+  openRegisterPopup,
   handleDeleteArticle,
   handleSaveArticle,
 }) {
@@ -31,6 +32,7 @@ function Main({
             <SearchResult
               searchResult={searchResult}
               isLoggedIn={isLoggedIn}
+              openRegisterPopup={openRegisterPopup}
               handleDeleteArticle={handleDeleteArticle}
               handleSaveArticle={handleSaveArticle}
             />
