@@ -102,3 +102,10 @@ export const forMenu = {
   BUTTON_IMAGE_ALT: 'иконка кнопки выйти',
   AUTHORIZATION_TITLE: 'Авторизоваться',
 };
+
+export const forPageNotFound = {
+  ERROR_STATUS: '404',
+  TITLE: 'Страница не найдена',
+  DESCRIPTION: 'Ой! Кажется, такой страницы не существует.',
+  LINK_TEXT: 'На главную',
+};

@@ -11,6 +11,7 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import SearchForm from '../SearchForm/SearchForm';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import SavedNews from '../SavedNews/SavedNews';
+import PageNoutFound from '../PageNotFound/PageNotFound';
 import {
   register,
   login,
@@ -332,9 +333,11 @@ function App() {
         setIsSearchDone(true);
       }
       setIsLoggedIn(true);
-    } else {
-      setIsLoginPopupOpened(true);
+      console.log({ loggedInAfterChanfe: isLoggedIn });
+      console.log(history.location);
     }
+    console.log(history.location);
+    console.log({ isLoggedIn });
   }, []);
 
   return (
@@ -369,6 +372,7 @@ function App() {
           </Route>
 
           <ProtectedRoute
+            /*
             path={to.SAVED_NEWS}
             isLoggedIn={isLoggedIn}
             savedArticles={savedNewsCards}
@@ -379,14 +383,16 @@ function App() {
             isMobileMenuOpened={isMobileMenuOpened}
             isPopupOpened={isLoginPopupOpened || isRegisterPopupOpened}
             onOverlayClick={handleClickOnOverlay}
-            handleDeleteArticle={handleDeleteArticle}
+            handleDeleteArticle={handleDeleteArticle} */
+
+            path={'/saved-news'}
+            component={PageNoutFound}
+            isLoggedIn={isLoggedIn}
           />
 
-          {/*
-          <Route path={to.MAIN}>
-            <Redirect to={to.MAIN} />
+          <Route path={to.ANY_ROUTE}>
+            <PageNoutFound />
           </Route>
-*/}
         </Switch>
 
         <Footer />
