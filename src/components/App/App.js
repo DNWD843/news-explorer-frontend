@@ -33,7 +33,7 @@ import {
   setSavedNewsToStorage,
   setTokenToStorage,
   setUserDataToStorage,
-} from '../../utils/storage';
+} from '../../utils/Storage';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { getArticlesFromNewsApi } from '../../utils/NewsApi';
 import {
@@ -381,10 +381,10 @@ function App() {
         setIsSearchDone(true);
       }
       setIsLoggedIn(true);
-    } else {
+    } else if (history.location.state) {
       setIsLoginPopupOpened(true);
     }
-  }, []);
+  }, [history]);
 
   return (
     <>

@@ -12,7 +12,11 @@ import { MAIN } from '../../utils/routesMap';
  */
 const ProtectedRoute = ({ component: Component, ...props }) => {
   return (
-    <Route>{() => (props.isLoggedIn ? <Component {...props} /> : <Redirect to={MAIN} />)}</Route>
+    <Route>
+      {() =>
+        props.isLoggedIn ? <Component {...props} /> : <Redirect to={{ pathname: MAIN, state: 1 }} />
+      }
+    </Route>
   );
 };
 

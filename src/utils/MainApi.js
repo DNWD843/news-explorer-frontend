@@ -1,6 +1,6 @@
 import { BASE_URL } from '../configs';
 import * as PATH_TO from './endpoints';
-import { getTokenFromStorage } from './storage';
+import { getTokenFromStorage } from './Storage';
 
 /**
  * @module MainApi
