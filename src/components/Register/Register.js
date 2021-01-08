@@ -8,10 +8,11 @@ import { forRegister as config } from '../../configs/configForComponents';
  * @description Функциональный компонент<br>
  * Попап, форма регистрации в приложение.
  * @property {Boolean} isOpened - стейт открытого состояния попапа
+ * @property {Boolean} isRequestProcessing - стейт состояния запроса: true - выполняется, false - не выполняется
  * @property {Function} onClose - колбэк, закрывает попапы при клике по крестику
  * @property {Function} onOverlayClick - колбэк, закрывает попапы при клике по оверлею
  * @property {Function} onRedirectLinkClick - колбэк, переводит на другую страницу
- * @property {Function} onSubmit - колбэк, отправляет запрос при сабмите формы
+ * @property {Function} handleRegister - колбэк, отправляет запрос при сабмите формы
  * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
  * @since v.1.0.0
  */

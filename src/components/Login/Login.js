@@ -8,10 +8,11 @@ import { useFormWithValidation } from '../../hooks/useFormWithValidation';
  * @description Функциональный компонент<br>
  * Попап, форма входа (авторизации) в приложение.
  * @property {Boolean} isOpened - - стейт открытого состояния попапа
+ * @property {Boolean} isRequestProcessing - стейт состояния запроса: true - выполняется, false - не выполняется
  * @property {Function} onClose - колбэк, закрывает попапы при клике по крестику
  * @property {Function} onOverlayClick - колбэк, закрывает попапы при клике по оверлею
  * @property {Function} onRedirectLinkClick - колбэк, переводит на другую страницу
- * @property {Function} onSubmit - колбэк, отправляет запрос при сабмите формы
+ * @property {Function} handleLogin - колбэк, отправляет запрос при сабмите формы
  * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
  * @since v.1.0.0
  */
@@ -46,6 +47,15 @@ function Login({
 
   const { login, password } = values;
 
+  /**
+   * @method handleSubmit
+   * @description Публичный метод<br>
+   * Обработчик сабмита формы. Возвращает JWT токен.
+   * @param {Event} evt - событие
+   * @public
+   * @returns {JWT}  токен
+   * @since v.1.1.0
+   */
   const handleSubmit = (evt) => {
     evt.preventDefault();
     handleLogin({ email: login, password }, setFormError);

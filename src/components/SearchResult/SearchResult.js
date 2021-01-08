@@ -10,6 +10,9 @@ import './SearchResult.css';
  * Блок отображает статьи, найденные в результате поиска по запросу пользователя.<br>
  * @property {Array} searchResult - массив с данными статей, найденых в результате поиска по запросу пользователя.
  * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
+ * @property {Function} openRegisterPopup - openRegisterPopup - колбэк, открывает попап регистрации
+ * @property {Function} handleDeleteArticle - колбэк, обработчик удаления статьи
+ * @property {Function} handleSaveArticle - колбэк, обработчик сохранения статьи
  * @returns {JSX}
  * @since v.1.0.0
  */

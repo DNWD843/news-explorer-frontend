@@ -13,11 +13,11 @@ import './SavedNewsHeader.css';
  * @property {Function} onLogInClick - колбэк, вызывается при клике по кнопке "Авторизоваться"
  *  или ссылке "Войти", открывает попап авторизации
  * @property {Function} onLogOutClick - колбэк, переводит состояние пользователя в "не авторизован"
- * @property {JSX} children - JSX-фрагмент, на главной странице через него передается форма поиска новостей
  * @property {Function} onMenuButtonClick - колбэк, открывает скрытое меню на мобильном разрешении
  * @property {Boolean} isMobileMenuOpened - стейт открытого состояния мобильного меню
  * @property {Boolean} isPopupOpened - стейт открытого состояния одного из попапов
  * @property {Function} onOverlayClick - колбэк, закрывает попапы при клике по оверлею
+ * @property {JSX} children - JSX-фрагмент, на главной странице через него передается форма поиска новостей
  * @returns {JSX}
  * @since v.1.0.0
  */

@@ -9,7 +9,13 @@ import './Main.css';
  * @description Функциональный компонент<br>
  * Блок с основным контентом страницы.<br>
  * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
- * @property {Array} SearchResult - массив с данными результата поиска
+ * @property {Boolean} isSearchDone - стейт, показывающий отправлял ли пользователь запросы.
+ * @property {Boolean} isSearchInProgress - стейт состояния запроса: true - выполняется, false - не выполняется
+ * @property {Boolean} isSearchFailed - стейт состояния результата запроса: true - не успешный, false -  успешный
+ * @property {Array} searchResult - массив с данными результата поиска
+ * @property {Function} openRegisterPopup - колбэк, открывает попап регистрации
+ * @property {Function} handleDeleteArticle - колбэк, обработчик удаления статьи
+ * @property {Function} handleSaveArticle - колбэк, обработчик сохранения статьи
  * @returns {JSX}
  * @since v.1.0.0
  */

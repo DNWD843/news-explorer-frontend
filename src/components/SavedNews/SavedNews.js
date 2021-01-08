@@ -8,8 +8,10 @@ import './SavedNews.css';
  * @description Функциональный компонент<br>
  * Отрисовывает карточки со статьями, сохраненными пользователем в своей коллекции.<br>
  * Отрисовка производится частями по три карточки.
- * @property {Array} savedArticles - массив с данными о сохраненных статьях
  * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
+ * @property {Array} savedArticles - массив с данными о сохраненных статьях
+ * @property {Function} handleDeleteArticle - колбэк, обработчик удаления статьи
+ * @property {Object} props - пробрасываемые пропсы
  * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
  * @since v.1.0.0
  */
@@ -29,9 +31,7 @@ function SavedNews({ isLoggedIn, savedArticles, handleDeleteArticle, ...props })
             handleDeleteArticle={handleDeleteArticle}
           />
         </main>
-      ) : (
-          null
-        )}
+      ) : null}
     </>
   );
 }

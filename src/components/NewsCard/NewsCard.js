@@ -6,6 +6,7 @@ import './NewsCard.css';
  * @module NewsCard
  * @description Функциональный компонент<br>
  * Карточка статьи.
+ * @property {String | Number} _id - id  статьи
  * @property {String} source - источник статьи
  * @property {String} keyword - ключевое слово статьи
  * @property {String} title - заголовок статьи
@@ -15,6 +16,9 @@ import './NewsCard.css';
  * @property {String} image - ссылка на изображение
  * @property {Boolean} isSavedNewsOpened - стейт состояния страницы с сохраненными новостями
  * @property {Boolean} isLoggedIn -  стейт состяния пользователя: авторизован/не авторизован
+ * @property {Function} openRegisterPopup - колбэк, открывает попап регистрации
+ * @property {Function} deleteArticle - колбэк, удаляет статью
+ * @property {Function} saveArticle - колбэк, сохраняет статью
  * @returns {JSX}
  * @since v.1.0.0
  */

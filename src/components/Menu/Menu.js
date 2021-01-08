@@ -16,8 +16,6 @@ import './Menu.css';
  * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
  * @property {Function} onLogOutClick - колбэк, переводит состояние пользователя в "не авторизован"
  * @property {Function} onLogInClick - колбэк, вызывается при клике по кнопке "Авторизоваться"
- * @property {String} userName - имя пользователя
- * @property {String} authorizationTitle - заголовок кнопки входа/выхода (авторизации)
  * @property {Boolean} isMobile -стейт состояния меню - мобильное (на мобильном разрешении)
  * @property {Boolean} isMobileMenuOpened - стейт открытого состояния мобильного меню
  * @returns {JSX}

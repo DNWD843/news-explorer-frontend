@@ -9,9 +9,8 @@ import './Navigation.css';
  * @description Функциональный компонент<br>
  * Блок навигации по сайту.<br>
  * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
- * @property {Boolean} isMobile -стейт состояния меню - мобильное (на мобильном разрешении)
  * @property {Function} onClick - колбэк, вызывается при клике по навигационным ссылкам
- * @property {Boolean} isMobileMenuOpened - стейт открытого состояния мобильного меню
+ * @property {Boolean} isMobile -стейт состояния меню - мобильное (на мобильном разрешении)
  * @returns {JSX}
  * @since v.1.0.0
  */

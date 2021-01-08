@@ -16,6 +16,7 @@ import './PopupWithForm.css';
  * @property {Function} onRedirectLinkClick - колбэк, вызывается при клике по ссылке переадресации,
  * @property {Boolean} isDisabled - стейт состояния кнопки сабмит
  * @property {Function} onSubmit -  колбэк, вызывается при сабмите формы
+ * @property {String} formError - текст ошибки, полученной от сервера в результате обработки запроса.
  * @returns {JSX}
  * @since v.1.0.0
  */

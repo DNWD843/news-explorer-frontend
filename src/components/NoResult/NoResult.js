@@ -5,6 +5,7 @@ import './NoResult.css';
  * @module NoResult
  * @description Функциональный компонент<br>
  * Блок с отображением отсутствия результатов поиска.<br>
+ * @param {Boolean} isSearchFailed - стейт состояния результата запроса: true - не успешный, false -  успешный
  * @returns {JSX}
  * @since v.1.0.0
  */

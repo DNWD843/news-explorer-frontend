@@ -7,6 +7,8 @@ import './SearchForm.css';
  * @module SearchForm
  * @description Функциональный компонент<br>
  * Блок с формой поиска новостей.<br>
+ * @property {Function} handleSearchFormSubmit - колбэк, обработчик сабмита формы поиска
+ * @property {Boolean} isSearchInProgress - стейт состояния запроса: true - выполняется, false - не выполняется
  * @returns {JSX}
  * @since v.1.0.0
  */

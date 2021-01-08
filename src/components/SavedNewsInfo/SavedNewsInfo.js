@@ -5,6 +5,14 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { forSavedNewsInfo as config } from '../../configs/configForComponents';
 import './SavedNewsInfo.css';
 
+/**
+ * @module SavedNewsInfo
+ * @description Функциональный компонент<br>
+ * Блок с информацией о сохраненных статьях.
+ * @param {Array} savedArticles -  массив сохраненных статей
+ * @returns {JSX}
+ * @since v.1.1.0
+ */
 function SavedNewsInfo({ savedArticles }) {
   const currentUser = React.useContext(CurrentUserContext);
   const { PAGE_NAME, BY_KEYWORD, BY_KEYWORDS, AND, ANOTHER } = config;
@@ -16,7 +24,7 @@ function SavedNewsInfo({ savedArticles }) {
    * @method getKeywordsTopList
    * @description Метод обрабатывает ключевые слова (категории) статей и сортирует их по популярности.
    *  Возвращает массив с ключевыми словами, отсортированными по популярности по убыванию.
-   * @param {Array} articlesArray - массив данных статей
+   * @param {Array} articlesArray - массив с данными сохраненных статей
    * @public
    * @since v.1.0.0
    */

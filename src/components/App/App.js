@@ -11,7 +11,7 @@ import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import SearchForm from '../SearchForm/SearchForm';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import SavedNews from '../SavedNews/SavedNews';
-import PageNoutFound from '../PageNotFound/PageNotFound';
+import PageNotFound from '../PageNotFound/PageNotFound';
 import {
   register,
   login,
@@ -118,7 +118,7 @@ function App() {
 
   /**
    * @method  handleClickLogIn
-   * @description Публичный метод<br>
+   * @description Обработчик клика по кнопке "Войти"<br>
    * Стрелочная функция, открывает попап авторизации при клике по кнопке "Авторизация" или ссылке "Войти"
    * @public
    * @since v.1.0.0
@@ -131,7 +131,7 @@ function App() {
 
   /**
    * @method  handleClickLogOut
-   * @description Публичный метод<br>
+   * @description Обработчик клика по кнопке "Выйти"<br>
    * Стрелочная функция, выход из аккаунта при клике по кнопке с иконкой "Выйти"
    * @public
    * @since v.1.0.0
@@ -150,7 +150,7 @@ function App() {
 
   /**
    * @method  handleClickRegister
-   * @description Публичный метод<br>
+   * @description Обработчик клика по кнопке "Зарегистрироваться"<br>
    * Стрелочная функция, открывает попап регистрации при клике по ссылке "Зарегистрироваться"
    * @public
    * @since v.1.0.0
@@ -163,8 +163,13 @@ function App() {
 
   /**
    * @method  handleRegister
-   * @description Публичный метод<br>
+   * @description Обработчик запроса на регистрацию пользователя<br>
    * Стрелочная функция, отправляет запрос на регистрацию пользователя, передает введенные данные
+   * @param {Object} userData - объект с регистрационными данными пользователя
+   * @param {String} userData.email - емэйл
+   * @param {String} userData.password - пароль
+   * @param {String} userData.name - имя
+   * @param {Function} showError - колбэк, отображает ошибку регистрации, полученную от сервера
    * @public
    * @since v.1.0.0
    */
@@ -187,8 +192,12 @@ function App() {
 
   /**
    * @method  handleLogin
-   * @description Публичный метод<br>
+   * @description Обработчик запроса на авторизацию пользователя<br>
    * Стрелочная функция, отправляет запрос на авторизацию пользователя, передает введенные данные
+   * @param {Object} userData - объект с регистрационными данными пользователя
+   * @param {String} userData.email - емэйл
+   * @param {String} userData.password - пароль
+   * @param {Function} showError - колбэк, отображает ошибку регистрации, полученную от сервера
    * @public
    * @since v.1.0.0
    */
@@ -233,7 +242,7 @@ function App() {
 
   /**
    * @method  handleClickMenuButton
-   * @description Публичный метод<br>
+   * @description Обработчик клика по кнопке "Мобильное меню"<br>
    * Стрелочная функция, открывает мобильное меню, закрывает мобильное меню или открытый попап
    *  при клике по кнопке меню на мобильном разрешении
    * @public
@@ -247,11 +256,45 @@ function App() {
     }
   };
 
+  /**
+   * @method findAndUpdateFoundNewsCard
+   * @description Публичный метод<br>
+   * Находит статью в результатах поиска и обновляет ее id.
+   * Если статья сохраняется - id, присвоенный при отрисовке, заменяется на id, присвоенный при сохранении в БД.<br>
+   * Если статья удаляется - id заменяется на её индекс в массиве.
+   * @param {Number| String} id - существущий id  статьи
+   * @param {Array} cardsArray - массив статей (результаты поиска)
+   * @param {Object} newCard - новый id (статья сохраняется), undefined если статья удаляется
+   * @public
+   * @since v.1.1.0
+   */
+  const findAndUpdateFoundNewsCard = (id, cardsArray, newCard) => {
+    const arrayWithUpdatedCard = cardsArray.map((card, index) =>
+      card._id === id
+        ? (() => {
+            card._id = newCard._id ? newCard._id : index + 1;
+            return card;
+          })()
+        : card,
+    );
+    setFoundNewsCards(arrayWithUpdatedCard);
+    setFoundNewsToStorage(arrayWithUpdatedCard);
+  };
+
+  /**
+   * @method handleDeleteArticle
+   * @description Обработчик запроса на удаление статьи<br>
+   * @param {Object} article - объект с данными карточки статьи
+   * @param {String} article._id - id статьи, которую надо удалить (это id, присвоенный БД
+   *  при сохранении статьи)
+   * @public
+   * @since v.1.1.0
+   */
   const handleDeleteArticle = (article) => {
     deleteArticle(article._id)
       .then((res) => {
-        const resultCardsArray = savedNewsCards.filter((savedCard) => {
-          return savedCard._id !== article._id;
+        const resultCardsArray = savedNewsCards.filter((сard) => {
+          return сard._id !== article._id;
         });
         setSavedNewsCards(resultCardsArray);
         setSavedNewsToStorage(resultCardsArray);
@@ -262,6 +305,15 @@ function App() {
       });
   };
 
+  /**
+   * @method handleSaveArticle
+   * @description Обработчик запроса на сохранение статьи<br>
+   * @param {Object} article - объект с данными статьи, которую надо сохранить
+   * @param {Number} id - id статьи, которую нужно сохранить. (этот id равен индексу статьи
+   *  в массиве найденных новостей)
+   * @public
+   * @since v.1.1.0
+   */
   const handleSaveArticle = (article, id) => {
     addArticleToSavedNews(article)
       .then((newCard) => {
@@ -275,6 +327,15 @@ function App() {
       });
   };
 
+  /**
+   * @method handleSearchFormSubmit
+   * @description Обработчик сабмита формы поиска<br>
+   * Обрабатывает поисковый запрос пользователя. Принимает аргументом запрос, возвращает массив
+   *  найденных статей или информацию о результатах обработки запроса.
+   * @param {String} userQuery - запрос
+   * @public
+   * @since v.1.1.0
+   */
   const handleSearchFormSubmit = (userQuery) => {
     setIsSearchFailed(false);
     setIsSearchDone(false);
@@ -307,19 +368,6 @@ function App() {
       });
   };
 
-  const findAndUpdateFoundNewsCard = (id, cardsArray, newCard) => {
-    const arrayWithUpdatedCard = cardsArray.map((card, index) =>
-      card._id === id
-        ? (() => {
-            card._id = newCard._id ? newCard._id : index + 1;
-            return card;
-          })()
-        : card,
-    );
-    setFoundNewsCards(arrayWithUpdatedCard);
-    setFoundNewsToStorage(arrayWithUpdatedCard);
-  };
-
   useEffect(() => {
     const userDataFromStorage = getUserDataFromStorage();
     const tokenFromStorage = getTokenFromStorage();
@@ -333,11 +381,9 @@ function App() {
         setIsSearchDone(true);
       }
       setIsLoggedIn(true);
-      console.log({ loggedInAfterChanfe: isLoggedIn });
-      console.log(history.location);
+    } else {
+      setIsLoginPopupOpened(true);
     }
-    console.log(history.location);
-    console.log({ isLoggedIn });
   }, []);
 
   return (
@@ -372,7 +418,6 @@ function App() {
           </Route>
 
           <ProtectedRoute
-            /*
             path={to.SAVED_NEWS}
             isLoggedIn={isLoggedIn}
             savedArticles={savedNewsCards}
@@ -383,15 +428,11 @@ function App() {
             isMobileMenuOpened={isMobileMenuOpened}
             isPopupOpened={isLoginPopupOpened || isRegisterPopupOpened}
             onOverlayClick={handleClickOnOverlay}
-            handleDeleteArticle={handleDeleteArticle} */
-
-            path={'/saved-news'}
-            component={PageNoutFound}
-            isLoggedIn={isLoggedIn}
+            handleDeleteArticle={handleDeleteArticle}
           />
 
           <Route path={to.ANY_ROUTE}>
-            <PageNoutFound />
+            <PageNotFound />
           </Route>
         </Switch>
 

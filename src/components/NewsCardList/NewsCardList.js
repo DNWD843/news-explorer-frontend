@@ -9,6 +9,9 @@ import './NewsCardList.css';
  * @property {Array} cards - массив с данными статей
  * @property {Boolean} isSavedNewsOpened - стейт состояния страницы с сохраненными новостями
  * @property {Boolean} isLoggedIn -  стейт состяния пользователя: авторизован/не авторизован
+ * @property {Function} openRegisterPopup - колбэк, открывает попап регистрации
+ * @property {Function} deleteArticle - колбэк, удаляет статью
+ * @property {Function} saveArticle - колбэк, сохраняет статью
  * @returns {JSX}
  * @since v.1.0.0
  */

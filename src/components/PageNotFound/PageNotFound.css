@@ -3,6 +3,9 @@
   padding: 80px 0;
   background: #f5f6f7;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .page-not-found__element {
@@ -11,6 +14,17 @@
   height: 96px;
   background-image: url('../../images/not-found_v1.png');
   background-size: cover;
+}
+
+.page-not-found__status {
+  display: inline;
+  text-align: center;
+  margin: 0 auto 10px;
+  font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 30px;
+  color: #1a1b22;
 }
 
 .page-not-found__title {
@@ -24,8 +38,8 @@
 }
 
 .page-not-found__description {
-  max-width: 340px;
-  margin: 0 auto;
+  max-width: 400px;
+  margin: 0 auto 20px;
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   font-weight: 400;
   font-size: 18px;
@@ -34,14 +48,27 @@
   color: #b6bcbf;
 }
 
+.page-not-found__link {
+  max-width: 340px;
+  margin: 0 auto;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+  color: #b6bcbf;
+}
+
+.page-not-found__link:hover {
+  opacity: 0.9;
+}
+
 @media screen and (max-width: 540px) {
   .page-not-found__title {
     max-width: 288px;
   }
-}
 
-@media screen and (max-width: 400px) {
   .page-not-found__description {
-    max-width: 288px;
+    max-width: 260px;
   }
 }
