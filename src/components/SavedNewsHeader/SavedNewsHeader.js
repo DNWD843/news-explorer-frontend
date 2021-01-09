@@ -18,7 +18,7 @@ import './SavedNewsHeader.css';
  * @property {Boolean} isMobileMenuOpened - стейт открытого состояния мобильного меню
  * @property {Boolean} isPopupOpened - стейт открытого состояния одного из попапов
  * @property {Function} onOverlayClick - колбэк, закрывает попапы при клике по оверлею
- * @property {JSX} children - JSX-фрагмент, на главной странице через него передается форма поиска новостей
+ * @property {JSX} children - JSX-фрагмент, блок с информацией о сохраненных пользователем статьях
  * @returns {JSX}
  * @since v.1.0.0
  */

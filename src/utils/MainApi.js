@@ -4,7 +4,7 @@ import { getTokenFromStorage } from './Storage';
 
 /**
  * @module MainApi
- * @description API взаимодействия пользователя со статьями.
+ * @description API взаимодействия пользователя с БД хранения статей и профиля пользователя.
  * @since v.1.1.0
  */
 
