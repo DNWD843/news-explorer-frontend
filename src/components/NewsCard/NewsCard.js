@@ -1,5 +1,6 @@
 import { forNewsCard as config } from '../../configs/configForComponents';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import './NewsCard.css';
 
 /**
@@ -116,5 +117,21 @@ function NewsCard({
     </li>
   );
 }
+
+NewsCard.propTypes = {
+  _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  source: PropTypes.string.isRequired,
+  keyword: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  isSavedNewsOpened: PropTypes.bool,
+  isLoggedIn: PropTypes.bool.isRequired,
+  openRegisterPopup: PropTypes.func,
+  deleteArticle: PropTypes.func.isRequired,
+  saveArticle: PropTypes.func,
+};
 
 export default NewsCard;

@@ -11,7 +11,7 @@ import { getTokenFromStorage } from './Storage';
 /**
  * @method register
  * @description Регистрация пользователя, принимает регистрационные данные пользователя и отправляет
- *  запрос на регистрацию на сервер.
+ *  запрос на регистрацию на сервер. При успешном запросе возвращает сообщение об успешной регистрации.
  * @param {String} email - емэйл
  * @param {String} password - пароль
  * @param {String} name - имя
@@ -39,7 +39,7 @@ export const register = (email, password, name) => {
 /**
  * @method login
  * @description Авторизация пользователя, принимает авторизационные данные пользователя и отправляет
- *  запрос на авторизацию на сервер.
+ *  запрос на авторизацию на сервер. При успешном запросе возвращает токен.
  * @param {String} email - емэйл
  * @param {String} password - пароль
  * @returns {JSON}

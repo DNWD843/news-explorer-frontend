@@ -2,6 +2,7 @@ import About from '../About/About';
 import NoResult from '../NoResult/NoResult';
 import Preloader from '../Preloader/Preloader';
 import SearchResult from '../SearchResult/SearchResult';
+import PropTypes from 'prop-types';
 import './Main.css';
 
 /**
@@ -52,5 +53,27 @@ function Main({
     </>
   );
 }
+
+Main.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  isSearchDone: PropTypes.bool.isRequired,
+  isSearchInProgress: PropTypes.bool.isRequired,
+  isSearchFailed: PropTypes.bool.isRequired,
+  searchResult: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      source: PropTypes.string.isRequired,
+      keyword: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  openRegisterPopup: PropTypes.func.isRequired,
+  handleDeleteArticle: PropTypes.func.isRequired,
+  handleSaveArticle: PropTypes.func.isRequired,
+};
 
 export default Main;

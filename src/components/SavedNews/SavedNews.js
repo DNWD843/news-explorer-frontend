@@ -1,6 +1,7 @@
 import NewsCardList from '../NewsCardList/NewsCardList';
 import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
 import SavedNewsInfo from '../SavedNewsInfo/SavedNewsInfo';
+import PropTypes from 'prop-types';
 import './SavedNews.css';
 
 /**
@@ -35,5 +36,23 @@ function SavedNews({ isLoggedIn, savedArticles, handleDeleteArticle, ...props })
     </>
   );
 }
+
+SavedNews.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  savedArticles: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      source: PropTypes.string.isRequired,
+      keyword: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  handleDeleteArticle: PropTypes.func.isRequired,
+  props: PropTypes.objectOf(PropTypes.any),
+};
 
 export default SavedNews;

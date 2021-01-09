@@ -1,6 +1,7 @@
 import { forSearchForm as config } from '../../configs/configForComponents';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import './SearchForm.css';
 
 /**
@@ -60,5 +61,10 @@ function SearchForm({ handleSearchFormSubmit, isSearchInProgress }) {
     </form>
   );
 }
+
+SearchForm.propTypes = {
+  handleSearchFormSubmit: PropTypes.func.isRequired,
+  isSearchInProgress: PropTypes.bool.isRequired,
+};
 
 export default SearchForm;

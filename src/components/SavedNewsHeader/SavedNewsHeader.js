@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { MAIN } from '../../utils/routesMap';
 import classNames from 'classnames';
 import { forSavedNewsHeader as config } from '../../configs/configForComponents';
+import PropTypes from 'prop-types';
 import './SavedNewsHeader.css';
 
 /**
@@ -79,5 +80,16 @@ function SavedNewsHeader({
     </header>
   );
 }
+
+SavedNewsHeader.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  onLogInClick: PropTypes.func.isRequired,
+  onLogOutClick: PropTypes.func.isRequired,
+  onMenuButtonClick: PropTypes.func.isRequired,
+  isMobileMenuOpened: PropTypes.bool.isRequired,
+  isPopupOpened: PropTypes.bool.isRequired,
+  onOverlayClick: PropTypes.func.isRequired,
+  children: PropTypes.element,
+};
 
 export default SavedNewsHeader;

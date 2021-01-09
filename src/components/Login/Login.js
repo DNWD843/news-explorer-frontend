@@ -2,6 +2,7 @@ import { forLogin as config } from '../../configs/configForComponents';
 import { useEffect } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWuthForm';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
+import PropTypes from 'prop-types';
 
 /**
  * @module Login
@@ -50,10 +51,10 @@ function Login({
   /**
    * @method handleSubmit
    * @description Публичный метод<br>
-   * Обработчик сабмита формы. Возвращает JWT токен.
+   * Обработчик сабмита формы авторизации. Возвращает токен.
    * @param {Event} evt - событие
    * @public
-   * @returns {JWT}  токен
+   * @returns {Object} токен в формате {token: <токен>}
    * @since v.1.1.0
    */
   const handleSubmit = (evt) => {
@@ -121,5 +122,14 @@ function Login({
     </PopupWithForm>
   );
 }
+
+Login.propTypes = {
+  isOpened: PropTypes.bool.isRequired,
+  isRequestProcessing: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onOverlayClick: PropTypes.func.isRequired,
+  onRedirectLinkClick: PropTypes.func.isRequired,
+  handleLogin: PropTypes.func.isRequired,
+};
 
 export default Login;

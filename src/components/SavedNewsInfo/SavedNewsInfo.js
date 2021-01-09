@@ -3,6 +3,7 @@ import pluralize from '../../utils/pluralize';
 import * as configuration from '../../configs/configForPluralizeUtility';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { forSavedNewsInfo as config } from '../../configs/configForComponents';
+import PropTypes from 'prop-types';
 import './SavedNewsInfo.css';
 
 /**
@@ -71,5 +72,20 @@ function SavedNewsInfo({ savedArticles }) {
     </div>
   );
 }
+
+SavedNewsInfo.propTypes = {
+  savedArticles: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      source: PropTypes.string.isRequired,
+      keyword: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+};
 
 export default SavedNewsInfo;

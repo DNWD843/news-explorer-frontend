@@ -7,6 +7,7 @@ import pathToMainIcon from '../../images/logout-icon-white.svg';
 import pathToSavedNewsIcon from '../../images/logout-icon-black.svg';
 import { forMenu as config } from '../../configs/configForComponents';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import PropTypes from 'prop-types';
 import './Menu.css';
 
 /**
@@ -62,5 +63,13 @@ function Menu({ isLoggedIn, onLogOutClick, onLogInClick, isMobile, isMobileMenuO
     </div>
   );
 }
+
+Menu.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  onLogOutClick: PropTypes.func.isRequired,
+  onLogInClick: PropTypes.func.isRequired,
+  isMobile: PropTypes.bool.isRequired,
+  isMobileMenuOpened: PropTypes.bool.isRequired,
+};
 
 export default Menu;

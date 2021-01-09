@@ -1,6 +1,7 @@
 import Menu from '../Menu/Menu';
 import classNames from 'classnames';
 import { forHeader as config } from '../../configs/configForComponents';
+import PropTypes from 'prop-types';
 import './Header.css';
 
 /**
@@ -77,5 +78,16 @@ function Header({
     </header>
   );
 }
+
+Header.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  onLogInClick: PropTypes.func.isRequired,
+  onLogOutClick: PropTypes.func.isRequired,
+  children: PropTypes.element,
+  onMenuButtonClick: PropTypes.func.isRequired,
+  isMobileMenuOpened: PropTypes.bool.isRequired,
+  isPopupOpened: PropTypes.bool.isRequired,
+  onOverlayClick: PropTypes.func.isRequired,
+};
 
 export default Header;

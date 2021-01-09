@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { forRegistrationSuccessToolTip as config } from '../../configs/configForComponents';
+import PropTypes from 'prop-types';
 import './InfoTooltip.css';
 
 /**
@@ -32,5 +33,12 @@ function InfoTooltip({ onOverlayClick, isOpened, onClose, onRedirectLinkClick })
     </div>
   );
 }
+
+InfoTooltip.propTypes = {
+  onOverlayClick: PropTypes.func.isRequired,
+  isOpened: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onRedirectLinkClick: PropTypes.func.isRequired,
+};
 
 export default InfoTooltip;

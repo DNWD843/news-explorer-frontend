@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWuthForm';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { forRegister as config } from '../../configs/configForComponents';
+import PropTypes from 'prop-types';
 
 /**
  * @module Register
@@ -51,6 +52,14 @@ function Register({
 
   const { email, regPassword, name } = values;
 
+  /**
+   * @method handleSubmit
+   * @description Обработчик сабмита формы регистрации. Возвращает сообщение о регистрации.
+   * @param {Event} evt - событие
+   * @public
+   * @returns {Object} сообщение в формате {message: <сообщение>}
+   * @since v.1.1.0
+   */
   const handleSubmit = (evt) => {
     evt.preventDefault();
     const userRegistrationData = { email, password: regPassword, name };
@@ -137,5 +146,14 @@ function Register({
     </PopupWithForm>
   );
 }
+
+Register.propTypes = {
+  isOpened: PropTypes.bool.isRequired,
+  isRequestProcessing: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onOverlayClick: PropTypes.func.isRequired,
+  onRedirectLinkClickClick: PropTypes.func.isRequired,
+  handleRegister: PropTypes.func.isRequired,
+};
 
 export default Register;

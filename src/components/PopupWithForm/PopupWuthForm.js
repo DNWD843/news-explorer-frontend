@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import './PopupWithForm.css';
 
 /**
@@ -69,5 +70,20 @@ function PopupWithForm({
     </div>
   );
 }
+
+PopupWithForm.propTypes = {
+  formTitle: PropTypes.string.isRequired,
+  submitButtonText: PropTypes.string.isRequired,
+  redirectTitleText: PropTypes.string.isRequired,
+  redirectLinkText: PropTypes.string.isRequired,
+  isOpened: PropTypes.bool.isRequired,
+  children: PropTypes.element,
+  onClose: PropTypes.func.isRequired,
+  onOverlayClick: PropTypes.func.isRequired,
+  onRedirectLinkClick: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  formError: PropTypes.string,
+};
 
 export default PopupWithForm;

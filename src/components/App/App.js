@@ -56,13 +56,13 @@ function App() {
   const [isRegSuccessTooltipOpened, setIsRegSuccessTooltipOpened] = useState(false);
   const [isMobileMenuOpened, setIsMobileMenuOpened] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
-  const [savedNewsCards, setSavedNewsCards] = useState([]);
-  const [foundNewsCards, setFoundNewsCards] = useState([]);
   const [isSearchDone, setIsSearchDone] = useState(false);
   const [isRequestProcessing, setIsRequestProcessing] = useState(false);
   const [isSearchInProgress, setIsSearchInProgress] = useState(false);
   const [isSearchFailed, setIsSearchFailed] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+  const [savedNewsCards, setSavedNewsCards] = useState([]);
+  const [foundNewsCards, setFoundNewsCards] = useState([]);
 
   const history = useHistory();
 

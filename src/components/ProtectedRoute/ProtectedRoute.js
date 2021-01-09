@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { MAIN } from '../../utils/routesMap';
+import PropTypes from 'prop-types';
 
 /**
  * @module ProtectedRoute
@@ -18,6 +19,11 @@ const ProtectedRoute = ({ component: Component, ...props }) => {
       }
     </Route>
   );
+};
+
+ProtectedRoute.propTypes = {
+  component: PropTypes.elementType,
+  props: PropTypes.objectOf(PropTypes.any),
 };
 
 export default ProtectedRoute;

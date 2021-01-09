@@ -1,4 +1,5 @@
 import { forNoResult as config } from '../../configs/configForComponents';
+import PropTypes from 'prop-types';
 import './NoResult.css';
 
 /**
@@ -19,5 +20,9 @@ function NoResult({ isSearchFailed }) {
     </section>
   );
 }
+
+NoResult.propTypes = {
+  isSearchFailed: PropTypes.bool.isRequired,
+};
 
 export default NoResult;

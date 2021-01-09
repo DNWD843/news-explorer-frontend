@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import classNames from 'classnames';
 import { forSearchResult as config } from '../../configs/configForComponents';
+import PropTypes from 'prop-types';
 import './SearchResult.css';
 
 /**
@@ -78,5 +79,24 @@ function SearchResult({
     </section>
   );
 }
+
+SearchResult.propTypes = {
+  searchResult: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      source: PropTypes.string.isRequired,
+      keyword: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  openRegisterPopup: PropTypes.func.isRequired,
+  handleDeleteArticle: PropTypes.func.isRequired,
+  handleSaveArticle: PropTypes.func.isRequired,
+};
 
 export default SearchResult;
