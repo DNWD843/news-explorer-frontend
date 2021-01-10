@@ -53,7 +53,10 @@ function SearchForm({ handleSearchFormSubmit, isSearchInProgress }) {
             </span>
           </div>
 
-          <button className="search-form__submit-button" disabled={!isFormValid}>
+          <button
+            className="search-form__submit-button"
+            disabled={!isFormValid || isSearchInProgress}
+          >
             {SUBMIT_BUTTON_TEXT}
           </button>
         </div>

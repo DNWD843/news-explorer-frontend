@@ -85,6 +85,7 @@ function Register({
       isDisabled={!isFormValid}
       onSubmit={handleSubmit}
       formError={formError}
+      isRequestProcessing={isRequestProcessing}
     >
       <>
         <ul className="form__inputs">
@@ -110,7 +111,7 @@ function Register({
             <input
               id="regPassword"
               name="regPassword"
-              type="text"
+              type="password"
               onChange={handleInputChange}
               value={regPassword || ''}
               className="form__input"

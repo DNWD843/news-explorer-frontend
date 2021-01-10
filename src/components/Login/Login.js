@@ -80,6 +80,7 @@ function Login({
       isDisabled={!isFormValid}
       onSubmit={handleSubmit}
       formError={formError}
+      isRequestProcessing={isRequestProcessing}
     >
       <>
         <ul className="form__inputs">
@@ -105,7 +106,7 @@ function Login({
             <input
               id="password"
               name="password"
-              type="text"
+              type="password"
               onChange={handleInputChange}
               value={password || ''}
               className="form__input"

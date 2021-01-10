@@ -23,17 +23,13 @@ export const register = (email, password, name) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password, name }),
-  })
-    .then((res) => {
-      if (res.ok) {
-        return !res.ok;
-      } else {
-        return res.json();
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  }).then((res) => {
+    if (res.ok) {
+      return !res.ok;
+    } else {
+      return res.json();
+    }
+  });
 };
 
 /**
@@ -50,11 +46,7 @@ export const login = (email, password) => {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ password, email }),
-  })
-    .then((res) => res.json())
-    .catch((err) => {
-      console.log(err);
-    });
+  }).then((res) => res.json());
 };
 
 /**
@@ -70,11 +62,12 @@ export const getUserDataFromDataBase = () => {
       'Content-Type': 'applicaton/json',
       authorization: `Bearer ${getTokenFromStorage()}`,
     },
-  })
-    .then((res) => res.json())
-    .catch((err) => {
-      console.log(err);
-    });
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка ${res.status}: ${res.statusText}`);
+  });
 };
 
 /**
@@ -90,11 +83,12 @@ export const getSavedNewsFromDataBase = () => {
       'Content-Type': 'applicaton/json',
       authorization: `Bearer ${getTokenFromStorage()}`,
     },
-  })
-    .then((res) => res.json())
-    .catch((err) => {
-      console.log(err);
-    });
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка ${res.status}: ${res.statusText}`);
+  });
 };
 
 /**

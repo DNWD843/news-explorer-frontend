@@ -174,6 +174,7 @@ function App() {
    * @since v.1.0.0
    */
   const handleRegister = ({ email, password, name }, showError) => {
+    setIsRequestProcessing(true);
     register(email, password, name)
       .then((serverError) => {
         if (!serverError) {
@@ -187,7 +188,10 @@ function App() {
           showError(serverError.message);
         }
       })
-      .catch((err) => console.log({ err }));
+      .catch((err) => console.log({ err }))
+      .finally(() => {
+        setIsRequestProcessing(false);
+      });
   };
 
   /**

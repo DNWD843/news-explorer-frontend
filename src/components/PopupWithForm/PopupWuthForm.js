@@ -34,6 +34,7 @@ function PopupWithForm({
   isDisabled,
   onSubmit,
   formError,
+  isRequestProcessing,
 }) {
   const overlayClassName = classNames('popup', {
     'popup_opened page__overlay': isOpened,
@@ -44,8 +45,8 @@ function PopupWithForm({
   });
 
   const submitButtonClassName = classNames('form__submit-button', {
-    'form__submit-button_inactive': isDisabled,
-    'form__submit-button_active': !isDisabled,
+    'form__submit-button_inactive': isDisabled || isRequestProcessing,
+    'form__submit-button_active': !isDisabled && !isRequestProcessing,
   });
 
   return (
@@ -56,7 +57,11 @@ function PopupWithForm({
           <h2 className="form__title">{formTitle}</h2>
           {children}
           <span className="form__submit-error-element">{formError || ''}</span>
-          <button type="submit" className={submitButtonClassName}>
+          <button
+            type="submit"
+            className={submitButtonClassName}
+            disabled={isDisabled || isRequestProcessing}
+          >
             {submitButtonText}
           </button>
         </form>
@@ -84,6 +89,7 @@ PopupWithForm.propTypes = {
   isDisabled: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
   formError: PropTypes.string,
+  isRequestProcessing: PropTypes.bool.isRequired,
 };
 
 export default PopupWithForm;

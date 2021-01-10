@@ -24,14 +24,10 @@ export const getArticlesFromNewsApi = (userQuery) => {
     {
       method: 'GET',
     },
-  )
-    .then((res) => {
-      if (res.status) {
-        return res.json();
-      }
-      return Promise.reject(`Статус ответа: ${res.status}`);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  ).then((res) => {
+    if (res.status) {
+      return res.json();
+    }
+    return Promise.reject(`Статус ответа: ${res.status}`);
+  });
 };
