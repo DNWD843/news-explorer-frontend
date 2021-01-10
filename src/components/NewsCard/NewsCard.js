@@ -2,6 +2,7 @@ import { forNewsCard as config } from '../../configs/configForComponents';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import './NewsCard.css';
+import { useCallback } from 'react';
 
 /**
  * @module NewsCard
@@ -74,7 +75,7 @@ function NewsCard({
    * @public
    * @since v.1.0.0
    */
-  const handleClickOnBookmark = () => {
+  const handleClickOnBookmark = useCallback(() => {
     if (!isLoggedIn) {
       openRegisterPopup();
     } else if (isLoggedIn && !isSavedNewsOpened && !isSavedToCollection) {
@@ -82,7 +83,22 @@ function NewsCard({
     } else if ((isLoggedIn && !isSavedNewsOpened && isSavedToCollection) || isSavedNewsOpened) {
       deleteArticle({ _id });
     }
-  };
+  }, [
+    isLoggedIn,
+    isSavedNewsOpened,
+    isSavedToCollection,
+    source,
+    keyword,
+    title,
+    text,
+    date,
+    link,
+    image,
+    _id,
+    openRegisterPopup,
+    saveArticle,
+    deleteArticle,
+  ]);
 
   return (
     <li className="card news-card-list__item">

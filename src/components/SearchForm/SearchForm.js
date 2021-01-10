@@ -1,6 +1,6 @@
 import { forSearchForm as config } from '../../configs/configForComponents';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './SearchForm.css';
 
@@ -20,10 +20,20 @@ function SearchForm({ handleSearchFormSubmit, isSearchInProgress }) {
 
   const { searchInput } = values;
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    handleSearchFormSubmit(searchInput);
-  };
+  /**
+   * @method handleSubmit
+   * @description Обработчик сабмита формы поиска новостей.
+   * @param {Event} evt - событие
+   * @public
+   * @since v.1.1.0
+   */
+  const handleSubmit = useCallback(
+    (evt) => {
+      evt.preventDefault();
+      handleSearchFormSubmit(searchInput);
+    },
+    [handleSearchFormSubmit, searchInput],
+  );
 
   useEffect(() => {
     resetForm();
