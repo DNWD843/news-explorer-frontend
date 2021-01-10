@@ -1,6 +1,7 @@
 import NewsCardList from '../NewsCardList/NewsCardList';
-import pluralize from '../../utils/pluralize';
-import * as configuration from '../../configs/configForPluralizeUtility';
+import SavedNewsHeader from '../SavedNewsHeader/SavedNewsHeader';
+import SavedNewsInfo from '../SavedNewsInfo/SavedNewsInfo';
+import PropTypes from 'prop-types';
 import './SavedNews.css';
 
 /**
@@ -8,78 +9,50 @@ import './SavedNews.css';
  * @description Функциональный компонент<br>
  * Отрисовывает карточки со статьями, сохраненными пользователем в своей коллекции.<br>
  * Отрисовка производится частями по три карточки.
- * @property {Object} config - объект с базовыми настройками отображения блока
- * @property {String} userName - имя пользователя
- * @property {Array} savedArticles - массив с данными о сохраненных статьях
- * @property {Object} configForNewsCard - объект с базовыми настройками отображения блока NewsCard
  * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
+ * @property {Array} savedArticles - массив с данными о сохраненных статьях
+ * @property {Function} handleDeleteArticle - колбэк, обработчик удаления статьи
+ * @property {Object} props - пробрасываемые пропсы
  * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
  * @since v.1.0.0
  */
-function SavedNews({ config, userName, savedArticles, configForNewsCard, isLoggedIn }) {
-  const { pageName } = config;
-
-  const titleTextFragment = pluralize(savedArticles.length, configuration.forSavedNewsTitle);
-  const titleText = userName.concat(titleTextFragment);
-
-  /**
-   * @method getKeywordsTopList
-   * @description Метод обрабатывает ключевые слова (категории) статей и сортирует их по популярности.
-   *  Возвращает массив с ключевыми словами, отсортированными по популярности по убыванию.
-   * @param {Array} articlesArray - массив данных статей
-   * @public
-   * @since v.1.0.0
-   */
-  const getKeywordsTopList = (articlesArray) => {
-    const keywordsWithRangeNumber = articlesArray
-      .map((article) => article.keyword)
-      .reduce((acc, keyword) => {
-        if (!acc[keyword]) {
-          acc[keyword] = 1;
-        } else {
-          acc[keyword] += 1;
-        }
-        return acc;
-      }, {});
-    const filteredKeywordsArray = Object.keys(keywordsWithRangeNumber);
-    const result = filteredKeywordsArray.sort((a, b) => {
-      return keywordsWithRangeNumber[b] - keywordsWithRangeNumber[a];
-    });
-    return result;
-  };
-
-  const top = getKeywordsTopList(savedArticles);
-  const firstKeyword = top[0];
-  const secondKeyword = top[1];
-  const thirdKeyword = top[2];
-  const byKeyWordsFragment = top.length === 1 ? 'По ключевому слову: ' : 'По ключевым словам: ';
-
+function SavedNews({ isLoggedIn, savedArticles, handleDeleteArticle, ...props }) {
   return (
-    <section className="saved-news">
-      <div className="saved-news__info">
-        <p className="saved-news__page-name">{pageName}</p>
-        <h2 className="saved-news__title">{titleText}</h2>
-        <p className="saved-news__keywords saved-news__keywords_accent_no-accent">
-          {byKeyWordsFragment}
-          <span className="saved-news__keywords saved-news__keywords_accent_bold">
-            {firstKeyword} {secondKeyword ? `, ${secondKeyword}` : ''}
-          </span>
-          {top.length > 2 ? ' и ' : ''}
-          <span className="saved-news__keywords saved-news__keywords_accent_bold">
-            {top.length > 3 ? ` ${top.length - 2} другим` : `${thirdKeyword || ''}`}
-          </span>
-        </p>
-      </div>
-      <div className="saved-news__container">
-        <NewsCardList
-          cards={savedArticles}
-          configForNewsCard={configForNewsCard}
-          isSavedNewsOpened={true}
-          isLoggedIn={isLoggedIn}
-        />
-      </div>
-    </section>
+    <>
+      <SavedNewsHeader isLoggedIn={isLoggedIn} {...props}>
+        <SavedNewsInfo savedArticles={savedArticles} />
+      </SavedNewsHeader>
+
+      {savedArticles.length ? (
+        <main className="saved-news">
+          <NewsCardList
+            cards={savedArticles}
+            isSavedNewsOpened={true}
+            isLoggedIn={isLoggedIn}
+            handleDeleteArticle={handleDeleteArticle}
+          />
+        </main>
+      ) : null}
+    </>
   );
 }
+
+SavedNews.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  savedArticles: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      source: PropTypes.string.isRequired,
+      keyword: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  handleDeleteArticle: PropTypes.func.isRequired,
+  props: PropTypes.objectOf(PropTypes.any),
+};
 
 export default SavedNews;

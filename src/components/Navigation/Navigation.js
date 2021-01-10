@@ -1,22 +1,21 @@
+import { forNavigation as config } from '../../configs/configForComponents';
 import { NavLink } from 'react-router-dom';
 import { MAIN, SAVED_NEWS } from '../../utils/routesMap';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import './Navigation.css';
 
 /**
  * @module Navigation
  * @description Функциональный компонент<br>
  * Блок навигации по сайту.<br>
- * @property {Object} config -  объект с базовыми настройками отображения блока
  * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
  * @property {Boolean} isMobile -стейт состояния меню - мобильное (на мобильном разрешении)
- * @property {Function} onClick - колбэк, вызывается при клике по навигационным ссылкам
- * @property {Boolean} isMobileMenuOpened - стейт открытого состояния мобильного меню
  * @returns {JSX}
  * @since v.1.0.0
  */
-function Navigation({ isLoggedIn, onClick, isMobile, config }) {
-  const { mainLinkText, savedNewsLinkText } = config;
+function Navigation({ isLoggedIn, isMobile }) {
+  const { MAIN_LINK_TEXT, SAVED_NEWS_LINK_TEXT } = config;
 
   const navbarClassName = classNames('navbar', {
     navbar_mobile: isMobile,
@@ -54,7 +53,7 @@ function Navigation({ isLoggedIn, onClick, isMobile, config }) {
             className={linkToMainPageClassName}
             activeClassName={activeLinkClassName}
           >
-            {mainLinkText}
+            {MAIN_LINK_TEXT}
           </NavLink>
         </li>
         <li className={hiddenLinkClassName}>
@@ -62,14 +61,18 @@ function Navigation({ isLoggedIn, onClick, isMobile, config }) {
             to={SAVED_NEWS}
             className={linkToSavedNewsPageClassName}
             activeClassName={activeLinkClassName}
-            onClick={onClick}
           >
-            {savedNewsLinkText}
+            {SAVED_NEWS_LINK_TEXT}
           </NavLink>
         </li>
       </ul>
     </nav>
   );
 }
+
+Navigation.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  isMobile: PropTypes.bool.isRequired,
+};
 
 export default Navigation;

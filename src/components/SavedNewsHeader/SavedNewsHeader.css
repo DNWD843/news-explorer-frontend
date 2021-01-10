@@ -1,25 +1,21 @@
-.header {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url('../../images/header-background.png');
-  color: #fff;
+.saved-news-header {
+  background: #fff;
+  color: #1a1b22;
 }
 
-.header_mobile {
+.saved-news-header_mobile {
   position: relative;
 }
 
-.header__container {
+.saved-news-header__container {
   padding: 6px calc((100% - 1232px) / 2) 0;
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.01);
-  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0px -1px 0px #d1d2d6;
 }
 
-.header__container_mobile {
+.saved-news-header__container_mobile {
   top: 0;
   left: 0;
   right: 0;
@@ -27,7 +23,7 @@
   box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
 }
 
-.header__link {
+.saved-news-header__link {
   margin: 0 auto 0 0;
   color: #fff;
   text-decoration: none;
@@ -35,11 +31,11 @@
   color: inherit;
 }
 
-.header__link:hover {
+.saved-news-header__link:hover {
   opacity: 0.9;
 }
 
-.header__logo {
+.saved-news-header__logo {
   margin: 0 auto 0 0;
   font-family: 'Roboto Slab', Arial, Helvetica, sans-serif;
   font-style: normal;
@@ -50,7 +46,7 @@
   z-index: 9999999;
 }
 
-.header__menu-button {
+.saved-news-header__menu-button {
   display: none;
   margin: 0;
   padding: 0;
@@ -65,42 +61,42 @@
   z-index: 999999;
 }
 
-.header__menu-button_not-pressed {
-  background-image: url('../../images/menu-button-mobile.svg');
+.saved-news-header__menu-button_not-pressed {
+  background-image: url('../../images/menu-button-mobile-black.svg');
 }
 
-.header__menu-button_pressed {
+.saved-news-header__menu-button_pressed {
   background-image: url('../../images/menu-close-button-mobile.svg');
 }
 
 @media screen and (max-width: 1280px) {
-  .header__container {
+  .saved-news-header__container {
     padding: 2px calc((100% - 1100px) / 2) 0;
   }
 }
 
 @media screen and (max-width: 1180px) {
-  .header__container {
+  .saved-news-header__container {
     padding: 2px 40px 0;
   }
 }
 
 @media screen and (max-width: 640px) {
-  .header__container {
+  .saved-news-header__container {
     padding: 16px;
   }
 
-  .header__menu-button {
+  .saved-news-header__menu-button {
     display: block;
   }
 
-  .header__container_mobile {
+  .saved-news-header__container_mobile {
     background-color: #1a1b22;
     position: fixed;
     z-index: 99999999;
   }
 
-  .header__menu-mobile-overlay {
+  .saved-news-header__menu-mobile-overlay {
     position: fixed;
     top: 0;
     left: 0;

@@ -68,6 +68,11 @@
   color: #b6bcbf;
 }
 
+.search-form__input:disabled {
+  outline: none;
+  background: transparent;
+}
+
 .search-form__submit-button {
   display: flex;
   align-items: center;
@@ -101,6 +106,18 @@
   background-color: #347eff;
 }
 
+.search-form__input-error {
+  position: absolute;
+  left: 23px;
+  top: 45px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  height: 2em;
+  color: #ff0000;
+}
+
 @media screen and (max-width: 1280px) {
   .search-form__container {
     max-width: 452px;
@@ -126,6 +143,10 @@
   .search-form__submit-button {
     width: 160px;
     height: 56px;
+  }
+
+  .search-form__input-error {
+    top: 40px;
   }
 }
 
@@ -161,5 +182,9 @@
   .search-form__submit-button {
     width: 100%;
     position: relative;
+  }
+
+  .search-form__input-error {
+    left: 15px;
   }
 }

@@ -8,8 +8,7 @@
 
 .news-card-list__item {
   margin: 0 16px 16px 0;
-  width: 100%;
-  max-width: 400px;
+  width: 400px;
   height: 576px;
 }
 
@@ -24,13 +23,13 @@
 }
 
 .card__image {
-  width: 100%;
+  display: block;
+  width: 400px;
   height: 272px;
   margin: 0;
-  object-fit: cover;
-
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+  object-fit: cover;
 }
 
 .card__info {
@@ -55,6 +54,15 @@
   color: #b6bcbf;
 }
 
+.card__description-container {
+  width: 352px;
+  margin: 0 0 10px;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
 .card__title-container {
   margin: 0 0 16px;
   overflow: hidden;
@@ -71,13 +79,6 @@
   font-size: 26px;
   line-height: 30px;
   color: #1a1b22;
-}
-
-.card__description-container {
-  margin: 0 0 10px;
-  padding: 0;
-  box-sizing: border-box;
-  overflow: hidden;
 }
 
 .card__description {
@@ -221,19 +222,25 @@
 
 @media screen and (max-width: 1280px) and (min-width: 721px) {
   .news-card-list__item {
-    max-width: 224px;
+    width: 224px;
     height: 420px;
     margin-right: calc((100% - (224px * 3)) / 2);
     margin-bottom: 24px;
   }
 
   .card__image {
+    width: 224px;
     height: 150px;
   }
 
   .card__info {
     padding: 16px;
     height: 270px;
+  }
+
+  .card__description-container {
+    width: 192px;
+    margin-bottom: 12px;
   }
 
   .card__title-container {
@@ -244,10 +251,6 @@
   .card__title {
     font-size: 22px;
     line-height: 24px;
-  }
-
-  .card__description-container {
-    margin-bottom: 12px;
   }
 
   .card__bookmark {
@@ -274,11 +277,12 @@
   .news-card-list__item {
     align-self: center;
     margin: 0 0 10px;
-    max-width: 288px;
-    max-height: 446px;
+    width: 288px;
+    height: 446px;
   }
 
   .card__image {
+    width: 288px;
     height: 196px;
   }
 
@@ -291,6 +295,11 @@
     margin-bottom: 10px;
   }
 
+  .card__description-container {
+    width: 256px;
+    margin: 0 0 7px;
+  }
+
   .card__title-container {
     max-height: 84px;
     margin: 0 0 10px;
@@ -299,10 +308,6 @@
   .card__title {
     font-size: 22px;
     line-height: 28px;
-  }
-
-  .card__description-container {
-    margin: 0 0 7px;
   }
 
   .card__bookmark {

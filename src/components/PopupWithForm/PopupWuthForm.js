@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import './PopupWithForm.css';
 
 /**
@@ -16,6 +17,7 @@ import './PopupWithForm.css';
  * @property {Function} onRedirectLinkClick - колбэк, вызывается при клике по ссылке переадресации,
  * @property {Boolean} isDisabled - стейт состояния кнопки сабмит
  * @property {Function} onSubmit -  колбэк, вызывается при сабмите формы
+ * @property {String} formError - текст ошибки, полученной от сервера в результате обработки запроса.
  * @returns {JSX}
  * @since v.1.0.0
  */
@@ -31,6 +33,8 @@ function PopupWithForm({
   onRedirectLinkClick,
   isDisabled,
   onSubmit,
+  formError,
+  isRequestProcessing,
 }) {
   const overlayClassName = classNames('popup', {
     'popup_opened page__overlay': isOpened,
@@ -41,8 +45,8 @@ function PopupWithForm({
   });
 
   const submitButtonClassName = classNames('form__submit-button', {
-    'form__submit-button_inactive': isDisabled,
-    'form__submit-button_active': !isDisabled,
+    'form__submit-button_inactive': isDisabled || isRequestProcessing,
+    'form__submit-button_active': !isDisabled && !isRequestProcessing,
   });
 
   return (
@@ -52,8 +56,12 @@ function PopupWithForm({
         <form onSubmit={onSubmit} className="form popup__form">
           <h2 className="form__title">{formTitle}</h2>
           {children}
-          <span className="form__submit-error-element"></span>
-          <button type="submit" className={submitButtonClassName}>
+          <span className="form__submit-error-element">{formError || ''}</span>
+          <button
+            type="submit"
+            className={submitButtonClassName}
+            disabled={isDisabled || isRequestProcessing}
+          >
             {submitButtonText}
           </button>
         </form>
@@ -67,5 +75,21 @@ function PopupWithForm({
     </div>
   );
 }
+
+PopupWithForm.propTypes = {
+  formTitle: PropTypes.string.isRequired,
+  submitButtonText: PropTypes.string.isRequired,
+  redirectTitleText: PropTypes.string.isRequired,
+  redirectLinkText: PropTypes.string.isRequired,
+  isOpened: PropTypes.bool.isRequired,
+  children: PropTypes.element,
+  onClose: PropTypes.func.isRequired,
+  onOverlayClick: PropTypes.func.isRequired,
+  onRedirectLinkClick: PropTypes.func.isRequired,
+  isDisabled: PropTypes.bool.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  formError: PropTypes.string,
+  isRequestProcessing: PropTypes.bool.isRequired,
+};
 
 export default PopupWithForm;

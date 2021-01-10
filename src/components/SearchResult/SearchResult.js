@@ -1,21 +1,30 @@
 import { useEffect, useState } from 'react';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import classNames from 'classnames';
+import { forSearchResult as config } from '../../configs/configForComponents';
+import PropTypes from 'prop-types';
 import './SearchResult.css';
 
 /**
  * @module SearchResult
  * @description Функциональный компонент<br>
  * Блок отображает статьи, найденные в результате поиска по запросу пользователя.<br>
- * @property {Object} config -  объект с базовыми настройками отображения блока
- * @property {Object} configForNewsCard - объект с базовыми настройками отображения блока NewsCard
  * @property {Array} searchResult - массив с данными статей, найденых в результате поиска по запросу пользователя.
  * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
+ * @property {Function} openRegisterPopup - openRegisterPopup - колбэк, открывает попап регистрации
+ * @property {Function} handleDeleteArticle - колбэк, обработчик удаления статьи
+ * @property {Function} handleSaveArticle - колбэк, обработчик сохранения статьи
  * @returns {JSX}
  * @since v.1.0.0
  */
-function SearchResult({ config, configForNewsCard, searchResult, isLoggedIn }) {
-  const { title, showMoreButtonText } = config;
+function SearchResult({
+  searchResult,
+  isLoggedIn,
+  openRegisterPopup,
+  handleDeleteArticle,
+  handleSaveArticle,
+}) {
+  const { TITLE, SHOW_MORE_BUTTON_TEXT } = config;
 
   const [cardsToRender, setCardsToRender] = useState([]);
   const [cardsToRenderQuantity, setCardsToRenderQuantity] = useState(3);
@@ -50,11 +59,14 @@ function SearchResult({ config, configForNewsCard, searchResult, isLoggedIn }) {
 
   return (
     <section className="search-result">
-      <h2 className="search-result__title">{title}</h2>
+      <h2 className="search-result__title">{TITLE}</h2>
       <NewsCardList
         cards={cardsToRender}
-        configForNewsCard={configForNewsCard}
+        isSavedNewsOpened={false}
         isLoggedIn={isLoggedIn}
+        openRegisterPopup={openRegisterPopup}
+        handleDeleteArticle={handleDeleteArticle}
+        handleSaveArticle={handleSaveArticle}
       />
       <button
         onClick={handleClickShowMoreButton}
@@ -62,10 +74,29 @@ function SearchResult({ config, configForNewsCard, searchResult, isLoggedIn }) {
         type="button"
         className={showMoreButtonClassName}
       >
-        {showMoreButtonText}
+        {SHOW_MORE_BUTTON_TEXT}
       </button>
     </section>
   );
 }
+
+SearchResult.propTypes = {
+  searchResult: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      source: PropTypes.string.isRequired,
+      keyword: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+  openRegisterPopup: PropTypes.func.isRequired,
+  handleDeleteArticle: PropTypes.func.isRequired,
+  handleSaveArticle: PropTypes.func.isRequired,
+};
 
 export default SearchResult;

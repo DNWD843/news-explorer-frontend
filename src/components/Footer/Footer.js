@@ -1,51 +1,50 @@
 import { Link } from 'react-router-dom';
 import { MAIN } from '../../utils/routesMap';
+import { forFooter as config } from '../../configs/configForComponents';
 import './Footer.css';
 
 /**
  * @module Footer
  * @description Функциональный компонент<br>
  * Футер, блок с навигационными и информационными ссылками.<br>
- * Принимает в пропсах объект с настройками блока - config.
- * @property {Object} config -  объект с базовыми настройками отображения блока
  * @returns {JSX}
  * @since v.1.0.0
  */
-function Footer({ config }) {
+function Footer() {
   const {
-    copyrightText,
-    navLinkText,
-    outerLinkText,
-    outerLink,
-    socialLinkGithub,
-    socialLinkFacebook,
+    COPYRIGHT_TEXT,
+    NAV_LINK_TEXT,
+    OUTER_LINK_TEXT,
+    OUTER_LINK,
+    SOCIAL_LINK_GITHUB,
+    SOCIAL_LINK_FACEBOOK,
   } = config;
   return (
     <>
       <footer className="footer">
-        <p className="footer__copyright">{copyrightText}</p>
+        <p className="footer__copyright">{COPYRIGHT_TEXT}</p>
         <nav className="footer__menu">
           <ul className="footer__links">
             <li className="footer__links-item">
               <Link to={MAIN} className="footer__link">
-                {navLinkText}
+                {NAV_LINK_TEXT}
               </Link>
             </li>
             <li className="footer__links-item">
               <a
-                href={outerLink}
+                href={OUTER_LINK}
                 className="footer__link"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                {outerLinkText}
+                {OUTER_LINK_TEXT}
               </a>
             </li>
           </ul>
           <ul className="footer__social">
             <li className="footer__social-item">
               <a
-                href={socialLinkGithub}
+                href={SOCIAL_LINK_GITHUB}
                 className="footer__social-link"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -55,7 +54,7 @@ function Footer({ config }) {
             </li>
             <li className="footer__social-item">
               <a
-                href={socialLinkFacebook}
+                href={SOCIAL_LINK_FACEBOOK}
                 className="footer__social-link"
                 target="_blank"
                 rel="noopener noreferrer"

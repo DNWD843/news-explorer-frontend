@@ -24,6 +24,7 @@ export function useFormWithValidation() {
   const [isFormValid, setIsFormValid] = useState(false);
   const [isInputChecked, setIsInputChecked] = useState({});
   const [isInputValid, setIsInputValid] = useState({});
+  const [formError, setFormError] = useState('');
 
   /**
    * @method
@@ -65,6 +66,7 @@ export function useFormWithValidation() {
       setIsFormValid(newIsFormValid);
       setIsInputChecked(newIsInputChecked);
       setIsInputValid(newIsInputValid);
+      setFormError('');
     },
     [setValues, setErrors, setIsFormValid, setIsInputChecked, setIsInputValid],
   );
@@ -78,5 +80,7 @@ export function useFormWithValidation() {
     handleInputChange,
     setValues,
     resetForm,
+    formError,
+    setFormError,
   };
 }

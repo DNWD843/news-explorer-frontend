@@ -1,34 +1,66 @@
+import { forLogin as config } from '../../configs/configForComponents';
 import { useEffect } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWuthForm';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
+import PropTypes from 'prop-types';
 
 /**
  * @module Login
  * @description Функциональный компонент<br>
  * Попап, форма входа (авторизации) в приложение.
- * @property {Object} config - объект с базовыми настройками отображения блока
  * @property {Boolean} isOpened - - стейт открытого состояния попапа
+ * @property {Boolean} isRequestProcessing - стейт состояния запроса: true - выполняется, false - не выполняется
  * @property {Function} onClose - колбэк, закрывает попапы при клике по крестику
  * @property {Function} onOverlayClick - колбэк, закрывает попапы при клике по оверлею
  * @property {Function} onRedirectLinkClick - колбэк, переводит на другую страницу
- * @property {Function} onSubmit - колбэк, отправляет запрос при сабмите формы
+ * @property {Function} handleLogin - колбэк, отправляет запрос при сабмите формы
  * @returns {JSX} - JSX-фрагмент разметки, форма авторизации в приложении
  * @since v.1.0.0
  */
-function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick, onSubmit }) {
+function Login({
+  isOpened,
+  isRequestProcessing,
+  onClose,
+  onOverlayClick,
+  onRedirectLinkClick,
+  handleLogin,
+}) {
   const {
-    formTitle,
-    submitButtonText,
-    redirectTitleText,
-    redirectLinkText,
-    emailLabel,
-    emailPlaceholder,
-    passwordLabel,
-    passwordPlaceholder,
+    FORM_TITLE,
+    SUBMIT_BUTTON_TEXT,
+    REDIRECT_TITLE_TEXT,
+    REDIRECT_LINK_TEXT,
+    EMAIL_LABEL,
+    EMAIL_PLACEHOLDER,
+    PASSWORD_LABEL,
+    PASSWORD_PLACEHOLDER,
   } = config;
 
-  const { values, errors, isFormValid, handleInputChange, resetForm } = useFormWithValidation();
+  const {
+    values,
+    errors,
+    isFormValid,
+    handleInputChange,
+    resetForm,
+    formError,
+    setFormError,
+  } = useFormWithValidation();
+
   const { login, password } = values;
+
+  /**
+   * @method handleSubmit
+   * @description Публичный метод<br>
+   * Обработчик сабмита формы авторизации. Возвращает токен.
+   * @param {Event} evt - событие
+   * @public
+   * @returns {Object} токен в формате {token: <токен>}
+   * @since v.1.1.0
+   */
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    handleLogin({ email: login, password }, setFormError);
+  };
 
   useEffect(() => {
     resetForm();
@@ -37,21 +69,23 @@ function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick,
 
   return (
     <PopupWithForm
-      formTitle={formTitle}
-      submitButtonText={submitButtonText}
-      redirectTitleText={redirectTitleText}
-      redirectLinkText={redirectLinkText}
+      formTitle={FORM_TITLE}
+      submitButtonText={SUBMIT_BUTTON_TEXT}
+      redirectTitleText={REDIRECT_TITLE_TEXT}
+      redirectLinkText={REDIRECT_LINK_TEXT}
       isOpened={isOpened}
       onClose={onClose}
       onOverlayClick={onOverlayClick}
       onRedirectLinkClick={onRedirectLinkClick}
       isDisabled={!isFormValid}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
+      formError={formError}
+      isRequestProcessing={isRequestProcessing}
     >
       <>
         <ul className="form__inputs">
           <li className="form__field">
-            <label className="form__input-label">{emailLabel}</label>
+            <label className="form__input-label">{EMAIL_LABEL}</label>
             <input
               id="login"
               name="login"
@@ -59,7 +93,8 @@ function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick,
               onChange={handleInputChange}
               value={login || ''}
               className="form__input"
-              placeholder={emailPlaceholder}
+              placeholder={EMAIL_PLACEHOLDER}
+              disabled={isRequestProcessing}
               required
             />
             <span className="form__input-error" id="login-input-error">
@@ -67,15 +102,16 @@ function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick,
             </span>
           </li>
           <li className="form__field">
-            <label className="form__input-label">{passwordLabel}</label>
+            <label className="form__input-label">{PASSWORD_LABEL}</label>
             <input
               id="password"
               name="password"
-              type="text"
+              type="password"
               onChange={handleInputChange}
               value={password || ''}
               className="form__input"
-              placeholder={passwordPlaceholder}
+              placeholder={PASSWORD_PLACEHOLDER}
+              disabled={isRequestProcessing}
               required
             />
             <span className="form__input-error" id="password-input-error">
@@ -87,5 +123,14 @@ function Login({ config, isOpened, onClose, onOverlayClick, onRedirectLinkClick,
     </PopupWithForm>
   );
 }
+
+Login.propTypes = {
+  isOpened: PropTypes.bool.isRequired,
+  isRequestProcessing: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onOverlayClick: PropTypes.func.isRequired,
+  onRedirectLinkClick: PropTypes.func.isRequired,
+  handleLogin: PropTypes.func.isRequired,
+};
 
 export default Login;

@@ -1,76 +1,79 @@
 import About from '../About/About';
-//import NoResult from '../NoResult/NoResult';  // компонент временно отключен. раскомментриовать для подключения
-//import Preloader from '../Preloader/Preloader';  // компонент временно отключен. раскомментриовать для подключения
-import SavedNews from '../SavedNews/SavedNews';
+import NoResult from '../NoResult/NoResult';
+import Preloader from '../Preloader/Preloader';
 import SearchResult from '../SearchResult/SearchResult';
-import { Switch, Route } from 'react-router-dom';
-import * as to from '../../utils/routesMap';
+import PropTypes from 'prop-types';
 import './Main.css';
 
 /**
  * @module Main
  * @description Функциональный компонент<br>
  * Блок с основным контентом страницы.<br>
- * @property {Object} config -  объект с базовыми настройками отображения блока
  * @property {Boolean} isLoggedIn - стейт состяния пользователя: авторизован/не авторизован
- * @property {String} userName - имя пользователя
- * @property {Object} configForAbout - объект настроек для компонента About
- * @property {Object} configForNoResult - объект настроек для компонента NoResult
- * @property {Object} configForPreloader - объект настроек для компонента Preloader
- * @property {Object} configForSavedNews - объект настроек для компонента SavedNews
- * @property {Array} SearchResult - массив с данными результата поиска
- * @property {Object} configForSearchResult - объект настроек для компонента SearchResult
- * @property {Array} savedArticles - массив с данными сохраненных статей
- * @property {Object} configForNewsCard - объект настроек для компонента NewsCard
+ * @property {Boolean} isSearchDone - стейт, показывающий отправлял ли пользователь запросы.
+ * @property {Boolean} isSearchInProgress - стейт состояния запроса: true - выполняется, false - не выполняется
+ * @property {Boolean} isSearchFailed - стейт состояния результата запроса: true - не успешный, false -  успешный
+ * @property {Array} searchResult - массив с данными результата поиска
+ * @property {Function} openRegisterPopup - колбэк, открывает попап регистрации
+ * @property {Function} handleDeleteArticle - колбэк, обработчик удаления статьи
+ * @property {Function} handleSaveArticle - колбэк, обработчик сохранения статьи
  * @returns {JSX}
  * @since v.1.0.0
  */
 function Main({
-  userName,
-  configForAbout,
-  configForNoResult,
-  configForPreloader,
-  configForSavedNews,
-  searchResult,
-  configForSearchResult,
-  savedArticles,
-  configForNewsCard,
   isLoggedIn,
+  isSearchDone,
+  isSearchInProgress,
+  isSearchFailed,
+  searchResult,
+  openRegisterPopup,
+  handleDeleteArticle,
+  handleSaveArticle,
 }) {
   return (
     <>
       <main className="content">
-        <Switch>
-          <Route exact path={to.MAIN}>
-            {
-              <>
-                {/*
-                <Preloader config={configForPreloader} />  // компонент временно отключен. раскомментриовать для подключения
-                <NoResult config={configForNoResult} />  // компонент временно отключен. раскомментриовать для подключения
-              */}
-                <SearchResult
-                  config={configForSearchResult}
-                  configForNewsCard={configForNewsCard}
-                  searchResult={searchResult}
-                  isLoggedIn={isLoggedIn}
-                />
-              </>
-            }
-            <About config={configForAbout} />
-          </Route>
-          <Route path={to.SAVED_NEWS}>
-            <SavedNews
-              config={configForSavedNews}
-              userName={userName}
-              savedArticles={savedArticles}
-              configForNewsCard={configForNewsCard}
+        {isSearchInProgress && <Preloader />}
+        {isSearchDone ? (
+          !isSearchFailed && searchResult.length > 0 ? (
+            <SearchResult
+              searchResult={searchResult}
               isLoggedIn={isLoggedIn}
+              openRegisterPopup={openRegisterPopup}
+              handleDeleteArticle={handleDeleteArticle}
+              handleSaveArticle={handleSaveArticle}
             />
-          </Route>
-        </Switch>
+          ) : (
+            <NoResult isSearchFailed={isSearchFailed} />
+          )
+        ) : null}
+
+        <About />
       </main>
     </>
   );
 }
+
+Main.propTypes = {
+  isLoggedIn: PropTypes.bool.isRequired,
+  isSearchDone: PropTypes.bool.isRequired,
+  isSearchInProgress: PropTypes.bool.isRequired,
+  isSearchFailed: PropTypes.bool.isRequired,
+  searchResult: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      source: PropTypes.string.isRequired,
+      keyword: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired,
+      date: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  openRegisterPopup: PropTypes.func.isRequired,
+  handleDeleteArticle: PropTypes.func.isRequired,
+  handleSaveArticle: PropTypes.func.isRequired,
+};
 
 export default Main;

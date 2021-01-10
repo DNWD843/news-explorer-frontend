@@ -1,6 +1,6 @@
 {
   "name": "news-explorer-frontend",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -19,14 +19,10 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "gh-deploy": "gh-pages -d build",
-    "jsdoc:build": "jsdoc ./src/ ./src/components/About ./src/components/App ./src/components/Footer ./src/components/Header ./src/components/InfoTooltip ./src/components/Login ./src/components/Main ./src/components/Menu ./src/components/Navigation ./src/components/NewsCard ./src/components/NewsCardList ./src/components/NoResult ./src/components/PopupWithForm ./src/components/Preloader ./src/components/Register ./src/components/SavedNews ./src/components/SearchForm ./src/components/SearchResult  ./src/hooks/ ./src/utils/ ./README.md -d ./documentation",
-    "jsdoc:npx": "npx jsdoc ./src/ ./src/components/About ./src/components/App ./src/components/Footer ./src/components/Header ./src/components/InfoTooltip ./src/components/Login ./src/components/Main ./src/components/Menu ./src/components/Navigation ./src/components/NewsCard ./src/components/NewsCardList ./src/components/NoResult ./src/components/PopupWithForm ./src/components/Preloader ./src/components/Register ./src/components/SavedNews ./src/components/SearchForm ./src/components/SearchResult  ./src/hooks/ ./src/utils/ ./README.md -d ./documentation"
+    "deploy": "scp -r ./build/* express@84.201.177.57:/home/express/frontend-news",
+    "jsdoc:build": "jsdoc ./src/ ./src/components/About ./src/components/App ./src/components/Footer ./src/components/Header ./src/components/InfoTooltip ./src/components/Login ./src/components/Main ./src/components/Menu ./src/components/Navigation ./src/components/NewsCard ./src/components/NewsCardList ./src/components/NoResult ./src/components/PageNotFound ./src/components/PopupWithForm ./src/components/Preloader ./src/components/ProtectedRoute ./src/components/Register ./src/components/SavedNews ./src/components/SavedNewsHeader ./src/components/SavedNewsInfo ./src/components/SearchForm ./src/components/SearchResult  ./src/hooks/ ./src/utils/ ./README.md -d ./documentation"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DNWD843/news-explorer-frontend.git"
-  },
-  "homepage": "https://DNWD843.github.io/news-explorer-frontend/",
+  "homepage": "https://DNWD843.github.io/",
   "eslintConfig": {
     "extends": [
       "react-app",

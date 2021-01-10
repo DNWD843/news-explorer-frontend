@@ -1,12 +1,13 @@
+import { forNewsCard as config } from '../../configs/configForComponents';
 import classNames from 'classnames';
-import { useState } from 'react';
+import PropTypes from 'prop-types';
 import './NewsCard.css';
 
 /**
  * @module NewsCard
  * @description Функциональный компонент<br>
  * Карточка статьи.
- * @property {Object} config - объект с базовыми настройками отображения блока
+ * @property {String | Number} _id - id  статьи
  * @property {String} source - источник статьи
  * @property {String} keyword - ключевое слово статьи
  * @property {String} title - заголовок статьи
@@ -16,10 +17,14 @@ import './NewsCard.css';
  * @property {String} image - ссылка на изображение
  * @property {Boolean} isSavedNewsOpened - стейт состояния страницы с сохраненными новостями
  * @property {Boolean} isLoggedIn -  стейт состяния пользователя: авторизован/не авторизован
+ * @property {Function} openRegisterPopup - колбэк, открывает попап регистрации
+ * @property {Function} deleteArticle - колбэк, удаляет статью
+ * @property {Function} saveArticle - колбэк, сохраняет статью
  * @returns {JSX}
  * @since v.1.0.0
  */
 function NewsCard({
+  _id,
   source,
   keyword,
   title,
@@ -27,19 +32,21 @@ function NewsCard({
   date,
   link,
   image,
-  config,
   isSavedNewsOpened,
   isLoggedIn,
+  openRegisterPopup,
+  deleteArticle,
+  saveArticle,
 }) {
   const {
-    altText,
-    tooltipTextForMainPageNotLoggedIn,
-    tooltipTextForMainPageToSave,
-    tooltipTextForMainPageToDelete,
-    tooltipTextForSavedNewsPage,
+    ALT_TEXT,
+    TOOLTIP_MAIN_PAGE_NOT_LOGGED_IN,
+    TOOLTIP_MAIN_PAGE_TO_SAVE,
+    TOOLTIP_MAIN_PAGE_TO_DELETE,
+    TOOLTIP_SAVED_NEWS,
   } = config;
 
-  const [isSavedToCollection, setIsSavedToCollection] = useState(false);
+  const isSavedToCollection = typeof _id !== 'number';
 
   const cardBookmarkClassName = classNames('card__bookmark', {
     card__bookmark_page_main:
@@ -68,21 +75,19 @@ function NewsCard({
    * @since v.1.0.0
    */
   const handleClickOnBookmark = () => {
-    if (isLoggedIn && !isSavedNewsOpened && !isSavedToCollection) {
-      console.log('новость добавляется в коллекцию'); //TODO: удалить на следующем этапе
-      setIsSavedToCollection(true);
-    } else if (isLoggedIn && !isSavedNewsOpened && isSavedToCollection) {
-      console.log('новость удаляется из коллекции'); //TODO: удалить на следующем этапе
-      setIsSavedToCollection(false);
-    } else if (isSavedNewsOpened) {
-      console.log('новость удаляется из сохраненных новостей'); //TODO: удалить на следующем этапе
+    if (!isLoggedIn) {
+      openRegisterPopup();
+    } else if (isLoggedIn && !isSavedNewsOpened && !isSavedToCollection) {
+      saveArticle({ source, keyword, title, text, date, link, image }, _id);
+    } else if ((isLoggedIn && !isSavedNewsOpened && isSavedToCollection) || isSavedNewsOpened) {
+      deleteArticle({ _id });
     }
   };
 
   return (
     <li className="card news-card-list__item">
       <a href={link} className="card__link" target="_blank" rel="noopener noreferrer">
-        <img className="card__image" src={image} alt={altText} />
+        <img className="card__image" src={image} alt={ALT_TEXT} />
         <div className="card__info">
           <p className="card__date">{date}</p>
 
@@ -92,6 +97,7 @@ function NewsCard({
             </div>
             <p className="card__description">{text}</p>
           </div>
+
           <p className="card__source">{source}</p>
         </div>
       </a>
@@ -101,16 +107,31 @@ function NewsCard({
         onClick={handleClickOnBookmark}
         className={cardBookmarkClassName}
         name="bookmark"
-        disabled={!isLoggedIn}
       ></button>
       <div className={cardTooltipClassName}>
-        {isSavedNewsOpened && tooltipTextForSavedNewsPage}
-        {!isLoggedIn && tooltipTextForMainPageNotLoggedIn}
-        {!isSavedNewsOpened && isLoggedIn && !isSavedToCollection && tooltipTextForMainPageToSave}
-        {!isSavedNewsOpened && isLoggedIn && isSavedToCollection && tooltipTextForMainPageToDelete}
+        {isSavedNewsOpened && TOOLTIP_SAVED_NEWS}
+        {!isLoggedIn && TOOLTIP_MAIN_PAGE_NOT_LOGGED_IN}
+        {!isSavedNewsOpened && isLoggedIn && !isSavedToCollection && TOOLTIP_MAIN_PAGE_TO_SAVE}
+        {!isSavedNewsOpened && isLoggedIn && isSavedToCollection && TOOLTIP_MAIN_PAGE_TO_DELETE}
       </div>
     </li>
   );
 }
+
+NewsCard.propTypes = {
+  _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  source: PropTypes.string.isRequired,
+  keyword: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  isSavedNewsOpened: PropTypes.bool,
+  isLoggedIn: PropTypes.bool.isRequired,
+  openRegisterPopup: PropTypes.func,
+  deleteArticle: PropTypes.func.isRequired,
+  saveArticle: PropTypes.func,
+};
 
 export default NewsCard;

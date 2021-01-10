@@ -206,6 +206,11 @@
   opacity: 0.2;
 }
 
+.form__input:disabled {
+  outline: none;
+  background: transparent;
+}
+
 .form__input-error {
   position: absolute;
   left: 0;
