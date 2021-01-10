@@ -1,5 +1,5 @@
 import { forLogin as config } from '../../configs/configForComponents';
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWuthForm';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import PropTypes from 'prop-types';
@@ -57,10 +57,13 @@ function Login({
    * @returns {Object} токен в формате {token: <токен>}
    * @since v.1.1.0
    */
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    handleLogin({ email: login, password }, setFormError);
-  };
+  const handleSubmit = useCallback(
+    (evt) => {
+      evt.preventDefault();
+      handleLogin({ email: login, password }, setFormError);
+    },
+    [handleLogin, login, password, setFormError],
+  );
 
   useEffect(() => {
     resetForm();

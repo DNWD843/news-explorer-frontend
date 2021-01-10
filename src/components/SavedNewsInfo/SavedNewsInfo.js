@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import pluralize from '../../utils/pluralize';
 import * as configuration from '../../configs/configForPluralizeUtility';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
@@ -29,7 +29,7 @@ function SavedNewsInfo({ savedArticles }) {
    * @public
    * @since v.1.0.0
    */
-  const getKeywordsListSortedByPopularity = (articlesArray) => {
+  const getKeywordsListSortedByPopularity = useCallback((articlesArray) => {
     const keywordsWithRangeNumber = articlesArray
       .map((article) => article.keyword)
       .reduce((acc, keyword) => {
@@ -45,7 +45,7 @@ function SavedNewsInfo({ savedArticles }) {
       return keywordsWithRangeNumber[b] - keywordsWithRangeNumber[a];
     });
     return result;
-  };
+  }, []);
 
   const keywordsList = getKeywordsListSortedByPopularity(savedArticles);
   const firstKeyword = keywordsList[0];

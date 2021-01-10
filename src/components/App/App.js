@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Switch, Route, useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -74,13 +74,13 @@ function App() {
    * @public
    * @since v.1.0.0
    */
-  const closeAllPopups = () => {
-    document.removeEventListener('keydown', handleEscClose);
+  const closeAllPopups = useCallback((callback) => {
+    document.removeEventListener('keydown', callback);
     setIsLoginPopupOpened(false);
     setIsRegisterPopupOpened(false);
     setIsRegSuccessTooltipOpened(false);
     setIsMobileMenuOpened(false);
-  };
+  }, []);
 
   /**
    * @method handleEscClose
@@ -90,11 +90,14 @@ function App() {
    * @public
    * @since v.1.0.0
    */
-  const handleEscClose = (evt) => {
-    if (evt.key === 'Escape') {
-      closeAllPopups();
-    }
-  };
+  const handleEscClose = useCallback(
+    (evt) => {
+      if (evt.key === 'Escape') {
+        closeAllPopups(handleEscClose);
+      }
+    },
+    [closeAllPopups],
+  );
 
   /**
    * @method handleClickOnOverlay
@@ -104,17 +107,20 @@ function App() {
    * @public
    * @since v.1.0.0
    */
-  const handleClickOnOverlay = (evt) => {
-    /**
-     * Проверка истинности условия - клик по оверлею <br>
-     * Примечание: этот метод используется как обработчик в слушателе клика на оверлее попапа<br>
-     * Поэтому в данном случае условие проверяет совпадение клика именно на оверлее попапа
-     * @ignore
-     */
-    if (evt.target === evt.currentTarget) {
-      closeAllPopups();
-    }
-  };
+  const handleClickOnOverlay = useCallback(
+    (evt) => {
+      /**
+       * Проверка истинности условия - клик по оверлею <br>
+       * Примечание: этот метод используется как обработчик в слушателе клика на оверлее попапа<br>
+       * Поэтому в данном случае условие проверяет совпадение клика именно на оверлее попапа
+       * @ignore
+       */
+      if (evt.target === evt.currentTarget) {
+        closeAllPopups(handleEscClose);
+      }
+    },
+    [closeAllPopups, handleEscClose],
+  );
 
   /**
    * @method  handleClickLogIn
@@ -123,11 +129,11 @@ function App() {
    * @public
    * @since v.1.0.0
    */
-  const handleClickLogIn = () => {
-    closeAllPopups();
+  const handleClickLogIn = useCallback(() => {
+    closeAllPopups(handleEscClose);
     setIsLoginPopupOpened(true);
     document.addEventListener('keydown', handleEscClose);
-  };
+  }, [closeAllPopups, handleEscClose]);
 
   /**
    * @method  handleClickLogOut
@@ -136,7 +142,7 @@ function App() {
    * @public
    * @since v.1.0.0
    */
-  const handleClickLogOut = () => {
+  const handleClickLogOut = useCallback(() => {
     setIsLoggedIn(false);
     removeTokenFromStorage();
     removeUserDataFromStorage();
@@ -146,7 +152,7 @@ function App() {
     setFoundNewsCards([]);
     setIsSearchDone(false);
     history.push(to.MAIN);
-  };
+  }, [history]);
 
   /**
    * @method  handleClickRegister
@@ -155,11 +161,11 @@ function App() {
    * @public
    * @since v.1.0.0
    */
-  const handleClickRegister = () => {
-    closeAllPopups();
+  const handleClickRegister = useCallback(() => {
+    closeAllPopups(handleEscClose);
     setIsRegisterPopupOpened(true);
     document.addEventListener('keydown', handleEscClose);
-  };
+  }, [closeAllPopups, handleEscClose]);
 
   /**
    * @method  handleRegister
@@ -173,26 +179,29 @@ function App() {
    * @public
    * @since v.1.0.0
    */
-  const handleRegister = ({ email, password, name }, showError) => {
-    setIsRequestProcessing(true);
-    register(email, password, name)
-      .then((serverError) => {
-        if (!serverError) {
-          closeAllPopups();
-          setIsRegSuccessTooltipOpened(true);
-          document.addEventListener('keydown', handleEscClose);
-        } else {
-          if (serverError.statusCode) {
-            serverError.message = INVALID_REGISTRATION_DATA_MESSAGE;
+  const handleRegister = useCallback(
+    ({ email, password, name }, showError) => {
+      setIsRequestProcessing(true);
+      register(email, password, name)
+        .then((serverError) => {
+          if (!serverError) {
+            closeAllPopups(handleEscClose);
+            setIsRegSuccessTooltipOpened(true);
+            document.addEventListener('keydown', handleEscClose);
+          } else {
+            if (serverError.statusCode) {
+              serverError.message = INVALID_REGISTRATION_DATA_MESSAGE;
+            }
+            showError(serverError.message);
           }
-          showError(serverError.message);
-        }
-      })
-      .catch((err) => console.log({ err }))
-      .finally(() => {
-        setIsRequestProcessing(false);
-      });
-  };
+        })
+        .catch((err) => console.log({ err }))
+        .finally(() => {
+          setIsRequestProcessing(false);
+        });
+    },
+    [closeAllPopups, handleEscClose],
+  );
 
   /**
    * @method  handleLogin
@@ -205,44 +214,47 @@ function App() {
    * @public
    * @since v.1.0.0
    */
-  const handleLogin = ({ email, password }, showError) => {
-    setIsRequestProcessing(true);
-    login(email, password)
-      .then((res) => {
-        if (res.token) {
-          setTokenToStorage(res.token);
-          Promise.all([getUserDataFromDataBase(), getSavedNewsFromDataBase()])
-            .then(([userData, savedNews]) => {
-              if (userData.message) {
-                showError(userData.message);
-              } else if (savedNews.message) {
-                showError(savedNews.message);
-              } else {
-                setCurrentUser(userData);
-                setUserDataToStorage(userData);
-                setSavedNewsToStorage(savedNews);
-                setSavedNewsCards(savedNews);
-                setIsLoggedIn(true);
-                closeAllPopups();
-              }
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        } else {
-          if (res.statusCode) {
-            res.message = INVALID_AUTHORIZATION_DATA_MESSAGE;
+  const handleLogin = useCallback(
+    ({ email, password }, showError) => {
+      setIsRequestProcessing(true);
+      login(email, password)
+        .then((res) => {
+          if (res.token) {
+            setTokenToStorage(res.token);
+            Promise.all([getUserDataFromDataBase(), getSavedNewsFromDataBase()])
+              .then(([userData, savedNews]) => {
+                if (userData.message) {
+                  showError(userData.message);
+                } else if (savedNews.message) {
+                  showError(savedNews.message);
+                } else {
+                  setCurrentUser(userData);
+                  setUserDataToStorage(userData);
+                  setSavedNewsToStorage(savedNews);
+                  setSavedNewsCards(savedNews);
+                  setIsLoggedIn(true);
+                  closeAllPopups(handleEscClose);
+                }
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          } else {
+            if (res.statusCode) {
+              res.message = INVALID_AUTHORIZATION_DATA_MESSAGE;
+            }
+            showError(res.message);
           }
-          showError(res.message);
-        }
-      })
-      .catch((err) => {
-        console.log({ err });
-      })
-      .finally(() => {
-        setIsRequestProcessing(false);
-      });
-  };
+        })
+        .catch((err) => {
+          console.log({ err });
+        })
+        .finally(() => {
+          setIsRequestProcessing(false);
+        });
+    },
+    [closeAllPopups, handleEscClose],
+  );
 
   /**
    * @method  handleClickMenuButton
@@ -252,13 +264,19 @@ function App() {
    * @public
    * @since v.1.0.0
    */
-  const handleClickMenuButton = () => {
+  const handleClickMenuButton = useCallback(() => {
     if (isMobileMenuOpened || isLoginPopupOpened || isRegisterPopupOpened) {
-      closeAllPopups();
+      closeAllPopups(handleEscClose);
     } else {
       setIsMobileMenuOpened(true);
     }
-  };
+  }, [
+    closeAllPopups,
+    handleEscClose,
+    isMobileMenuOpened,
+    isLoginPopupOpened,
+    isRegisterPopupOpened,
+  ]);
 
   /**
    * @method findAndUpdateFoundNewsCard
@@ -272,7 +290,7 @@ function App() {
    * @public
    * @since v.1.1.0
    */
-  const findAndUpdateFoundNewsCard = (id, cardsArray, newCard) => {
+  const findAndUpdateFoundNewsCard = useCallback((id, cardsArray, newCard) => {
     const arrayWithUpdatedCard = cardsArray.map((card, index) =>
       card._id === id
         ? (() => {
@@ -283,7 +301,7 @@ function App() {
     );
     setFoundNewsCards(arrayWithUpdatedCard);
     setFoundNewsToStorage(arrayWithUpdatedCard);
-  };
+  }, []);
 
   /**
    * @method handleDeleteArticle
@@ -294,20 +312,23 @@ function App() {
    * @public
    * @since v.1.1.0
    */
-  const handleDeleteArticle = (article) => {
-    deleteArticle(article._id)
-      .then((res) => {
-        const resultCardsArray = savedNewsCards.filter((сard) => {
-          return сard._id !== article._id;
+  const handleDeleteArticle = useCallback(
+    (article) => {
+      deleteArticle(article._id)
+        .then((res) => {
+          const resultCardsArray = savedNewsCards.filter((сard) => {
+            return сard._id !== article._id;
+          });
+          setSavedNewsCards(resultCardsArray);
+          setSavedNewsToStorage(resultCardsArray);
+          findAndUpdateFoundNewsCard(article._id, foundNewsCards, { _id: undefined });
+        })
+        .catch((err) => {
+          console.log(err);
         });
-        setSavedNewsCards(resultCardsArray);
-        setSavedNewsToStorage(resultCardsArray);
-        findAndUpdateFoundNewsCard(article._id, foundNewsCards, { _id: undefined });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+    },
+    [findAndUpdateFoundNewsCard, savedNewsCards, foundNewsCards],
+  );
 
   /**
    * @method handleSaveArticle
@@ -318,18 +339,21 @@ function App() {
    * @public
    * @since v.1.1.0
    */
-  const handleSaveArticle = (article, id) => {
-    addArticleToSavedNews(article)
-      .then((newCard) => {
-        const resultCardsArray = savedNewsCards.concat(newCard);
-        setSavedNewsCards(resultCardsArray);
-        setSavedNewsToStorage(resultCardsArray);
-        findAndUpdateFoundNewsCard(id, foundNewsCards, newCard);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  const handleSaveArticle = useCallback(
+    (article, id) => {
+      addArticleToSavedNews(article)
+        .then((newCard) => {
+          const resultCardsArray = savedNewsCards.concat(newCard);
+          setSavedNewsCards(resultCardsArray);
+          setSavedNewsToStorage(resultCardsArray);
+          findAndUpdateFoundNewsCard(id, foundNewsCards, newCard);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    [findAndUpdateFoundNewsCard, savedNewsCards, foundNewsCards],
+  );
 
   /**
    * @method handleSearchFormSubmit
@@ -340,37 +364,40 @@ function App() {
    * @public
    * @since v.1.1.0
    */
-  const handleSearchFormSubmit = (userQuery) => {
-    setIsSearchFailed(false);
-    setIsSearchDone(false);
-    setIsSearchInProgress(true);
-    setFoundNewsCards([]);
-    getArticlesFromNewsApi(userQuery)
-      .then((res) => {
-        const formattedNewsCards = res.articles.map((article, index) => ({
-          _id: index + 1,
-          source: article.source.name,
-          keyword: userQuery[0].toUpperCase().concat(userQuery.slice(1).toLowerCase()),
-          title: article.title,
-          text: article.description,
-          date: getFormattedDate(article.publishedAt),
-          link: article.url,
-          image: article.urlToImage,
-        }));
-        setFoundNewsCards(formattedNewsCards);
-        if (isLoggedIn) {
-          setFoundNewsToStorage(formattedNewsCards);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsSearchFailed(true);
-      })
-      .finally(() => {
-        setIsSearchInProgress(false);
-        setIsSearchDone(true);
-      });
-  };
+  const handleSearchFormSubmit = useCallback(
+    (userQuery) => {
+      setIsSearchFailed(false);
+      setIsSearchDone(false);
+      setIsSearchInProgress(true);
+      setFoundNewsCards([]);
+      getArticlesFromNewsApi(userQuery)
+        .then((res) => {
+          const formattedNewsCards = res.articles.map((article, index) => ({
+            _id: index + 1,
+            source: article.source.name,
+            keyword: userQuery[0].toUpperCase().concat(userQuery.slice(1).toLowerCase()),
+            title: article.title,
+            text: article.description,
+            date: getFormattedDate(article.publishedAt),
+            link: article.url,
+            image: article.urlToImage,
+          }));
+          setFoundNewsCards(formattedNewsCards);
+          if (isLoggedIn) {
+            setFoundNewsToStorage(formattedNewsCards);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsSearchFailed(true);
+        })
+        .finally(() => {
+          setIsSearchInProgress(false);
+          setIsSearchDone(true);
+        });
+    },
+    [isLoggedIn],
+  );
 
   useEffect(() => {
     const userDataFromStorage = getUserDataFromStorage();

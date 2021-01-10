@@ -25,6 +25,7 @@ import './Menu.css';
 function Menu({ isLoggedIn, onLogOutClick, onLogInClick, isMobile, isMobileMenuOpened }) {
   const { BUTTON_IMAGE_ALT, AUTHORIZATION_TITLE } = config;
   const currentUser = useContext(CurrentUserContext);
+
   const menuClassName = classNames('menu', {
     menu_mobile: isMobile,
     menu_desktop: !isMobile,

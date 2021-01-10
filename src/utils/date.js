@@ -1,3 +1,4 @@
+import { MONTHS_LIST } from '../configs/configForGetFormattedDateUtility';
 /**
  * @function getFormattedDate
  * @description  Утилита преобразования даты.<br>
@@ -7,20 +8,7 @@
  * @since v.1.1.0
  */
 export const getFormattedDate = (dateUTC) => {
-  const months = [
-    'января',
-    'февраля',
-    'марта',
-    'апреля',
-    'мая',
-    'июня',
-    'июля',
-    'августа',
-    'сентября',
-    'октября',
-    'ноября',
-    'декабря',
-  ];
+  const months = MONTHS_LIST;
 
   const monthNumber = new Date(dateUTC).getMonth();
   const letterMonth = months[monthNumber];

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import NewsCardList from '../NewsCardList/NewsCardList';
 import classNames from 'classnames';
 import { forSearchResult as config } from '../../configs/configForComponents';
@@ -42,7 +42,7 @@ function SearchResult({
    * @public
    * @since v.1.0.0
    */
-  const handleClickShowMoreButton = () => {
+  const handleClickShowMoreButton = useCallback(() => {
     let cardsQuantity;
     if (searchResult.length - cardsToRenderQuantity > 3) {
       cardsQuantity = cardsToRenderQuantity + 3;
@@ -51,7 +51,7 @@ function SearchResult({
       setIsDisabled(true);
     }
     setCardsToRenderQuantity(cardsQuantity);
-  };
+  }, [searchResult, cardsToRenderQuantity]);
 
   useEffect(() => {
     setCardsToRender(searchResult.slice(0, cardsToRenderQuantity));

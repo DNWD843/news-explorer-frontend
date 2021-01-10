@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import PopupWithForm from '../PopupWithForm/PopupWuthForm';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import { forRegister as config } from '../../configs/configForComponents';
@@ -60,12 +60,15 @@ function Register({
    * @returns {Object} сообщение в формате {message: <сообщение>}
    * @since v.1.1.0
    */
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    const userRegistrationData = { email, password: regPassword, name };
-    setFormError('');
-    handleRegister(userRegistrationData, setFormError);
-  };
+  const handleSubmit = useCallback(
+    (evt) => {
+      evt.preventDefault();
+      const userRegistrationData = { email, password: regPassword, name };
+      setFormError('');
+      handleRegister(userRegistrationData, setFormError);
+    },
+    [email, regPassword, name, handleRegister, setFormError],
+  );
 
   useEffect(() => {
     resetForm();
