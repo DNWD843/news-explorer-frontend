@@ -22,7 +22,7 @@ function SavedNewsInfo({ savedArticles }) {
   const titleText = currentUser.name.concat(titleTextFragment);
 
   /**
-   * @method getKeywordsTopList
+   * @method getKeywordsListSortedByPopularity
    * @description Метод обрабатывает ключевые слова (категории) статей и сортирует их по популярности.
    *  Возвращает массив с ключевыми словами, отсортированными по популярности по убыванию.
    * @param {Array} articlesArray - массив с данными сохраненных статей
