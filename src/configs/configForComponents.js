@@ -5,7 +5,7 @@ export const forAbout = {
   ABOUT_AUTHOR: `Дмитрий Неклюдов - веб-разработчик, джуниор.
                 Стек технологий: HTML5 / CSS3 / Javascript / React / Node.js.`,
   DESCRIPTION: `Если Вам понравилась или не понравилась эта работа, буду признателен за обратную связь.
-     Пишите мне в Telegram - t.me/DNWD843. Добавляйтесь в LinkedIn - dnwd843. Больше работ на GitHub.`,
+     Пишите мне в Telegram - t.me/mad_damon. Добавляйтесь в LinkedIn - maddamon. Больше работ на GitHub.`,
 };
 
 export const forFooter = {
